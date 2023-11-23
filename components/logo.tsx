@@ -5,7 +5,7 @@ const Logo = () => {
   return (
     <Link href="/" className="text-xl tracking-wider">
       <span className="font-extralight">bisa</span>
-      <span className="font-extrabold text-white bg-sky-500 p-1.5 rounded-md uppercase">
+      <span className="text-white font-black bg-sky-500 p-1.5 rounded-md uppercase">
         interview
       </span>
     </Link>
