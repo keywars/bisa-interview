@@ -1,3 +1,5 @@
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 import React from "react";
 
 interface MainLayoutProps {
@@ -5,7 +7,13 @@ interface MainLayoutProps {
 }
 
 const MainLayout = ({ children }: MainLayoutProps) => {
-  return <div>{children}</div>;
+  return (
+    <div>
+      <Navbar className="py-5 bg-background" />
+      {children}
+      <Footer />
+    </div>
+  );
 };
 
 export default MainLayout;

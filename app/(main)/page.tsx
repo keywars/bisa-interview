@@ -1,13 +1,11 @@
-import { buttonVariants } from "@/components/ui/button";
+import Hero from "@/components/hero";
 import Link from "next/link";
-import React from "react";
 
 const MainPage = () => {
   return (
     <div>
-      <Link href="/signin" className={buttonVariants({ variant: "outline" })}>
-        Login
-      </Link>
+      <Hero />
+      <section className="min-h-[47dvh] bg-lime-400/40">features</section>
     </div>
   );
 };

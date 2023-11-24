@@ -3,7 +3,7 @@ import React from "react";
 
 const Logo = () => {
   return (
-    <Link href="/" className="text-xl tracking-wider">
+    <Link href="/" className="text-base lg:text-xl tracking-wider">
       <span className="font-extralight">bisa</span>
       <span className="text-white font-black bg-sky-500 p-1.5 rounded-md uppercase">
         interview

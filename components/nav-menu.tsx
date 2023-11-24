@@ -17,7 +17,7 @@ import { usePathname } from "next/navigation";
 const NavMenu = () => {
   const pathname = usePathname();
   return (
-    <NavigationMenu>
+    <NavigationMenu className="hidden lg:block">
       <NavigationMenuList className="space-x-3">
         <NavigationMenuItem>
           <Link href="/" legacyBehavior passHref>
