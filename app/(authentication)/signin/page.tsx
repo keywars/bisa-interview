@@ -3,9 +3,9 @@ import Link from "next/link";
 
 const LoginPage = () => {
   return (
-    <div className="flex justify-center items-center w-full min-h-screen">
+    <div className="flex justify-center items-center min-h-screen px-3">
       {/* login form */}
-      <div className="min-w-[500px] border">
+      <div className="min-w-[400px] lg:min-w-[476px] border">
         <div className=" p-8 space-y-8">
           <div>
             <h1 className="text-3xl font-bold">Login</h1>

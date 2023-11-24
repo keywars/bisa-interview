@@ -1,23 +1,16 @@
 "use client";
 
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import IconParkOutlineHamburgerButton from "./icons/IconParkOutlineHamburgerButton";
-import { Button } from "./ui/button";
-import { useState } from "react";
 import {
   NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
+import IconParkOutlineHamburgerButton from "./icons/IconParkOutlineHamburgerButton";
+import { Button } from "./ui/button";
 
 const MobileMenu = () => {
   const [open, setOpen] = useState<boolean>(false);

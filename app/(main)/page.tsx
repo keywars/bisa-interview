@@ -1,5 +1,4 @@
 import Hero from "@/components/hero";
-import Link from "next/link";
 
 const MainPage = () => {
   return (

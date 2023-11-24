@@ -1,14 +1,12 @@
 "use client";
 
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuList,
-} from "@radix-ui/react-navigation-menu";
 import Link from "next/link";
 import React from "react";
 import {
+  NavigationMenu,
+  NavigationMenuItem,
   NavigationMenuLink,
+  NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
 import { usePathname } from "next/navigation";
