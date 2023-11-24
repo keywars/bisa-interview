@@ -33,7 +33,7 @@ const MobileMenu = () => {
       </SheetTrigger>
       <SheetContent
         side="top"
-        className="h-screen w-screen flex justify-center items-center"
+        className="h-screen w-screen flex flex-col justify-between items-center"
       >
         <NavigationMenu>
           <NavigationMenuList className="flex-col space-y-2 text-center">
@@ -90,6 +90,27 @@ const MobileMenu = () => {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+
+        <div className="grid grid-cols-2 gap-4">
+          <Button
+            variant="ghost"
+            onClick={() => {
+              router.push("/signin");
+              setOpen((open) => false);
+            }}
+          >
+            Sign in
+          </Button>
+          <Button
+            onClick={() => {
+              router.push("/signup");
+              setOpen((open) => false);
+            }}
+            className="bg-sky-600 hover:bg-sky-500"
+          >
+            Sign up
+          </Button>
+        </div>
       </SheetContent>
     </Sheet>
   );
