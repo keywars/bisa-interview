@@ -1,5 +1,20 @@
 import RegisterForm from "@/components/register-form";
+import { type Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Sign up | Bisa Interview",
+  description: "Register to continue using bisa interview.",
+
+  openGraph: {
+    title: "Sign up | Bisa Interview",
+    description: "Register to continue using bisa interview",
+    url: "http://localhost:3000/",
+    siteName: "Bisa Interview",
+    locale: "en_US",
+    type: "website",
+  },
+};
 
 const RegisterPage = () => {
   return (
@@ -19,9 +34,9 @@ const RegisterPage = () => {
 
         <div className="h-12 flex justify-center">
           <p className="font-light text-sm text-gray-600 tracking-wide">
-            have an account?
+            have an account?{" "}
             <Link href="/signin" className="hover:underline">
-              login
+              Register
             </Link>
           </p>
         </div>

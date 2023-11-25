@@ -95,7 +95,7 @@ const MobileMenu = () => {
                 setOpen((open) => false);
               }}
             >
-              Sign in
+              Log in
             </Button>
             <Button
               onClick={() => {
@@ -104,7 +104,7 @@ const MobileMenu = () => {
               }}
               className="bg-sky-600 hover:bg-sky-500"
             >
-              Sign up
+              Create Account
             </Button>
           </div>
         </SheetContent>

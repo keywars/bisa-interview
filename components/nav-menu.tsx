@@ -31,7 +31,7 @@ const NavMenu = () => {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Link href="/collections" legacyBehavior passHref>
+          <Link href="#collections" legacyBehavior passHref>
             <NavigationMenuLink className={cn(navigationMenuTriggerStyle())}>
               Collections
             </NavigationMenuLink>
@@ -47,7 +47,7 @@ const NavMenu = () => {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Developer</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Developers</NavigationMenuTrigger>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

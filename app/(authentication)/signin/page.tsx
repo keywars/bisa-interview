@@ -1,5 +1,20 @@
 import LoginForm from "@/components/login-form";
+import { type Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Sign in | Bisa Interview",
+  description: "Login to continue using bisa interview.",
+
+  openGraph: {
+    title: "Sign in | Bisa Interview",
+    description: "Login to continue using bisa interview",
+    url: "http://localhost:3000/",
+    siteName: "Bisa Interview",
+    locale: "en_US",
+    type: "website",
+  },
+};
 
 const LoginPage = () => {
   return (

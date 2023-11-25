@@ -42,7 +42,7 @@ const RegisterForm = () => {
                 <FormControl>
                   <Input placeholder="john antman" {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-sm" />
               </FormItem>
             )}
           />
@@ -56,7 +56,7 @@ const RegisterForm = () => {
                 <FormControl>
                   <Input placeholder="john@email.com" {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-sm" />
               </FormItem>
             )}
           />
@@ -70,7 +70,7 @@ const RegisterForm = () => {
                 <FormControl>
                   <Input type="password" placeholder="******" {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-sm" />
               </FormItem>
             )}
           />

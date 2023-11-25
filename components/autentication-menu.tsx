@@ -27,7 +27,7 @@ const AuthenticationMenu = () => {
                   pathname === "/signin" && "font-black"
                 )}
               >
-                Sign in
+                Log in
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
@@ -41,7 +41,7 @@ const AuthenticationMenu = () => {
                   pathname === "/signup" && "font-black"
                 )}
               >
-                Sign up
+                Create Account
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
