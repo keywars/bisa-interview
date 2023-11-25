@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sign up | Bisa Interview",
     description: "Register to continue using bisa interview",
-    url: "http://localhost:3000/",
+    url: "http://localhost:3000/signup",
     siteName: "Bisa Interview",
     locale: "en_US",
     type: "website",

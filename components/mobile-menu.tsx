@@ -51,7 +51,7 @@ const MobileMenu = () => {
                   className={cn("w-full")}
                   variant="ghost"
                   onClick={() => {
-                    router.push("#collections");
+                    router.push("/collections");
                     setOpen((open) => false);
                   }}
                 >
@@ -64,7 +64,7 @@ const MobileMenu = () => {
                   className={cn("w-full")}
                   variant="ghost"
                   onClick={() => {
-                    router.push("#news");
+                    router.push("/news");
                     setOpen((open) => false);
                   }}
                 >

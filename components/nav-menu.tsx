@@ -31,16 +31,26 @@ const NavMenu = () => {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Link href="#collections" legacyBehavior passHref>
-            <NavigationMenuLink className={cn(navigationMenuTriggerStyle())}>
+          <Link href="/collections" legacyBehavior passHref>
+            <NavigationMenuLink
+              className={cn(
+                navigationMenuTriggerStyle(),
+                pathname === "/collections" && "font-black text-sky-500"
+              )}
+            >
               Collections
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Link href="#news" legacyBehavior passHref>
-            <NavigationMenuLink className={cn(navigationMenuTriggerStyle())}>
+          <Link href="/news" legacyBehavior passHref>
+            <NavigationMenuLink
+              className={cn(
+                navigationMenuTriggerStyle(),
+                pathname === "/news" && "font-black text-sky-500"
+              )}
+            >
               News
             </NavigationMenuLink>
           </Link>

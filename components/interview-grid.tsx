@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Badge } from "./ui/badge";
 import { buttonVariants } from "./ui/button";
+import InterviewCard from "./interview-card";
 
 const dummyData = [
   {
@@ -58,6 +59,12 @@ const dummyData = [
     bg: "#FF6969",
     tagbg: "#BB2525",
   },
+  {
+    label: "240 core java interview question",
+    tag: "java",
+    bg: "#FF6969",
+    tagbg: "#BB2525",
+  },
 ];
 
 const InterviewGrid = () => {
@@ -73,42 +80,15 @@ const InterviewGrid = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-6">
-            {dummyData.map((data, index) => (
-              <div
-                key={index}
-                className="aspect-[2/1] rounded-md p-4 bg-white shadow-sm"
-              >
-                <div
-                  className="rounded-md h-full p-7 relative"
-                  // style={{ backgroundColor: `${data.bg}` }}
-                >
-                  <Link
-                    href="#interviewDetail"
-                    className="font-bold text-xl font-mono [wrap-text:balance] hover:underline transition-all duration-200"
-                  >
-                    {data.label}
-                  </Link>
-                  <Badge
-                    className="absolute bottom-7 left-7"
-                    // style={{ backgroundColor: `${data.tagbg}` }}
-                  >
-                    {data.tag}
-                  </Badge>
-
-                  {index === 5 && (
-                    <strong className="absolute bottom-5 right-5 font-bold text-violet-600 animate-pulse text-lg">
-                      NEW
-                    </strong>
-                  )}
-                </div>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+            {dummyData.slice(0, 6).map((data, index) => (
+              <InterviewCard data={data} index={index} key={index} />
             ))}
           </div>
 
           <div className="flex justify-center">
             <Link
-              href="#seemore"
+              href="/collections"
               className={cn(
                 buttonVariants({ variant: "outline" }),
                 "hover:text-sky-600 text-gray-700 group transition ease-in-out duration-200 rounded-xl"
