@@ -15,7 +15,7 @@ const InterviewCard = ({ data, index }: InterviewCardProps) => {
         // style={{ backgroundColor: `${data.bg}` }}
       >
         <Link
-          href="#interviewDetail"
+          href="/collections/jsushasd-12123kasd-1212"
           className="font-bold text-xl font-mono [wrap-text:balance] hover:underline transition-all duration-200 capitalize line-clamp-2"
         >
           {data.label}
@@ -28,7 +28,7 @@ const InterviewCard = ({ data, index }: InterviewCardProps) => {
         </Badge>
 
         {index === 5 && (
-          <strong className="absolute bottom-5 right-5 font-bold text-violet-600 animate-pulse text-lg">
+          <strong className="absolute bottom-3  right-3 font-bold text-rose-600 text-lg">
             NEW
           </strong>
         )}

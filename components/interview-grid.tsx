@@ -59,12 +59,6 @@ const dummyData = [
     bg: "#FF6969",
     tagbg: "#BB2525",
   },
-  {
-    label: "240 core java interview question",
-    tag: "java",
-    bg: "#FF6969",
-    tagbg: "#BB2525",
-  },
 ];
 
 const InterviewGrid = () => {

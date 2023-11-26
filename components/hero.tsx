@@ -11,7 +11,10 @@ const Hero = () => {
               New
             </span>{" "}
             Rust basics beginner interview.{" "}
-            <Link href="#checkout" className="font-bold underline">
+            <Link
+              href="/collections/iiadas-123jasda-9as"
+              className="font-bold underline"
+            >
               check out
             </Link>
           </span>
