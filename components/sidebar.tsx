@@ -33,14 +33,14 @@ const tableOfContent = [
 
 const Sidebar = () => {
   return (
-    <aside className="w-[345px] h-[90dvh] flex-none py-5 px-2 overflow-auto">
-      <ScrollArea className="h-full w-full rounded-md border p-4">
+    <aside className="hidden lg:block w-[345px] h-[90dvh] flex-none py-5 px-2 overflow-auto">
+      <ScrollArea className="h-full w-full p-4">
         <ol className="list-inside list-disc space-y-2.5">
           {tableOfContent.map((content, index) => (
             <li key={index}>
               <Link
                 href={`/collections/collectionID/${slugify(content)}`}
-                className="capitalize font-medium text-sm [text-wrap:balance] active:text-sky-100"
+                className="capitalize font-medium text-sm [text-wrap:balance] active:text-sky-100 hover:underline"
               >
                 {content}
               </Link>

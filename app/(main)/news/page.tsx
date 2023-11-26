@@ -25,7 +25,9 @@ const NewsPage = () => {
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium, impedit?"
         />
 
-        <div>content news</div>
+        <div className="max-w-screen-md mx-auto bg-rose-400">
+          <div>content</div>
+        </div>
       </div>
     </div>
   );
