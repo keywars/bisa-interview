@@ -5,6 +5,7 @@ import Logo from "./logo";
 import NavMenu from "./nav-menu";
 import MobileMenu from "./mobile-menu";
 import { ThemeToggle } from "./theme-toggle";
+import Search from "./search";
 
 interface NavbarProps {
   className?: string;
@@ -21,7 +22,8 @@ const Navbar = ({ className }: NavbarProps) => {
 
         <MobileMenu />
 
-        <div className="hidden lg:flex items-center space-x-4">
+        <div className="hidden lg:flex items-center space-x-1.5">
+          <Search />
           <ThemeToggle />
           <AuthenticationMenu />
         </div>

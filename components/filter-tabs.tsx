@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Select,
   SelectContent,
@@ -6,7 +5,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { Input } from "./ui/input";
 
 const Filter = () => {
   return (
@@ -32,12 +30,6 @@ const Filter = () => {
           </SelectContent>
         </Select>
       </div>
-
-      <Input
-        type="search"
-        placeholder="Search..."
-        className="w-full md:w-auto"
-      />
     </div>
   );
 };
