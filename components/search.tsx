@@ -22,7 +22,7 @@ const Search = () => {
           <TablerSearch className="w-4 h-4 " />
         </Button>
       </DialogTrigger>
-      <DialogContent className="p-0">
+      <DialogContent className="p-0 h-screen md:h-auto">
         <Command>
           <CommandInput placeholder="Type to search..." />
           <CommandList>

@@ -12,6 +12,7 @@ import { useState } from "react";
 import IconParkOutlineHamburgerButton from "./icons/IconParkOutlineHamburgerButton";
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./theme-toggle";
+import Search from "./search";
 
 const MobileMenu = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -19,7 +20,8 @@ const MobileMenu = () => {
   const pathname = usePathname();
 
   return (
-    <div className="lg:hidden">
+    <div className="lg:hidden flex items-center">
+      <Search />
       <ThemeToggle />
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
