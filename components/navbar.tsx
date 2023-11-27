@@ -13,7 +13,7 @@ interface NavbarProps {
 
 const Navbar = ({ className }: NavbarProps) => {
   return (
-    <header className={cn(`${className}`)}>
+    <header className={cn(`${className} sticky top-0 z-10 lg:static`)}>
       <Container>
         <div className="flex items-center space-x-10">
           <Logo />

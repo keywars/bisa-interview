@@ -75,7 +75,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Collections | Bisa Interview",
     description: "List of collection all interview question.",
-    url: "http://localhost:3000/collections",
+    // url: "http://localhost:3000/collections",
     siteName: "Bisa Interview",
     locale: "en_US",
     type: "website",

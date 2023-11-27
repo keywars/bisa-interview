@@ -5,11 +5,11 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Sign up | Bisa Interview",
   description: "Register to continue using bisa interview.",
-  
+
   openGraph: {
     title: "Sign up | Bisa Interview",
     description: "Register to continue using bisa interview",
-    url: "http://localhost:3000/signup",
+    // url: "http://localhost:3000/signup",
     siteName: "Bisa Interview",
     locale: "en_US",
     type: "website",

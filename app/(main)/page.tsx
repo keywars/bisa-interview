@@ -1,5 +1,8 @@
+import FrequentlyAsking from "@/components/frequently-asking";
 import Hero from "@/components/hero";
 import InterviewGrid from "@/components/interview-grid";
+import StatisticSection from "@/components/statistic-section";
+import Testimonials from "@/components/testimonials";
 import { Metadata } from "next/types";
 
 export const metadata: Metadata = {
@@ -8,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Bisa Interview",
     description: "Homepage. Collections of interview question.",
-    url: "http://localhost:3000/",
+    // url: "http://localhost:3000/",
     siteName: "Bisa Interview",
     locale: "en_US",
     type: "website",
@@ -19,7 +22,10 @@ const MainPage = () => {
   return (
     <div>
       <Hero />
+      <StatisticSection />
       <InterviewGrid />
+      <Testimonials />
+      <FrequentlyAsking />
     </div>
   );
 };

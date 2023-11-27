@@ -9,15 +9,12 @@ interface NewsArticleProps {
 const NewsArticle = ({ title }: NewsArticleProps) => {
   return (
     <article className="prose md:prose-md prose-p:text-justify dark:prose-invert px-5 lg:px-0">
-      <div>
-        <p className="m-2.5 text-sm">
-          <Link
-            className="no-underline hover:underline font-medium"
-            href="#author-detail"
-          >
+      <div className="leading-tight">
+        <p className="m-2.5 font-bold text-gray-500">
+          <Link className="no-underline hover:underline" href="#author-detail">
             Moh. Ilhamuddin
           </Link>{" "}
-          | <span className="font-bold">22 June 2023</span>
+          | 22 June 2023
         </p>
         <h1>{title}</h1>
       </div>

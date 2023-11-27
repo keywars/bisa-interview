@@ -63,7 +63,7 @@ const dummyData = [
 
 const InterviewGrid = () => {
   return (
-    <section className="min-h-[50dvh] bg-zinc-100">
+    <section className="min-h-[50dvh]">
       <div className="py-20 max-w-screen-xl mx-auto px-3">
         <div className="space-y-12">
           <div className="text-center space-y-3">

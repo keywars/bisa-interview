@@ -1,13 +1,6 @@
 import Breadcrumbs from "@/components/breadcrumbs";
 import Explanation from "@/components/explanation";
 import InterviewNavigator from "@/components/interview-navigator";
-import MobileContentTable from "@/components/mobile-content-table";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 interface DetailInterviewPageProps {
   params: {
