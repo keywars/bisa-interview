@@ -10,7 +10,7 @@ const Explanation = () => {
       <div className="relative">
         <article
           className={cn(
-            "px-3 prose  dark:prose-invert lg:prose-md border-l-2 border-violet-400/60 ml-1.5"
+            "px-3 prose  dark:prose-invert prose-p:text-justify lg:prose-md border-l-2 border-violet-400/60 ml-1.5"
           )}
         >
           <p>
