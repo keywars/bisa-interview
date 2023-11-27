@@ -1,13 +1,11 @@
 import Header from "@/components/header";
+import NewsCard from "@/components/news-card";
 import { cn } from "@/lib/utils";
 import { type Metadata } from "next";
-import Link from "next/link";
-import React from "react";
 
 export const metadata: Metadata = {
   title: "News | Bisa Interview",
   description: "News about bisa interview.",
-
   openGraph: {
     title: "News | Bisa Interview",
     description: "News about bisa interview.",
@@ -64,25 +62,7 @@ const NewsPage = () => {
         <div className="max-w-screen-md mx-auto py-3">
           <div className="flex flex-col space-y-6">
             {dummyBlogs.map((blog, index) => (
-              <div
-                key={index}
-                className="border border-violet-500/70 rounded-lg py-3 px-4 flex justify-between items-center hover:bg-gray-100 hover:scale-105 transition-all duration-300"
-              >
-                <div className="flex-1 flex flex-col">
-                  <span className="text-xs text-violet-500/80 capitalize font-mono">
-                    {blog.author}
-                  </span>
-                  <Link
-                    href="#news"
-                    className="font-bold tracking-wide text-gray-600 capitalize text-lg underline-offset-[3px] hover:underline"
-                  >
-                    {blog.title}
-                  </Link>
-                </div>
-                <time className="text-sm font-medium w-[121px] md:[text-wrap:balance] text-right">
-                  {blog.publishedAt}
-                </time>
-              </div>
+              <NewsCard key={index} blog={blog} />
             ))}
           </div>
 
