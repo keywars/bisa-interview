@@ -5,7 +5,7 @@ import Marquee from "react-fast-marquee";
 
 const Testimonials = () => {
   return (
-    <section className="min-h-[45dvh] lg:min-h-[37dvh] py-12 flex items-center text-center bg-zinc-50/50">
+    <section className="min-h-[48dvh] lg:min-h-[37dvh] py-12 flex items-center text-center bg-zinc-50/50">
       {/* <h1 className="text-5xl font-bold">What people say?</h1> */}
       <Marquee className="flex h-full" speed={30}>
         {Array.from({ length: 12 }).map((_, index) => (

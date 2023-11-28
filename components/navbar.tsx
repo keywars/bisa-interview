@@ -6,12 +6,14 @@ import NavMenu from "./nav-menu";
 import MobileMenu from "./mobile-menu";
 import { ThemeToggle } from "./theme-toggle";
 import Search from "./search";
+import AccountDetails from "./account-details";
 
 interface NavbarProps {
   className?: string;
 }
 
 const Navbar = ({ className }: NavbarProps) => {
+  const isAuth = true;
   return (
     <header className={cn(`${className} sticky top-0 z-10 lg:static`)}>
       <Container>
@@ -22,10 +24,13 @@ const Navbar = ({ className }: NavbarProps) => {
 
         <MobileMenu />
 
-        <div className="hidden lg:flex items-center space-x-1.5">
-          <Search />
-          <ThemeToggle />
-          <AuthenticationMenu />
+        <div className="hidden lg:flex items-center space-x-5">
+          <div className="flex items-center space-x-1.5">
+            <Search />
+            <ThemeToggle />
+          </div>
+
+          {isAuth ? <AccountDetails /> : <AuthenticationMenu />}
         </div>
       </Container>
     </header>

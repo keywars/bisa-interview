@@ -28,7 +28,7 @@ const StatisticSection = () => {
             className="aspect-video flex justify-center items-center rounded-md"
           >
             <div className="text-center space-y-3">
-              <h1 className="font-semibold text-2xl md:text-xl capitalize text-gray-500">
+              <h1 className="font-semibold text-3xl md:text-xl capitalize text-gray-500">
                 {data.label}
               </h1>
               <div>
@@ -36,7 +36,7 @@ const StatisticSection = () => {
                   end={data.total}
                   duration={3}
                   start={0}
-                  className="font-extrabold text-6xl md:text-5xl text-violet-600/50"
+                  className="font-extrabold text-5xl md:text-5xl text-violet-600/50"
                 />
               </div>
             </div>
