@@ -3,18 +3,18 @@ import RelatedArticle from "@/components/related-article";
 import Link from "next/link";
 import React from "react";
 
-interface NewsDetailPageProps {
+interface BlogDetailProps {
   params: {
     slug: string;
   };
 }
 
-const NewsDetailPage = ({ params: { slug } }: NewsDetailPageProps) => {
+const BlogDetail = ({ params: { slug } }: BlogDetailProps) => {
   return (
     <div className="max-w-screen-md mx-auto py-5">
       <div className="mb-12 mt-6">
         <Link
-          href="/news"
+          href="/blog"
           className="text-gray-800 md:pl-5 hover:text-sky-500/80"
         >
           &laquo; Back to news
@@ -28,4 +28,4 @@ const NewsDetailPage = ({ params: { slug } }: NewsDetailPageProps) => {
   );
 };
 
-export default NewsDetailPage;
+export default BlogDetail;

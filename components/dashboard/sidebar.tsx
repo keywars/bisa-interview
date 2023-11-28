@@ -8,6 +8,8 @@ import MdiDocument from "../icons/MdiDocument";
 import TablerHome from "../icons/TablerHome";
 import TablerSettingsFilled from "../icons/TablerSettingsFilled";
 import Logo from "../logo";
+import StreamlineInterfaceTextFormattingParagraphArticleAlignmentFormattingNormalParagraphText from "../icons/StreamlineInterfaceTextFormattingParagraphArticleAlignmentFormattingNormalParagraphText";
+import TablerTags from "../icons/TablerTags";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -23,8 +25,20 @@ const Sidebar = () => {
       {
         label: "interviews",
         href: "/dashboard/interviews",
-        isActive: pathname === "/dashboard/interviews",
+        isActive: pathname.includes("interviews"),
         icon: MdiDocument,
+      },
+      {
+        label: "blog",
+        href: "/dashboard/blog",
+        isActive: pathname.includes("blog"),
+        icon: StreamlineInterfaceTextFormattingParagraphArticleAlignmentFormattingNormalParagraphText,
+      },
+      {
+        label: "tags",
+        href: "/dashboard/tags",
+        isActive: pathname.includes("tags"),
+        icon: TablerTags,
       },
       {
         label: "settings",
@@ -37,18 +51,18 @@ const Sidebar = () => {
   );
 
   return (
-    <div className="w-72 flex-none border-r shadow-sm">
+    <div className="w-64 flex-none border-r shadow-sm">
       <div className="flex justify-center py-3.5 border-b">
         <Logo />
       </div>
 
-      <div className="flex flex-col pl-8 space-y-1 my-5">
+      <div className="flex flex-col pl-2 space-y-1 my-5">
         {dummyMenus.map(({ href, label, isActive, icon: Icon }, index) => (
           <Link
             key={index}
             href={href}
             className={cn(
-              "px-4 py-2.5 rounded-l-md text-gray-700 hover:border-sky-500/50 hover:bg-zinc-100/50 capitalize text-sm flex items-center",
+              "px-4 py-2.5 rounded-l-md text-gray-700 hover:border-sky-500/50 hover:bg-zinc-100/50 text-sm capitalize flex items-center",
               isActive &&
                 "border-r-4 border-sky-500/80 bg-zinc-100/80 font-bold text-sky-500/90"
             )}

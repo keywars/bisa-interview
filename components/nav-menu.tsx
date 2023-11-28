@@ -44,14 +44,14 @@ const NavMenu = () => {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Link href="/news" legacyBehavior passHref>
+          <Link href="/blog" legacyBehavior passHref>
             <NavigationMenuLink
               className={cn(
                 navigationMenuTriggerStyle(),
-                pathname === "/news" && "font-black text-sky-500"
+                pathname === "/blog" && "font-black text-sky-500"
               )}
             >
-              News
+              Blog
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

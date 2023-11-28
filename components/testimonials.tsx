@@ -11,7 +11,7 @@ const Testimonials = () => {
         {Array.from({ length: 12 }).map((_, index) => (
           <div
             key={index}
-            className="w-[329px] md:w-[430px] mx-5 bg-white p-5 rounded-md shadow-md text-start"
+            className="w-[329px] md:w-[430px] mx-5 bg-white p-5 border rounded-md shadow-md text-start"
           >
             <div className="space-y-2.5">
               <div className="leading-tight">

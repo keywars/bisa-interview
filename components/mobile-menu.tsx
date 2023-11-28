@@ -66,11 +66,11 @@ const MobileMenu = () => {
                   className={cn("w-full")}
                   variant="ghost"
                   onClick={() => {
-                    router.push("/news");
+                    router.push("/blog");
                     setOpen((open) => false);
                   }}
                 >
-                  News
+                  Blog
                 </Button>
               </NavigationMenuItem>
 

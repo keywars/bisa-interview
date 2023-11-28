@@ -50,12 +50,12 @@ const dummyBlogs = [
   },
 ];
 
-const NewsPage = () => {
+const BlogPage = () => {
   return (
     <div className="min-h-screen">
       <div className="max-w-screen-xl mx-auto px-3 space-y-5">
         <Header
-          title="Latest News"
+          title="Latest Blogs"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium, impedit?"
         />
 
@@ -87,4 +87,4 @@ const NewsPage = () => {
   );
 };
 
-export default NewsPage;
+export default BlogPage;
