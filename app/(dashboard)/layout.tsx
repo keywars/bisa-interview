@@ -6,6 +6,7 @@ interface UserProfileLayoutProps {
   children: React.ReactNode;
 }
 
+// TODO: RESPONSIVE DASHBOARD
 const UserProfileLayout = ({ children }: UserProfileLayoutProps) => {
   return (
     <div className="flex min-h-screen">

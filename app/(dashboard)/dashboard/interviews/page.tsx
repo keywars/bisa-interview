@@ -1,4 +1,9 @@
-import React from "react";
+import Breadcrumbs from "@/components/breadcrumbs";
+import AddNewInterviewDialog from "@/components/dashboard/add-new-interview-dialog";
+import TablerSearch from "@/components/icons/TablerSearch";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -8,23 +13,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Breadcrumbs from "@/components/breadcrumbs";
-import { Button, buttonVariants } from "@/components/ui/button";
-import MdiPlusCircleOutline from "@/components/icons/MdiPlusCircleOutline";
-import { Input } from "@/components/ui/input";
-import Link from "next/link";
-import TablerSearch from "@/components/icons/TablerSearch";
-import { Badge } from "@/components/ui/badge";
 
 const InterviewsPage = () => {
   return (
     <div className="space-y-10">
-      <div>
-        <Breadcrumbs menus={["dashboard", "interviews"]} />
-      </div>
+      {/* TODO: breadcrumbs fix */}
+      <Breadcrumbs menus={["dashboard", "interviews"]} />
 
       <div className="space-y-7">
-        <div className="flex justify-between space-x-5">
+        <h1 className="text-3xl font-bold">Interviews</h1>
+        <div className="flex justify-between items-center space-x-5">
           <div className="flex items-center space-x-1.5 w-[327px]">
             <Input
               className="h-10 w-full focus-visible:ring-1 focus-visible:outline-none focus-visible:ring-offset-0"
@@ -35,16 +33,7 @@ const InterviewsPage = () => {
               <TablerSearch className="w-5 h-5 fill-gray-600" />
             </Button>
           </div>
-          <Link
-            href="/dashboard/interviews/add"
-            className={buttonVariants({
-              variant: "outline",
-              className: "h-10 capitalize",
-            })}
-          >
-            <MdiPlusCircleOutline className="w-5 h-5 mr-2" />
-            Add interview
-          </Link>
+          <AddNewInterviewDialog />
         </div>
 
         <Table>

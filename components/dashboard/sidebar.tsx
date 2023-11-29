@@ -62,7 +62,7 @@ const Sidebar = () => {
             key={index}
             href={href}
             className={cn(
-              "px-4 py-2.5 rounded-l-md text-gray-700 hover:border-sky-500/50 hover:bg-zinc-100/50 text-sm capitalize flex items-center",
+              "px-4 py-2.5 rounded-l-md text-gray-700 hover:border-sky-500/50 hover:bg-zinc-100/50 text-sm capitalize flex items-center transition-all duration-300",
               isActive &&
                 "border-r-4 border-sky-500/80 bg-zinc-100/80 font-bold text-sky-500/90"
             )}

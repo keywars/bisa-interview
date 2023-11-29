@@ -24,7 +24,7 @@ const MainPage = () => {
       <Hero />
       <StatisticSection />
       <InterviewGrid />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <FrequentlyAsking />
     </div>
   );

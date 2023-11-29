@@ -75,7 +75,7 @@ const InterviewGrid = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-            {dummyData.slice(0, 6).map((data, index) => (
+            {dummyData.slice(0, 3).map((data, index) => (
               <InterviewCard data={data} index={index} key={index} />
             ))}
           </div>
