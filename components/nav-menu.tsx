@@ -57,7 +57,7 @@ const NavMenu = () => {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Developers</NavigationMenuTrigger>
+          <NavigationMenuTrigger disabled>Developers</NavigationMenuTrigger>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

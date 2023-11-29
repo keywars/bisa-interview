@@ -5,15 +5,15 @@ import CountUp from "react-countup";
 
 const dummyStatistics = [
   {
-    label: "total question",
+    label: "question",
     total: 1430,
   },
   {
-    label: "total interview",
+    label: "interview",
     total: 120,
   },
   {
-    label: "total tags",
+    label: "tags",
     total: 23,
   },
 ];
@@ -28,9 +28,6 @@ const StatisticSection = () => {
             className="aspect-video flex justify-center items-center rounded-md"
           >
             <div className="text-center space-y-3">
-              <h1 className="font-semibold text-3xl md:text-xl capitalize text-gray-500">
-                {data.label}
-              </h1>
               <div>
                 <CountUp
                   end={data.total}
@@ -39,6 +36,9 @@ const StatisticSection = () => {
                   className="font-extrabold text-5xl md:text-5xl text-violet-600/50"
                 />
               </div>
+              <h1 className="font-semibold text-3xl md:text-xl capitalize text-gray-500">
+                {data.label}
+              </h1>
             </div>
           </div>
         ))}

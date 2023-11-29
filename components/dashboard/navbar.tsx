@@ -8,18 +8,21 @@ import {
 import MdiLogout from "../icons/MdiLogout";
 import { ThemeToggle } from "../theme-toggle";
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 const Navbar = () => {
   return (
-    <div className="border-b py-2 px-10 shadow-sm">
+    <div className="border-b py-2 px-10 shadow-sm sticky">
       <div className="flex justify-between items-center">
         <form role="search">
-          <Input
-            type="search"
-            name="search"
-            placeholder="Search..."
-            className="h-9 placeholder:text-sm w-[264px] focus-visible:ring-0 focus-visible:outline-none focus-visible:ring-offset-0"
-          />
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="w-[264px] justify-start focus-visible:ring-0 focus-visible:outline-none focus-visible:ring-offset-0 text-gray-600 border border-gray-300"
+          >
+            Search...
+          </Button>
         </form>
         <div className="flex items-center space-x-5">
           <ThemeToggle />

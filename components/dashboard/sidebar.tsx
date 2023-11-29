@@ -42,7 +42,7 @@ const Sidebar = () => {
       },
       {
         label: "settings",
-        href: "/settings",
+        href: "#settings",
         isActive: pathname === "/settings",
         icon: TablerSettingsFilled,
       },

@@ -38,7 +38,7 @@ const InterviewQuestionsCard = () => {
   return (
     <Card className="bg-gray-50">
       <CardHeader className="flex flex-row items-center space-y-0 justify-between">
-        <h1 className="text-lg font-semibold">Interview title</h1>
+        <h1 className="text-lg font-semibold">Add question</h1>
         <Link
           href="/dashboard/interviews/1234-abcd/question/add"
           className={buttonVariants({ size: "sm" })}

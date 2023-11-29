@@ -10,16 +10,21 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   TQuestionSchema,
   questionSchema,
 } from "@/lib/validation/question.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import dynamic from "next/dynamic";
 import { useForm } from "react-hook-form";
-import { Input } from "@/components/ui/input";
-import SimpleMDE from "react-simplemde-editor";
+import rehypeSanitize from "rehype-sanitize";
 
-import "easymde/dist/easymde.min.css";
+const MDEditor = dynamic(() => import("@uiw/react-md-editor"), {
+  ssr: false,
+  loading: () => <Skeleton className="h-[121px]" />,
+});
 
 const AddQuestionForm = () => {
   const form = useForm<TQuestionSchema>({
@@ -64,7 +69,11 @@ const AddQuestionForm = () => {
                   <FormItem>
                     <FormLabel>Explanation</FormLabel>
                     <FormControl>
-                      <SimpleMDE placeholder="write explanations" {...field} />
+                      <MDEditor
+                        previewOptions={{ rehypePlugins: [[rehypeSanitize]] }}
+                        placeholder="write explanations"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage className="text-sm" />
                   </FormItem>
