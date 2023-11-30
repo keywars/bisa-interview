@@ -7,7 +7,7 @@ interface BreadcrumbsProps {
 
 const Breadcrumbs = ({ menus }: BreadcrumbsProps) => {
   return (
-    <nav className="md:flex hidden" aria-label="Breadcrumb">
+    <nav className="hidden md:flex" aria-label="Breadcrumb">
       <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
         <li className="inline-flex items-center">
           <Link

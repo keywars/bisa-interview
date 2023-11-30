@@ -13,6 +13,7 @@ import IconParkOutlineHamburgerButton from "./icons/IconParkOutlineHamburgerButt
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./theme-toggle";
 import Search from "./search";
+import { Separator } from "./ui/separator";
 
 const MobileMenu = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -84,6 +85,34 @@ const MobileMenu = () => {
                   }}
                 >
                   Developer
+                </Button>
+              </NavigationMenuItem>
+
+              <Separator />
+
+              <NavigationMenuItem className="w-full">
+                <Button
+                  className={cn("w-full")}
+                  variant="ghost"
+                  onClick={() => {
+                    router.push("#profile");
+                    setOpen((open) => false);
+                  }}
+                >
+                  Profile
+                </Button>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem className="w-full">
+                <Button
+                  className={cn("w-full")}
+                  variant="ghost"
+                  onClick={() => {
+                    router.push("/dashboard");
+                    setOpen((open) => false);
+                  }}
+                >
+                  Dashboard
                 </Button>
               </NavigationMenuItem>
             </NavigationMenuList>

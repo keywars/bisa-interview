@@ -51,7 +51,7 @@ const Sidebar = () => {
   );
 
   return (
-    <div className="w-64 flex-none border-r shadow-sm">
+    <div className="w-64 flex-none border-r shadow-sm hidden lg:block">
       <div className="flex justify-center py-3.5 border-b">
         <Logo />
       </div>

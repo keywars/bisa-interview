@@ -1,5 +1,6 @@
 import Breadcrumbs from "@/components/breadcrumbs";
 import AddNewInterviewDialog from "@/components/dashboard/add-new-interview-dialog";
+import MobileMenu from "@/components/dashboard/mobile-menu";
 import TablerSearch from "@/components/icons/TablerSearch";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -16,7 +17,7 @@ import {
 
 const InterviewsPage = () => {
   return (
-    <div className="space-y-10">
+    <div className="space-y-5 md:space-y-10">
       {/* TODO: breadcrumbs fix */}
       <Breadcrumbs menus={["dashboard", "interviews"]} />
 
