@@ -39,6 +39,7 @@ const BlogDashboardPage = () => {
 
           <Link
             href="/dashboard/blog/add"
+            aria-label="Go to blog creation page"
             className={buttonVariants({
               variant: "outline",
               className: "h-10 capitalize",

@@ -13,6 +13,7 @@ const Breadcrumbs = ({ menus }: BreadcrumbsProps) => {
           <Link
             href="/collections"
             className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+            aria-label="Explore collections"
           >
             Collections
           </Link>

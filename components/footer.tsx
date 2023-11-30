@@ -13,6 +13,7 @@ const Footer = () => {
             href="#instagram"
             target="_blank"
             className="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600"
+            aria-label="Visit to our instagram page (opens in a new tab)"
           >
             <svg
               className="h-5 w-5"
@@ -30,6 +31,7 @@ const Footer = () => {
             href="https://github.com/superiorkid"
             target="_blank"
             className="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600"
+            aria-label="Visit my Github profile (opens in a new tab)"
           >
             <svg
               className="h-5 w-5"

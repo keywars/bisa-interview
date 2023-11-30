@@ -11,7 +11,12 @@ const NewsArticle = ({ title }: NewsArticleProps) => {
     <article className="prose md:prose-md prose-p:text-justify dark:prose-invert px-5 lg:px-0">
       <div className="leading-tight">
         <p className="m-2.5 font-bold text-gray-500">
-          <Link className="no-underline hover:underline" href="#author-detail">
+          {/* TODO: Update aria-label to dynamic author message */}
+          <Link
+            className="no-underline hover:underline"
+            href="#author-detail"
+            aria-label="Jump to Moh. Ilhamuddin's details"
+          >
             Moh. Ilhamuddin
           </Link>{" "}
           | 22 June 2023

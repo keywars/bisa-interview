@@ -8,12 +8,10 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import slugify from "@/lib/slugify";
-import Link from "next/link";
-import { ScrollArea } from "./ui/scroll-area";
-import IcBaselineKeyboardArrowRight from "./icons/IcBaselineKeyboardArrowRight";
-import { Button } from "./ui/button";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import IcBaselineKeyboardArrowRight from "./icons/IcBaselineKeyboardArrowRight";
+import { ScrollArea } from "./ui/scroll-area";
 
 const tableOfContent = [
   "what are static blocks and static initializers in java?",

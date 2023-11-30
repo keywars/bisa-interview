@@ -83,6 +83,7 @@ const InterviewGrid = () => {
           <div className="flex justify-center">
             <Link
               href="/collections"
+              aria-label="Explore more collections"
               className={cn(
                 buttonVariants({ variant: "outline" }),
                 "hover:text-sky-600 text-gray-700 group transition ease-in-out duration-200 rounded-xl"

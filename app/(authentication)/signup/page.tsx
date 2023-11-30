@@ -35,7 +35,11 @@ const RegisterPage = () => {
         <div className="h-12 flex justify-center">
           <p className="font-light text-sm text-gray-600 tracking-wide">
             have an account?{" "}
-            <Link href="/signin" className="hover:underline">
+            <Link
+              href="/signin"
+              className="hover:underline"
+              aria-label="Sign up to your account"
+            >
               Register
             </Link>
           </p>

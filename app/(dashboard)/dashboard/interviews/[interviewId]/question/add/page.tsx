@@ -1,7 +1,5 @@
 import BackPreviousButton from "@/components/dashboard/back-previour-button";
 import AddQuestionForm from "@/components/dashboard/interview-edit-card/add-question-form";
-import { buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
 
 const AddQuestionPage = () => {
   return (

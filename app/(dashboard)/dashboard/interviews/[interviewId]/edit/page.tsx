@@ -32,6 +32,7 @@ const EditInterviewPage = () => {
             <Link
               href="/dashboard/interviews"
               className={buttonVariants({ variant: "secondary", size: "sm" })}
+              aria-label="Go to interviews dashboard to edit later"
             >
               Edit later
             </Link>

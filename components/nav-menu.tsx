@@ -18,7 +18,12 @@ const NavMenu = () => {
     <NavigationMenu className="hidden lg:block">
       <NavigationMenuList className="space-x-3">
         <NavigationMenuItem>
-          <Link href="/" legacyBehavior passHref>
+          <Link
+            href="/"
+            legacyBehavior
+            passHref
+            aria-label="Go to the home page"
+          >
             <NavigationMenuLink
               className={cn(
                 navigationMenuTriggerStyle(),
@@ -44,7 +49,12 @@ const NavMenu = () => {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Link href="/blog" legacyBehavior passHref>
+          <Link
+            href="/blog"
+            legacyBehavior
+            passHref
+            aria-label="Go to the blog page"
+          >
             <NavigationMenuLink
               className={cn(
                 navigationMenuTriggerStyle(),

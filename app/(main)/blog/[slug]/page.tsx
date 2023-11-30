@@ -16,6 +16,7 @@ const BlogDetail = ({ params: { slug } }: BlogDetailProps) => {
         <Link
           href="/blog"
           className="text-gray-800 md:pl-5 hover:text-sky-500/80"
+          aria-label="Go back to the news page"
         >
           &laquo; Back to news
         </Link>

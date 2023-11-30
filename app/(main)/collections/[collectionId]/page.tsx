@@ -16,6 +16,7 @@ const CollectionDetailPage = () => {
 
             <Link
               href="/collections/collectionID/interview-details"
+              aria-label="View details about getting started with interviews in this collection"
               className={buttonVariants({
                 variant: "outline",
                 className:

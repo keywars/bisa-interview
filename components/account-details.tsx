@@ -20,7 +20,10 @@ const AccountDetails = () => {
     <DropdownMenu>
       <DropdownMenuTrigger className="outline-none">
         <Avatar className="h-8 w-8">
-          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarImage
+            src="https://github.com/shadcn.png"
+            alt="user profile picture"
+          />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>

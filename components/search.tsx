@@ -18,8 +18,10 @@ const Search = () => {
         <Button
           variant="ghost"
           className="focus-visible:ring-0 focus-visible:outline-none focus-visible:ring-offset-0"
+          aria-label="search button"
         >
           <TablerSearch className="w-4 h-4 " />
+          <span className="sr-only">Search button</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="p-0 h-screen md:h-auto">

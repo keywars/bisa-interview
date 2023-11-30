@@ -10,8 +10,10 @@ const Hero = () => {
             <span className="font-black text-violet-700 xs:text-sm sm:text-lg mr-3">
               New
             </span>{" "}
-            Rust basics beginner interview.{" "}
+            Rust basics beginner interview.
+            {/* TODO: update aria label */}
             <Link
+              aria-label="View collection details"
               href="/collections/iiadas-123jasda-9as"
               className="font-bold underline"
             >

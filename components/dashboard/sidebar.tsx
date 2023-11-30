@@ -61,6 +61,7 @@ const Sidebar = () => {
           <Link
             key={index}
             href={href}
+            aria-label={`Navigate to ${label}`}
             className={cn(
               "px-4 py-2.5 rounded-l-md text-gray-700 hover:border-sky-500/50 hover:bg-zinc-100/50 text-sm capitalize flex items-center transition-all duration-300",
               isActive &&

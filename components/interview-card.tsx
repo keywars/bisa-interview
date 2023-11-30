@@ -17,6 +17,7 @@ const InterviewCard = ({ data, index }: InterviewCardProps) => {
         <Link
           href="/collections/jsushasd-12123kasd-1212"
           className="font-bold text-xl font-sans [wrap-text:balance] hover:underline transition-all duration-200 capitalize line-clamp-2"
+          aria-label={`Explore ${data.label}`}
         >
           {data.label}
         </Link>

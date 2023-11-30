@@ -41,6 +41,7 @@ const InterviewQuestionsCard = () => {
         <h1 className="text-lg font-semibold">Add question</h1>
         <Link
           href="/dashboard/interviews/1234-abcd/question/add"
+          aria-label="Add a question to the interview"
           className={buttonVariants({ size: "sm" })}
         >
           <MdiPlusCircleOutline className="mr-2 w-5 h-5" />

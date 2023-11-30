@@ -41,6 +41,7 @@ const Sidebar = () => {
               <Link
                 href={`/collections/collectionID/${slugify(content)}`}
                 className="capitalize font-medium text-sm [text-wrap:balance] active:text-sky-100 hover:underline"
+                aria-label={`View ${content}`}
               >
                 {content}
               </Link>

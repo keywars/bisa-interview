@@ -35,8 +35,12 @@ const LoginPage = () => {
         <div className="h-12 flex justify-center">
           <p className="font-light text-sm text-gray-600 tracking-wide">
             don{"'"}t have an account?{" "}
-            <Link href="/signup" className="hover:underline">
-              register
+            <Link
+              href="/signup"
+              className="hover:underline"
+              aria-label="Log in to your account"
+            >
+              Log in
             </Link>
           </p>
         </div>

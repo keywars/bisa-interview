@@ -20,7 +20,12 @@ const AuthenticationMenu = () => {
       <NavigationMenu>
         <NavigationMenuList className="space-x-1.5 flex">
           <NavigationMenuItem>
-            <Link href="/signin" legacyBehavior passHref>
+            <Link
+              href="/signin"
+              legacyBehavior
+              passHref
+              aria-label="Go to sign-in page"
+            >
               <NavigationMenuLink
                 className={cn(
                   navigationMenuTriggerStyle(),
@@ -33,7 +38,12 @@ const AuthenticationMenu = () => {
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            <Link href="/signup" legacyBehavior passHref>
+            <Link
+              href="/signup"
+              legacyBehavior
+              passHref
+              aria-label="Go to sign-up page"
+            >
               <NavigationMenuLink
                 className={cn(
                   navigationMenuTriggerStyle(),

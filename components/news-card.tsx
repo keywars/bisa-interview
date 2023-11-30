@@ -18,6 +18,7 @@ const NewsCard = ({ blog }: NewsCardProps) => {
           {blog.author}
         </span>
         <Link
+          aria-label={`Read more about ${blog.title}`}
           href={`/blog/${slugify(blog.title)}`}
           className="font-bold tracking-wide text-gray-600 capitalize text-lg underline-offset-[3px] hover:underline"
         >
