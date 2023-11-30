@@ -54,7 +54,7 @@ const MobileMenu = () => {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild className="md:hidden">
+      <SheetTrigger asChild className="lg:hidden">
         <Button variant="ghost">
           <IconParkOutlineHamburgerButton className="w-6 h-6" />
         </Button>

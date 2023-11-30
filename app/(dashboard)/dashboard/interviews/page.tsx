@@ -43,44 +43,26 @@ const InterviewsPage = () => {
             <TableRow>
               <TableHead className="w-[50px]">No</TableHead>
               <TableHead>Name</TableHead>
-              <TableHead className="w-[200px]">Status</TableHead>
+              <TableHead className="hidden md:block w-[200px]">
+                Status
+              </TableHead>
               <TableHead className="text-right">Total Data</TableHead>
             </TableRow>
           </TableHeader>
+
           <TableBody>
             <TableRow>
               <TableCell className="font-medium">1</TableCell>
               <TableCell className="capitalize">
+                <Badge className="bg-emerald-500/80 md:hidden mr-2">
+                  published
+                </Badge>
                 top 50 intermediate python interview questions
               </TableCell>
-              <TableCell>
+              <TableCell className="hidden md:block">
                 <Badge className="bg-emerald-500/80">published</Badge>
               </TableCell>
               <TableCell className="text-right">50</TableCell>
-            </TableRow>
-          </TableBody>
-          <TableBody>
-            <TableRow>
-              <TableCell className="font-medium">2</TableCell>
-              <TableCell className="capitalize">
-                leetcode interview questions
-              </TableCell>
-              <TableCell>
-                <Badge variant="destructive">not published</Badge>
-              </TableCell>
-              <TableCell className="text-right">12</TableCell>
-            </TableRow>
-          </TableBody>
-          <TableBody>
-            <TableRow>
-              <TableCell className="font-medium">2</TableCell>
-              <TableCell className="capitalize">
-                SQL quick revision notes for interview
-              </TableCell>
-              <TableCell>
-                <Badge className="bg-emerald-500/80">published</Badge>
-              </TableCell>
-              <TableCell className="text-right">128</TableCell>
             </TableRow>
           </TableBody>
         </Table>

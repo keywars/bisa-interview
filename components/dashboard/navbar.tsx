@@ -26,7 +26,7 @@ const Navbar = () => {
         </div>
         <div>
           <MobileMenu />
-          <div className="items-center space-x-3 hidden md:flex">
+          <div className="items-center space-x-3 hidden lg:flex">
             {/* <ThemeToggle /> */}
             <Link
               href="/"
