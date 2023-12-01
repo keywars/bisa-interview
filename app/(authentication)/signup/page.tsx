@@ -40,7 +40,7 @@ const RegisterPage = () => {
               className="hover:underline"
               aria-label="Sign up to your account"
             >
-              Register
+              Login
             </Link>
           </p>
         </div>

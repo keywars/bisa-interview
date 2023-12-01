@@ -9,7 +9,7 @@ interface AuthenticationLayoutProps {
 const AuthenticationLayout = ({ children }: AuthenticationLayoutProps) => {
   return (
     <div className="min-h-screen">
-      <Navbar className="absolute top-5 left-0 w-full bg-background" />
+      <Navbar className="absolute top-5 left-0 py-5 w-full bg-background" />
       {children}
       <Footer />
     </div>

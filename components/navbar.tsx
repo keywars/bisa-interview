@@ -13,7 +13,7 @@ interface NavbarProps {
 }
 
 const Navbar = ({ className }: NavbarProps) => {
-  const isAuth = true;
+  const isAuth = false;
 
   return (
     <header className={cn(`${className} sticky top-0 z-10 lg:static`)}>
