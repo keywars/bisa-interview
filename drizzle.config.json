@@ -1,5 +1,4 @@
 {
-  "out": "./drizzle",
-  "schema": "./db/schema.ts",
-  "breakpoints": false
+  "schema": "./dv/schema.ts",
+  "out": "./drizzle"
 }

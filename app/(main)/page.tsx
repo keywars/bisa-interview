@@ -2,10 +2,7 @@ import FrequentlyAsking from "@/components/frequently-asking";
 import Hero from "@/components/hero";
 import InterviewGrid from "@/components/interview-grid";
 import StatisticSection from "@/components/statistic-section";
-import Testimonials from "@/components/testimonials";
 import { Metadata } from "next/types";
-import { db } from "@/db";
-import { notes } from "@/db/schema";
 
 export const metadata: Metadata = {
   title: "Bisa Interview",

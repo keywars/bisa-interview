@@ -1,6 +1,6 @@
 "use client";
 
-import { TLogin, loginSchema } from "@/lib/validation/user.schema";
+import { loginSchema, TLogin } from "@/lib/validation/user.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "./ui/button";
@@ -13,8 +13,14 @@ import {
   FormMessage,
 } from "./ui/form";
 import { Input } from "./ui/input";
+import { useReducer, useState } from "react";
+import { signIn } from "next-auth/react";
 
 const LoginForm = () => {
+  const [isLoading, setIsLoading] = useReducer(
+    (isLoading) => !isLoading,
+    false
+  );
   const form = useForm<TLogin>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -24,7 +30,23 @@ const LoginForm = () => {
   });
 
   const onSubmit = (values: TLogin) => {
-    console.log(values);
+    setIsLoading(); // setloading to true
+    signIn("credentials", {
+      ...values,
+      redirect: false,
+    })
+      .then((callback) => {
+        if (callback?.error) {
+          console.log("login failed");
+        }
+
+        if (callback?.ok && !callback?.error) {
+          console.log("login success");
+        }
+      })
+      .finally(() => {
+        setIsLoading(); // set loading to false
+      });
   };
 
   return (
@@ -33,6 +55,7 @@ const LoginForm = () => {
         <div className="space-y-4">
           <FormField
             control={form.control}
+            disabled={isLoading}
             name="email"
             render={({ field }) => (
               <FormItem>
@@ -48,6 +71,7 @@ const LoginForm = () => {
           <FormField
             control={form.control}
             name="password"
+            disabled={isLoading}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Password</FormLabel>
@@ -60,8 +84,8 @@ const LoginForm = () => {
           />
         </div>
 
-        <Button type="submit" className="w-full">
-          Log in
+        <Button type="submit" disabled={isLoading} className="w-full">
+          {isLoading ? "Signing in..." : "Sign in"}
         </Button>
       </form>
     </Form>

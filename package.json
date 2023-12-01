@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/core": "^0.18.4",
+    "@auth/drizzle-adapter": "^0.3.9",
     "@hookform/resolvers": "^3.3.2",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
@@ -26,12 +28,15 @@
     "@tanstack/react-table": "^8.10.7",
     "@uidotdev/usehooks": "^2.4.1",
     "@uiw/react-md-editor": "^4.0.1",
+    "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
     "drizzle-orm": "^0.29.1",
+    "drizzle-zod": "^0.5.1",
     "lucide-react": "^0.292.0",
     "next": "14.0.3",
+    "next-auth": "^4.24.5",
     "next-themes": "^0.2.1",
     "pg": "^8.11.3",
     "react": "^18",
@@ -47,6 +52,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/pg": "^8.10.9",
     "@types/react": "^18",
