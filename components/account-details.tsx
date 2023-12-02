@@ -12,9 +12,16 @@ import { useRouter } from "next/navigation";
 import MdiLogout from "./icons/MdiLogout";
 import MdiAccount from "./icons/MdiAccount";
 import MdiMonitorDashboard from "./icons/MdiMonitorDashboard";
+import { signOut } from "next-auth/react";
 
 const AccountDetails = () => {
   const router = useRouter();
+
+  const handleLoggedOut = () => {
+    signOut({ redirect: false }).then(() => {
+      router.refresh();
+    });
+  };
 
   return (
     <DropdownMenu>
@@ -37,7 +44,7 @@ const AccountDetails = () => {
           Dashboard
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={handleLoggedOut}>
           <MdiLogout className="mr-2 h-4 w-4" />
           Log out
         </DropdownMenuItem>

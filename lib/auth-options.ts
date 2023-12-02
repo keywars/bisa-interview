@@ -44,13 +44,13 @@ export const authOptions: NextAuthOptions = {
           .where(eq(users.email, credentials.email))
           .limit(1);
 
-        if (!user && !(user as User).password) {
+        if (!user || !(user as User).password) {
           return null;
         }
 
         const passwordMatches = await bcrypt.compare(
-          user.password as string,
-          credentials.password
+          credentials.password,
+          user.password as string
         );
 
         if (!passwordMatches) {

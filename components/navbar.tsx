@@ -7,14 +7,14 @@ import MobileMenu from "./mobile-menu";
 import { ThemeToggle } from "./theme-toggle";
 import Search from "./search";
 import AccountDetails from "./account-details";
+import { User } from "@/db/schema";
 
 interface NavbarProps {
   className?: string;
+  currentUser: User | null;
 }
 
-const Navbar = ({ className }: NavbarProps) => {
-  const isAuth = false;
-
+const Navbar = ({ className, currentUser }: NavbarProps) => {
   return (
     <header className={cn(`${className} sticky top-0 z-10 lg:static`)}>
       <Container>
@@ -31,7 +31,7 @@ const Navbar = ({ className }: NavbarProps) => {
             <ThemeToggle />
           </div>
 
-          {isAuth ? <AccountDetails /> : <AuthenticationMenu />}
+          {currentUser ? <AccountDetails /> : <AuthenticationMenu />}
         </div>
       </Container>
     </header>

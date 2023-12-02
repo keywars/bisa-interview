@@ -53,7 +53,7 @@ const LoginForm = () => {
             title: "User Login",
             description: "Login Success!!",
           });
-          router.refresh();
+          router.push("/");
         }
       })
       .finally(() => {
