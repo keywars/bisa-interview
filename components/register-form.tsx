@@ -1,9 +1,11 @@
 "use client";
 
 import { TRegister, registerSchema } from "@/lib/validation/user.schema";
-import React, { useTransition } from "react";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { Button } from "./ui/button";
 import {
   Form,
   FormControl,
@@ -13,9 +15,14 @@ import {
   FormMessage,
 } from "./ui/form";
 import { Input } from "./ui/input";
-import { Button } from "./ui/button";
+import { useToast } from "./ui/use-toast";
 
 const RegisterForm = () => {
+  const { toast } = useToast();
+  const [isPending, startTransition] = useTransition();
+
+  const router = useRouter();
+
   const form = useForm<TRegister>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -26,7 +33,32 @@ const RegisterForm = () => {
   });
 
   const onSubmit = (values: TRegister) => {
-    console.log(values);
+    startTransition(async () => {
+      await fetch("/api/auth/signup", {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          Accept: "application/json",
+          "Content-type": "application/json",
+        },
+      })
+        .then(() => {
+          form.reset();
+          router.push("/signin");
+          toast({
+            title: "User Registration",
+            description: "Registration Successfully!!",
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+          toast({
+            variant: "destructive",
+            title: "User Registration",
+            description: "Registration Failed!",
+          });
+        });
+    });
   };
 
   return (
@@ -36,6 +68,7 @@ const RegisterForm = () => {
           <FormField
             control={form.control}
             name="name"
+            disabled={isPending}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Name</FormLabel>
@@ -50,6 +83,7 @@ const RegisterForm = () => {
           <FormField
             control={form.control}
             name="email"
+            disabled={isPending}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Email</FormLabel>
@@ -64,6 +98,7 @@ const RegisterForm = () => {
           <FormField
             control={form.control}
             name="password"
+            disabled={isPending}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Password</FormLabel>
@@ -76,8 +111,8 @@ const RegisterForm = () => {
           />
         </div>
 
-        <Button type="submit" className="w-full">
-          Login
+        <Button type="submit" className="w-full" disabled={isPending}>
+          {isPending ? "Registering..." : "Register"}
         </Button>
       </form>
     </Form>

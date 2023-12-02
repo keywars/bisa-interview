@@ -1,3 +1,5 @@
+"use server";
+
 import getSession from "./get-session";
 import getUserByEmail from "./get-user-by-email";
 

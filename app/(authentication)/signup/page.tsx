@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
 };
 
-const RegisterPage = () => {
+const RegisterPage = async () => {
   return (
     <div className="flex justify-center items-center w-full min-h-screen">
       {/* login form */}

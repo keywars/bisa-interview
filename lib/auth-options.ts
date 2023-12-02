@@ -1,9 +1,9 @@
-import { type NextAuthOptions, User } from "next-auth";
+import { type NextAuthOptions } from "next-auth";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "@/db";
 import CreadentialsProvider from "next-auth/providers/credentials";
 import { loginSchema } from "@/lib/validation/user.schema";
-import { TUserSchema, users } from "@/db/schema";
+import { User, users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 
@@ -44,7 +44,7 @@ export const authOptions: NextAuthOptions = {
           .where(eq(users.email, credentials.email))
           .limit(1);
 
-        if (!user && !(user as TUserSchema).password) {
+        if (!user && !(user as User).password) {
           return null;
         }
 

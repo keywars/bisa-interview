@@ -2,6 +2,9 @@
 
 import { loginSchema, TLogin } from "@/lib/validation/user.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useReducer } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "./ui/button";
 import {
@@ -13,10 +16,11 @@ import {
   FormMessage,
 } from "./ui/form";
 import { Input } from "./ui/input";
-import { useReducer, useState } from "react";
-import { signIn } from "next-auth/react";
+import { useToast } from "./ui/use-toast";
 
 const LoginForm = () => {
+  const { toast } = useToast();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useReducer(
     (isLoading) => !isLoading,
     false
@@ -37,11 +41,19 @@ const LoginForm = () => {
     })
       .then((callback) => {
         if (callback?.error) {
-          console.log("login failed");
+          toast({
+            variant: "destructive",
+            title: "User Login",
+            description: "Login Failed!!",
+          });
         }
 
         if (callback?.ok && !callback?.error) {
-          console.log("login success");
+          toast({
+            title: "User Login",
+            description: "Login Success!!",
+          });
+          router.refresh();
         }
       })
       .finally(() => {

@@ -1,4 +1,4 @@
 {
   "schema": "./dv/schema.ts",
-  "out": "./drizzle"
+  "out": "./drizzle/migrations"
 }
