@@ -8,7 +8,7 @@ export const interviewCreateSchema = z.object({
 
 export const interviewSchema = interviewCreateSchema.extend({
   description: z.string().min(6),
-  status: z.enum(["open", "closed"], {
+  status: z.enum(["draft", "published"], {
     required_error: "you need to select a interview status",
   }),
 });

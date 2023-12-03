@@ -1,6 +1,7 @@
 import Breadcrumbs from "@/components/breadcrumbs";
 import AddNewInterviewDialog from "@/components/dashboard/add-new-interview-dialog";
-import MobileMenu from "@/components/dashboard/mobile-menu";
+import InterviewsTable from "@/components/dashboard/interviews-table";
+import MdiDotsHorizontal from "@/components/icons/MdiDotsHorizontal";
 import TablerSearch from "@/components/icons/TablerSearch";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -14,8 +15,28 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Interview } from "@/db/schema";
+import Link from "next/link";
 
-const InterviewsPage = () => {
+async function getInterviews() {
+  const response = await fetch("http://localhost:3000/api/interview", {
+    method: "GET",
+    next: {
+      tags: ["interview"],
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("failed to fetch interview");
+  }
+
+  const { data } = await response.json();
+  return data as Interview[];
+}
+
+const InterviewsPage = async () => {
+  const interviews = await getInterviews();
+
   return (
     <div className="space-y-5 md:space-y-10">
       {/* TODO: breadcrumbs fix */}
@@ -37,35 +58,7 @@ const InterviewsPage = () => {
           <AddNewInterviewDialog />
         </div>
 
-        <Table>
-          <TableCaption>A list of your recent dummy invoices.</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[50px]">No</TableHead>
-              <TableHead>Name</TableHead>
-              <TableHead className="hidden md:block w-[200px]">
-                Status
-              </TableHead>
-              <TableHead className="text-right">Total Data</TableHead>
-            </TableRow>
-          </TableHeader>
-
-          <TableBody>
-            <TableRow>
-              <TableCell className="font-medium">1</TableCell>
-              <TableCell className="capitalize">
-                <Badge className="bg-emerald-500/80 md:hidden mr-2">
-                  published
-                </Badge>
-                top 50 intermediate python interview questions
-              </TableCell>
-              <TableCell className="hidden md:block">
-                <Badge className="bg-emerald-500/80">published</Badge>
-              </TableCell>
-              <TableCell className="text-right">50</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
+        <InterviewsTable interviews={interviews} />
       </div>
     </div>
   );

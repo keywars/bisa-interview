@@ -11,11 +11,13 @@ import {
 import { Input } from "@/components/ui/input";
 import React, { useReducer, useState } from "react";
 
-const InterviewTitleCard = () => {
+interface InterviewTitleCardProps {
+  title: string;
+}
+
+const InterviewTitleCard = ({ title }: InterviewTitleCardProps) => {
   const [editMode, setEditMode] = useReducer((previous) => !previous, false);
-  const [interviewTitle, setInterviewTitle] = useState<string>(
-    "Git interview question for beginner"
-  );
+  const [interviewTitle, setInterviewTitle] = useState<string>(title);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInterviewTitle((interviewTitle) => event.target.value);
@@ -52,7 +54,7 @@ const InterviewTitleCard = () => {
         {editMode ? (
           <Input defaultValue={interviewTitle} onChange={handleChange} />
         ) : (
-          <p className="text-sm">Git interview question for beginner</p>
+          <p className="text-sm capitalize">{title}</p>
         )}
       </CardContent>
       {editMode ? (

@@ -38,7 +38,7 @@ export const interviews = pgTable(
     title: varchar("title", { length: 100 }).notNull(),
     slug: text("slug").notNull().unique(),
     description: text("description"),
-    status: interviewStatus("status"),
+    status: interviewStatus("status").default("draft"),
     createdAt: date("created_at", { mode: "date" }).defaultNow(),
     authorId: text("author_id"),
   },

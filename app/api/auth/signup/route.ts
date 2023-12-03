@@ -1,5 +1,5 @@
-import createUser from "@/actions/create-user";
-import getUserByEmail from "@/actions/get-user-by-email";
+import createUser from "@/actions/user/create-user";
+import getUserByEmail from "@/actions/user/get-user-by-email";
 import { registerSchema, TRegister } from "@/lib/validation/user.schema";
 import bcrypt from "bcryptjs";
 import { revalidateTag } from "next/cache";

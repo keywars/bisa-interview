@@ -17,8 +17,12 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
+import { useTransition } from "react";
+import { useToast } from "@/components/ui/use-toast";
 
 const InterviewForm = () => {
+  const { toast } = useToast();
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const form = useForm<TInterviewCreateSchema>({
     resolver: zodResolver(interviewCreateSchema),
@@ -28,10 +32,30 @@ const InterviewForm = () => {
   });
 
   const handleInterviewSubmit = (values: TInterviewCreateSchema) => {
-    console.log("submitted...");
-    console.log(values);
-    console.log("redirect...");
-    router.push("/dashboard/interviews/1234-abcd/edit");
+    startTransition(async () => {
+      await fetch("/api/interview", {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+        .then(async (response) => {
+          const res = await response.json();
+          const id = res.data;
+
+          toast({
+            title: "Create Interview",
+            description: "Interview created successfully.",
+          });
+
+          router.push(`/dashboard/interviews/${id}/edit`);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    });
   };
 
   return (
@@ -43,6 +67,7 @@ const InterviewForm = () => {
         <FormField
           control={form.control}
           name="title"
+          disabled={isPending}
           render={({ field }) => (
             <FormItem>
               <FormControl>
@@ -60,11 +85,13 @@ const InterviewForm = () => {
         <DialogFooter className="sm:justify-end">
           <div className="space-x-4">
             <DialogClose asChild>
-              <Button type="button" variant="secondary">
+              <Button type="button" variant="secondary" disabled={isPending}>
                 Close
               </Button>
             </DialogClose>
-            <Button type="submit">Continue</Button>
+            <Button type="submit" disabled={isPending}>
+              Continue
+            </Button>
           </div>
         </DialogFooter>
       </form>

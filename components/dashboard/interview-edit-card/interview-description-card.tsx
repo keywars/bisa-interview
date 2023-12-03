@@ -11,17 +11,21 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import React, { useReducer, useState } from "react";
 
-const InterviewDescriptionCard = () => {
+interface InterviewDescriptionCardProps {
+  description: string;
+}
+
+const InterviewDescriptionCard = ({
+  description,
+}: InterviewDescriptionCardProps) => {
   const [editMode, setEditMode] = useReducer((previous) => !previous, false);
-  const [description, setDescription] = useState("");
+  const [desc, setDescription] = useState(description ?? "");
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDescription((description) => event.target.value);
   };
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("submitted!!");
-    console.log(description);
     setEditMode();
   };
 
@@ -50,15 +54,15 @@ const InterviewDescriptionCard = () => {
         {editMode ? (
           <Textarea
             placeholder="description here"
-            defaultValue={description}
+            defaultValue={desc}
             onChange={handleChange}
           />
-        ) : description.length < 1 ? (
+        ) : desc.length < 1 ? (
           <pre className="text-sm font-light">no description</pre>
         ) : (
           <div className="space-y-1">
             <h3 className="font-bold">Description</h3>
-            <p className="font-light text-sm">{description}</p>
+            <p className="font-light text-sm">{desc}</p>
           </div>
         )}
       </CardContent>
@@ -68,7 +72,7 @@ const InterviewDescriptionCard = () => {
           <Button
             type="submit"
             size="sm"
-            disabled={description.length < 1}
+            disabled={desc.length < 1}
             onClick={handleSubmit}
           >
             Save

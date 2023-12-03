@@ -1,4 +1,4 @@
-import getCurrentUser from "@/actions/get-current-user";
+import getCurrentUser from "@/actions/user/get-current-user";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import React from "react";

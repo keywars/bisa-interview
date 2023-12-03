@@ -1,3 +1,4 @@
+import getInterviewById from "@/actions/interview/get-interview-by-id";
 import Breadcrumbs from "@/components/breadcrumbs";
 import InterviewDescriptionCard from "@/components/dashboard/interview-edit-card/interview-description-card";
 import InterviewQuestionsCard from "@/components/dashboard/interview-edit-card/interview-questions-card";
@@ -5,17 +6,19 @@ import InterviewTagCard from "@/components/dashboard/interview-edit-card/intervi
 import InterviewTitleCard from "@/components/dashboard/interview-edit-card/interview-title-card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button, buttonVariants } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import Link from "next/link";
 
-const EditInterviewPage = () => {
+interface EditInterviewPageProps {
+  params: {
+    interviewId: string;
+  };
+}
+
+const EditInterviewPage = async ({
+  params: { interviewId },
+}: EditInterviewPageProps) => {
+  const interview = await getInterviewById(interviewId);
+
   return (
     <div className="space-y-10">
       <Breadcrumbs menus={["dashboard", "interviews", "edit"]} />
@@ -45,8 +48,10 @@ const EditInterviewPage = () => {
 
         <div className="flex space-x-7">
           <div className="flex-1 space-y-5">
-            <InterviewTitleCard />
-            <InterviewDescriptionCard />
+            <InterviewTitleCard title={interview?.title as string} />
+            <InterviewDescriptionCard
+              description={interview?.description as string}
+            />
             <InterviewTagCard />
           </div>
 
