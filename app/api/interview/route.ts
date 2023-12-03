@@ -53,7 +53,6 @@ export async function POST(request: Request) {
 export async function GET(request: Request) {
   try {
     const interviews = await db.query.interviews.findMany({
-      orderBy: (interviews, { desc }) => [desc(interviews.createdAt)],
       with: {
         author: true,
         questions: true,
