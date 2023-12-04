@@ -9,13 +9,20 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import React, { useReducer, useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
+import { XCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
+import React, { useReducer, useState, useTransition } from "react";
 
 interface InterviewTitleCardProps {
   title: string;
+  id: string;
 }
 
-const InterviewTitleCard = ({ title }: InterviewTitleCardProps) => {
+const InterviewTitleCard = ({ title, id }: InterviewTitleCardProps) => {
+  const { toast } = useToast();
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const [editMode, setEditMode] = useReducer((previous) => !previous, false);
   const [interviewTitle, setInterviewTitle] = useState<string>(title);
 
@@ -24,10 +31,31 @@ const InterviewTitleCard = ({ title }: InterviewTitleCardProps) => {
   };
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    console.log("submitted...");
-    setEditMode();
-    console.log("submitted", interviewTitle);
+    startTransition(async () => {
+      await fetch(`/api/interview/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ title: interviewTitle }),
+      })
+        .then(() => {
+          toast({
+            title: "Update Interview",
+            description: "Update interview title successfully",
+          });
+
+          router.refresh();
+        })
+
+        .catch(() => {
+          toast({
+            variant: "destructive",
+            title: "Update Interview",
+            description: "Update interview title failed!!",
+          });
+        })
+        .finally(() => {
+          setEditMode();
+        });
+    });
   };
 
   return (
@@ -38,6 +66,7 @@ const InterviewTitleCard = ({ title }: InterviewTitleCardProps) => {
           variant={editMode ? "destructive" : "ghost"}
           type="button"
           size="sm"
+          disabled={isPending}
           onClick={setEditMode}
         >
           {editMode ? (
@@ -52,7 +81,11 @@ const InterviewTitleCard = ({ title }: InterviewTitleCardProps) => {
       </CardHeader>
       <CardContent>
         {editMode ? (
-          <Input defaultValue={interviewTitle} onChange={handleChange} />
+          <Input
+            defaultValue={interviewTitle}
+            onChange={handleChange}
+            disabled={isPending}
+          />
         ) : (
           <p className="text-sm capitalize">{title}</p>
         )}
@@ -62,10 +95,10 @@ const InterviewTitleCard = ({ title }: InterviewTitleCardProps) => {
           <Button
             type="submit"
             size="sm"
-            disabled={interviewTitle.length < 1}
+            disabled={interviewTitle.length < 1 || isPending}
             onClick={handleSubmit}
           >
-            Save
+            {isPending ? "Saving..." : "Save"}
           </Button>
         </CardFooter>
       ) : null}

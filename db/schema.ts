@@ -57,6 +57,7 @@ export const interviewsRelations = relations(interviews, ({ one, many }) => ({
     fields: [interviews.authorId],
     references: [users.id],
   }),
+  tag: one(tags),
   questions: many(questions),
 }));
 
@@ -86,3 +87,12 @@ export const questionsRelations = relations(questions, ({ one }) => ({
     references: [interviews.id],
   }),
 }));
+
+export const tags = pgTable("tag", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 50 }).notNull(),
+  slug: text("slug").unique().notNull(),
+});
+
+const tagSchema = createSelectSchema(tags);
+export type Tag = z.infer<typeof tagSchema>;

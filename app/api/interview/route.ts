@@ -1,14 +1,14 @@
-import { NextResponse } from "next/server";
+import getInterviewBySlug from "@/actions/interview/get-interview-by-slug";
+import getCurrentUser from "@/actions/user/get-current-user";
+import { db } from "@/db";
+import { interviews } from "@/db/schema";
+import slugify from "@/lib/slugify";
 import {
   interviewCreateSchema,
   TInterviewCreateSchema,
 } from "@/lib/validation/interview.schema";
-import slugify from "@/lib/slugify";
-import { interviews } from "@/db/schema";
-import getCurrentUser from "@/actions/user/get-current-user";
-import { db } from "@/db";
 import { revalidateTag } from "next/cache";
-import getInterviewBySlug from "@/actions/interview/get-interview-by-slug";
+import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
@@ -36,7 +36,6 @@ export async function POST(request: Request) {
 
   const { title } = body;
 
-  // const interview = await createInterview(title, slug);
   const interview = await db
     .insert(interviews)
     .values({ title, slug, authorId: currentUser?.id })
@@ -56,6 +55,7 @@ export async function GET(request: Request) {
       with: {
         author: true,
         questions: true,
+        tag: true,
       },
     });
 

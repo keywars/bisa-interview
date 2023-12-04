@@ -2,39 +2,14 @@ import MdiPlusCircleOutline from "@/components/icons/MdiPlusCircleOutline";
 import TablerPencil from "@/components/icons/TablerPencil";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import Link from "next/link";
-import React from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import Link from "next/link";
 
-const tableOfContent = [
-  "what are static blocks and static initializers in java?",
-  "how to call one constructor from the other constructor?",
-  "what is method overriding in java?",
-  "what is super keyword in java?",
-  "difference between method overloading and method overriding in java?",
-  "difference between abstract class and interface?",
-  "why java is platform independent?",
-  "what is method overloading in java?",
-  "what is difference between c++ and java?",
-  "what is JIT compiler?",
-  "what is bytecode in java?",
-  "difference between this() and super() in java?",
-  "what is a class?",
-  "what is an object?",
-  "what is method in java?",
-  "what is encapsulation",
-  "why main() method is public, static and void in java?",
-  "explain about main() method in java?",
-  "what is constructor in java?",
-  "what is difference between length and length() method in java?",
-  "what is ASCII code?",
-  "what is unicode?",
-  "difference between character constant and string constant in java?",
-  "what are constants and how to create constants in java?",
-  "difference between `>>` and `>>>` operators in java?",
-];
+interface InterviewQuestionsCardProps {
+  id: string;
+}
 
-const InterviewQuestionsCard = () => {
+const InterviewQuestionsCard = ({ id }: InterviewQuestionsCardProps) => {
   return (
     <Card className="bg-gray-50">
       <CardHeader className="flex flex-row items-center space-y-0 justify-between">
@@ -50,7 +25,8 @@ const InterviewQuestionsCard = () => {
       </CardHeader>
       <CardContent className="rounded-md">
         <ScrollArea className="h-[400px] rounded-md">
-          {tableOfContent.map((content, index) => (
+          <p>add minimal 1 question</p>
+          {/* {tableOfContent.map((content, index) => (
             <div
               key={index}
               className="py-2 pl-4 pr-2 flex items-center h-[50px] rounded-md bg-gray-200/50"
@@ -62,7 +38,7 @@ const InterviewQuestionsCard = () => {
                 <TablerPencil className="w-4 h-4" />
               </Button>
             </div>
-          ))}
+          ))} */}
         </ScrollArea>
       </CardContent>
     </Card>

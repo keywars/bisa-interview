@@ -9,15 +9,22 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import React, { useReducer, useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
+import React, { useReducer, useState, useTransition } from "react";
 
 interface InterviewDescriptionCardProps {
   description: string;
+  id: string;
 }
 
 const InterviewDescriptionCard = ({
   description,
+  id,
 }: InterviewDescriptionCardProps) => {
+  const router = useRouter();
+  const { toast } = useToast();
+  const [isPending, startTransition] = useTransition();
   const [editMode, setEditMode] = useReducer((previous) => !previous, false);
   const [desc, setDescription] = useState(description ?? "");
 
@@ -26,7 +33,30 @@ const InterviewDescriptionCard = ({
   };
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setEditMode();
+    startTransition(async () => {
+      await fetch(`/api/interview/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ description: desc }),
+      })
+        .then(() => {
+          toast({
+            title: "Update Description",
+            description: "update description successfully",
+          });
+
+          router.refresh();
+        })
+        .catch(() => {
+          toast({
+            variant: "destructive",
+            title: "Update Description",
+            description: "update description failed",
+          });
+        })
+        .finally(() => {
+          setEditMode();
+        });
+    });
   };
 
   return (
@@ -38,6 +68,7 @@ const InterviewDescriptionCard = ({
           type="button"
           size="sm"
           onClick={setEditMode}
+          disabled={isPending}
         >
           {editMode ? (
             "Cancel"
@@ -56,6 +87,7 @@ const InterviewDescriptionCard = ({
             placeholder="description here"
             defaultValue={desc}
             onChange={handleChange}
+            disabled={isPending}
           />
         ) : desc.length < 1 ? (
           <pre className="text-sm font-light">no description</pre>
@@ -72,10 +104,10 @@ const InterviewDescriptionCard = ({
           <Button
             type="submit"
             size="sm"
-            disabled={desc.length < 1}
+            disabled={desc.length < 1 || isPending}
             onClick={handleSubmit}
           >
-            Save
+            {isPending ? "Saving..." : "Save"}
           </Button>
         </CardFooter>
       ) : null}

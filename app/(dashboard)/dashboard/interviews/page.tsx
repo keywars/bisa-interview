@@ -1,26 +1,17 @@
 import Breadcrumbs from "@/components/breadcrumbs";
 import AddNewInterviewDialog from "@/components/dashboard/add-new-interview-dialog";
 import InterviewsTable from "@/components/dashboard/interviews-table";
-import MdiDotsHorizontal from "@/components/icons/MdiDotsHorizontal";
 import TablerSearch from "@/components/icons/TablerSearch";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Interview } from "@/db/schema";
-import Link from "next/link";
+import { InterivewWithAuthorAndQuestion } from "@/typings";
 
 async function getInterviews() {
   const response = await fetch("http://localhost:3000/api/interview", {
     method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
     next: {
       tags: ["interview"],
     },
@@ -31,7 +22,8 @@ async function getInterviews() {
   }
 
   const { data } = await response.json();
-  return data as Interview[];
+
+  return data as InterivewWithAuthorAndQuestion[];
 }
 
 const InterviewsPage = async () => {

@@ -1,4 +1,3 @@
-import getInterviewById from "@/actions/interview/get-interview-by-id";
 import Breadcrumbs from "@/components/breadcrumbs";
 import InterviewDescriptionCard from "@/components/dashboard/interview-edit-card/interview-description-card";
 import InterviewQuestionsCard from "@/components/dashboard/interview-edit-card/interview-questions-card";
@@ -6,6 +5,7 @@ import InterviewTagCard from "@/components/dashboard/interview-edit-card/intervi
 import InterviewTitleCard from "@/components/dashboard/interview-edit-card/interview-title-card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { InterivewWithAuthorAndQuestion } from "@/typings";
 import Link from "next/link";
 
 interface EditInterviewPageProps {
@@ -14,10 +14,27 @@ interface EditInterviewPageProps {
   };
 }
 
+async function getInterviewById(interviewId: string) {
+  const response = await fetch(
+    `http://localhost:3000/api/interview/${interviewId}`,
+    { method: "GET", next: { tags: ["interview"] } }
+  );
+
+  if (!response.ok) {
+    throw new Error("failed to get interview detail");
+  }
+
+  const { data } = await response.json();
+
+  return data;
+}
+
 const EditInterviewPage = async ({
   params: { interviewId },
 }: EditInterviewPageProps) => {
-  const interview = await getInterviewById(interviewId);
+  const interview = (await getInterviewById(
+    interviewId
+  )) as InterivewWithAuthorAndQuestion;
 
   return (
     <div className="space-y-10">
@@ -48,16 +65,20 @@ const EditInterviewPage = async ({
 
         <div className="flex space-x-7">
           <div className="flex-1 space-y-5">
-            <InterviewTitleCard title={interview?.title as string} />
+            <InterviewTitleCard
+              title={interview?.title as string}
+              id={interview?.id as string}
+            />
             <InterviewDescriptionCard
               description={interview?.description as string}
+              id={interview?.id as string}
             />
             <InterviewTagCard />
           </div>
 
           {/* right side */}
           <div className="flex-1">
-            <InterviewQuestionsCard />
+            <InterviewQuestionsCard id={interview?.id as string} />
           </div>
         </div>
       </div>
