@@ -1,9 +1,12 @@
+import getTags from "@/actions/tags/get-tags";
 import Breadcrumbs from "@/components/breadcrumbs";
 import TagForm from "@/components/dashboard/tag-form";
 import TagTable from "@/components/dashboard/tag-table";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
-const TagsDashboardPage = () => {
+const TagsDashboardPage = async () => {
+  const tags = await getTags();
+
   return (
     <div className="space-y-10">
       {/* TODO: breadcrumbs fix */}
@@ -25,7 +28,7 @@ const TagsDashboardPage = () => {
           </div>
 
           <div className="flex-1">
-            <TagTable />
+            <TagTable tags={tags} />
           </div>
         </div>
       </div>

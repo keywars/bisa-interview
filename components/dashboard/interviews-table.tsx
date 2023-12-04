@@ -1,6 +1,5 @@
 import { type Interview } from "@/db/schema";
 import Link from "next/link";
-import MdiDotsHorizontal from "../icons/MdiDotsHorizontal";
 import { Badge } from "../ui/badge";
 import {
   Table,
@@ -11,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import TableAction from "./table-action";
+import InterviewTableAction from "./interview-table-action";
 
 interface InterviewsTableProps {
   interviews: Interview[] | null;
@@ -64,7 +63,7 @@ const InterviewsTable = ({ interviews }: InterviewsTableProps) => {
             </TableCell>
             <TableCell className="text-right">100</TableCell>
             <TableCell>
-              <TableAction id={interview.id} />
+              <InterviewTableAction id={interview.id} />
             </TableCell>
           </TableRow>
         ))}

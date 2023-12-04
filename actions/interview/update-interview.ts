@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { Interview, interviews } from "@/db/schema";
+import { Interview, interviews, tags } from "@/db/schema";
 import slugify from "@/lib/slugify";
 import { eq } from "drizzle-orm";
 
@@ -15,6 +15,7 @@ export default async function updateInterview(
         description: body.description ?? undefined,
         status: body.status ?? undefined,
         slug: body.title ? slugify(body.title) : undefined,
+        tagId: body.tagId ?? undefined,
       })
       .where(eq(interviews.id, id));
 

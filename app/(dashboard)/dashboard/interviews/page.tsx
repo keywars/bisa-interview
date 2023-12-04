@@ -1,30 +1,10 @@
+import getInterviews from "@/actions/interview/get-interviews";
 import Breadcrumbs from "@/components/breadcrumbs";
 import AddNewInterviewDialog from "@/components/dashboard/add-new-interview-dialog";
 import InterviewsTable from "@/components/dashboard/interviews-table";
 import TablerSearch from "@/components/icons/TablerSearch";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { InterivewWithAuthorAndQuestion } from "@/typings";
-
-async function getInterviews() {
-  const response = await fetch("http://localhost:3000/api/interview", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    next: {
-      tags: ["interview"],
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error("failed to fetch interview");
-  }
-
-  const { data } = await response.json();
-
-  return data as InterivewWithAuthorAndQuestion[];
-}
 
 const InterviewsPage = async () => {
   const interviews = await getInterviews();

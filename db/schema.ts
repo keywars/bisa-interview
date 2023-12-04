@@ -2,6 +2,7 @@ import { relations, sql } from "drizzle-orm";
 import {
   date,
   index,
+  integer,
   pgEnum,
   pgTable,
   serial,
@@ -41,6 +42,7 @@ export const interviews = pgTable(
     status: interviewStatus("status").default("draft"),
     createdAt: date("created_at", { mode: "date" }).defaultNow(),
     authorId: text("author_id"),
+    tagId: integer("tag_id"),
   },
   (interview) => {
     return {
@@ -57,8 +59,11 @@ export const interviewsRelations = relations(interviews, ({ one, many }) => ({
     fields: [interviews.authorId],
     references: [users.id],
   }),
-  tag: one(tags),
   questions: many(questions),
+  tag: one(tags, {
+    fields: [interviews.tagId],
+    references: [tags.id],
+  }),
 }));
 
 export const questions = pgTable(
@@ -96,3 +101,7 @@ export const tags = pgTable("tag", {
 
 const tagSchema = createSelectSchema(tags);
 export type Tag = z.infer<typeof tagSchema>;
+
+export const tagsRelations = relations(tags, ({ many }) => ({
+  interviews: many(interviews),
+}));

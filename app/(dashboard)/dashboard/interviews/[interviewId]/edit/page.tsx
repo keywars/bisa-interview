@@ -1,3 +1,5 @@
+import getTag from "@/actions/tags/get-tag";
+import getTags from "@/actions/tags/get-tags";
 import Breadcrumbs from "@/components/breadcrumbs";
 import InterviewDescriptionCard from "@/components/dashboard/interview-edit-card/interview-description-card";
 import InterviewQuestionsCard from "@/components/dashboard/interview-edit-card/interview-questions-card";
@@ -35,6 +37,8 @@ const EditInterviewPage = async ({
   const interview = (await getInterviewById(
     interviewId
   )) as InterivewWithAuthorAndQuestion;
+  const tags = await getTags();
+  const tag = await getTag(interview.tagId as number);
 
   return (
     <div className="space-y-10">
@@ -73,7 +77,7 @@ const EditInterviewPage = async ({
               description={interview?.description as string}
               id={interview?.id as string}
             />
-            <InterviewTagCard />
+            <InterviewTagCard tags={tags} id={interview.id} initialTag={tag} />
           </div>
 
           {/* right side */}

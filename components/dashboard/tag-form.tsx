@@ -2,21 +2,26 @@
 
 import { tagSchema, type TTagSchema } from "@/lib/validation/tag,schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { Button } from "../ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { useToast } from "../ui/use-toast";
 
 const TagForm = () => {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const { toast } = useToast();
+
   const form = useForm<TTagSchema>({
     resolver: zodResolver(tagSchema),
     defaultValues: {
@@ -25,7 +30,32 @@ const TagForm = () => {
   });
 
   const onSubmit = (values: TTagSchema) => {
-    console.log(values);
+    startTransition(async () => {
+      await fetch("/api/tags", {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+        .then(() => {
+          toast({
+            title: "Create Tag",
+            description: "Create new tag successfully",
+          });
+
+          form.reset();
+          router.refresh();
+        })
+        .catch(() => {
+          toast({
+            variant: "destructive",
+            title: "Create Tag",
+            description: "Create new tag failed",
+          });
+        });
+    });
   };
 
   return (
@@ -34,18 +64,19 @@ const TagForm = () => {
         <FormField
           control={form.control}
           name="name"
+          disabled={isPending}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="Computer Science" {...field} />
+                <Input placeholder="Rust" {...field} />
               </FormControl>
               <FormMessage className="text-sm" />
             </FormItem>
           )}
         />
-        <Button size="sm" type="submit">
-          Submit
+        <Button size="sm" type="submit" disabled={isPending}>
+          {isPending ? "Submitting..." : "Submit"}
         </Button>
       </form>
     </Form>

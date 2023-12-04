@@ -7,20 +7,20 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 import MdiDelete from "../icons/MdiDelete";
 import MdiDotsHorizontal from "../icons/MdiDotsHorizontal";
 import MdiPencil from "../icons/MdiPencil";
 import { Button } from "../ui/button";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { useTransition } from "react";
 import { useToast } from "../ui/use-toast";
 
-interface TableActionProps {
+interface InterviewTableActionProps {
   id: string | number;
 }
 
-const TableAction = ({ id }: TableActionProps) => {
+const InterviewTableAction = ({ id }: InterviewTableActionProps) => {
   const router = useRouter();
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
@@ -74,4 +74,4 @@ const TableAction = ({ id }: TableActionProps) => {
   );
 };
 
-export default TableAction;
+export default InterviewTableAction;

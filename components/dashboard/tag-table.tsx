@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Table,
   TableBody,
@@ -8,13 +7,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import MdiPlusCircleOutline from "../icons/MdiPlusCircleOutline";
-import Search from "../search";
+import { Tag } from "@/db/schema";
 import TablerSearch from "../icons/TablerSearch";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import TagsTableAction from "./tags-table-action";
 
-const TagTable = () => {
+interface TagTableProps {
+  tags: Tag[] | null;
+}
+
+const TagTable = ({ tags }: TagTableProps) => {
   return (
     <div className="space-y-5">
       <div className="grid grid-cols-4">
@@ -30,26 +33,23 @@ const TagTable = () => {
         <TableCaption>A list of your recent invoices.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
+            <TableHead className="w-[50px]">ID</TableHead>
+            <TableHead>Slug</TableHead>
+            <TableHead>Name</TableHead>
+            <TableHead>Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow>
-            <TableCell className="font-medium">INV001</TableCell>
-            <TableCell>Paid</TableCell>
-            <TableCell>Credit Card</TableCell>
-            <TableCell className="text-right">$250.00</TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell className="font-medium">INV002</TableCell>
-            <TableCell>Pending</TableCell>
-            <TableCell>Credit Card</TableCell>
-            <TableCell className="text-right">$50.00</TableCell>
-          </TableRow>
+          {tags?.map((tag, index) => (
+            <TableRow key={index}>
+              <TableCell className="font-medium">{tag.id}</TableCell>
+              <TableCell>{tag.slug}</TableCell>
+              <TableCell>{tag.name}</TableCell>
+              <TableCell>
+                <TagsTableAction id={tag.id} />
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </div>

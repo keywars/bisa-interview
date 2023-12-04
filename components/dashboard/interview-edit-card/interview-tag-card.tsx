@@ -8,7 +8,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { useReducer, useState } from "react";
+import { useReducer, useState, useTransition } from "react";
 import {
   Select,
   SelectContent,
@@ -17,8 +17,20 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
+import { Tag } from "@/db/schema";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
-const InterviewTagCard = () => {
+interface InterviewTagCardProps {
+  initialTag: Tag | null;
+  tags: Tag[] | null;
+  id: string;
+}
+
+const InterviewTagCard = ({ tags, id, initialTag }: InterviewTagCardProps) => {
+  const router = useRouter();
+  const { toast } = useToast();
+  const [isPending, startTransition] = useTransition();
   const [editMode, setEditMode] = useReducer((previous) => !previous, false);
   const [tag, setTag] = useState<string>("");
 
@@ -27,11 +39,30 @@ const InterviewTagCard = () => {
   };
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    setEditMode();
+    startTransition(async () => {
+      await fetch(`/api/interview/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ tagId: tag }),
+      })
+        .then(() => {
+          toast({
+            title: "Update Tag",
+            description: "update tag successfully",
+          });
 
-    // future: save to db
-    // ...
+          router.refresh();
+        })
+        .catch(() => {
+          toast({
+            variant: "destructive",
+            title: "Update Tag",
+            description: "update tag successfully",
+          });
+        })
+        .finally(() => {
+          setEditMode();
+        });
+    });
   };
 
   return (
@@ -42,6 +73,7 @@ const InterviewTagCard = () => {
           variant={editMode ? "destructive" : "ghost"}
           type="button"
           size="sm"
+          disabled={isPending}
           onClick={setEditMode}
         >
           {editMode ? (
@@ -57,27 +89,39 @@ const InterviewTagCard = () => {
 
       <CardContent>
         {editMode ? (
-          <Select defaultValue={tag} onValueChange={handleChange}>
-            <SelectTrigger>
+          <Select
+            defaultValue={String(initialTag?.id) ?? ""}
+            onValueChange={handleChange}
+          >
+            <SelectTrigger disabled={isPending}>
               <SelectValue placeholder="Select Tag" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="typescript">TypeScript</SelectItem>
-              <SelectItem value="react">React</SelectItem>
-              <SelectItem value="nextjs">Next JS</SelectItem>
+              {tags?.map((tag, index) => (
+                <SelectItem key={index} value={String(tag.id)}>
+                  {tag.name}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
-        ) : !tag ? (
+        ) : !initialTag ? (
           <pre className="text-sm">no tag</pre>
         ) : (
-          <Badge className="bg-violet-500/80 hover:bg-violet-500">{tag}</Badge>
+          <Badge className="bg-violet-500/80 hover:bg-violet-500">
+            {initialTag?.name}
+          </Badge>
         )}
       </CardContent>
 
       {editMode ? (
         <CardFooter>
-          <Button type="submit" size="sm" onClick={handleClick}>
-            Save
+          <Button
+            type="submit"
+            size="sm"
+            disabled={isPending}
+            onClick={handleClick}
+          >
+            {isPending ? "Saving..." : "Save"}
           </Button>
         </CardFooter>
       ) : null}
