@@ -1,3 +1,4 @@
+import getInterviewById from "@/actions/interview/get-interview-by-id";
 import getTag from "@/actions/tags/get-tag";
 import getTags from "@/actions/tags/get-tags";
 import Breadcrumbs from "@/components/breadcrumbs";
@@ -16,27 +17,10 @@ interface EditInterviewPageProps {
   };
 }
 
-async function getInterviewById(interviewId: string) {
-  const response = await fetch(
-    `http://localhost:3000/api/interview/${interviewId}`,
-    { method: "GET", next: { tags: ["interview"] } }
-  );
-
-  if (!response.ok) {
-    throw new Error("failed to get interview detail");
-  }
-
-  const { data } = await response.json();
-
-  return data;
-}
-
 const EditInterviewPage = async ({
   params: { interviewId },
 }: EditInterviewPageProps) => {
-  const interview = (await getInterviewById(
-    interviewId
-  )) as InterivewWithAuthorAndQuestion;
+  const interview = await getInterviewById(interviewId);
   const tags = await getTags();
   const tag = await getTag(interview.tagId as number);
 
@@ -77,12 +61,19 @@ const EditInterviewPage = async ({
               description={interview?.description as string}
               id={interview?.id as string}
             />
-            <InterviewTagCard tags={tags} id={interview.id} initialTag={tag} />
+            <InterviewTagCard
+              tags={tags}
+              id={interview.id}
+              initialTag={tag ?? null}
+            />
           </div>
 
           {/* right side */}
           <div className="flex-1">
-            <InterviewQuestionsCard id={interview?.id as string} />
+            <InterviewQuestionsCard
+              id={interview?.id as string}
+              questions={interview.questions}
+            />
           </div>
         </div>
       </div>

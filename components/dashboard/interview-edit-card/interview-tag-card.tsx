@@ -90,7 +90,7 @@ const InterviewTagCard = ({ tags, id, initialTag }: InterviewTagCardProps) => {
       <CardContent>
         {editMode ? (
           <Select
-            defaultValue={String(initialTag?.id) ?? ""}
+            defaultValue={String(initialTag?.id) ?? String(1)}
             onValueChange={handleChange}
           >
             <SelectTrigger disabled={isPending}>

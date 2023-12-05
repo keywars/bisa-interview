@@ -39,6 +39,7 @@ export async function POST(request: Request) {
   const interview = await db
     .insert(interviews)
     .values({ title, slug, authorId: currentUser?.id })
+
     .returning({ id: interviews.id });
 
   revalidateTag("interview");

@@ -13,9 +13,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/components/ui/use-toast";
+import { Question } from "@/db/schema";
 import {
+  editQuestionSchema,
   TQuestionSchema,
-  questionSchema,
 } from "@/lib/validation/question.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import dynamic from "next/dynamic";
@@ -24,31 +25,41 @@ import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import rehypeSanitize from "rehype-sanitize";
 
-interface AddQuestionFormProps {
-  interviewId: string;
-}
-
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), {
   ssr: false,
   loading: () => <Skeleton className="h-[121px]" />,
 });
 
-const AddQuestionForm = ({ interviewId }: AddQuestionFormProps) => {
+interface EditQuestionFormProps {
+  initialValues: Question;
+  id: string;
+}
+
+const EditQuestionForm = ({ initialValues, id }: EditQuestionFormProps) => {
   const { toast } = useToast();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const form = useForm<TQuestionSchema>({
-    resolver: zodResolver(questionSchema),
+    resolver: zodResolver(editQuestionSchema),
     defaultValues: {
-      question: "",
-      explanation: "",
+      question: initialValues.inquiry,
+      explanation: initialValues.answer,
     },
   });
 
+  const isValueChanged = () => {
+    return (
+      JSON.stringify({
+        question: initialValues.inquiry,
+        explanation: initialValues.answer,
+      }) === JSON.stringify(form.getValues())
+    );
+  };
+
   const onSubmit = (values: TQuestionSchema) => {
     startTransition(async () => {
-      await fetch(`/api/interview/${interviewId}/question/`, {
-        method: "POST",
+      await fetch(`/api/question/${id}`, {
+        method: "PUT",
         body: JSON.stringify(values),
         headers: {
           Accept: "application/json",
@@ -57,18 +68,18 @@ const AddQuestionForm = ({ interviewId }: AddQuestionFormProps) => {
       })
         .then(() => {
           toast({
-            title: "Create Question",
-            description: "new question created successfully",
+            title: "Update question",
+            description: "Update question successfully",
           });
 
-          form.reset();
           router.refresh();
         })
         .catch((error) => {
+          console.error(error);
           toast({
             variant: "destructive",
-            title: "Create Question",
-            description: "new question created successfully",
+            title: "Update question",
+            description: "Update question failed",
           });
         });
     });
@@ -77,7 +88,7 @@ const AddQuestionForm = ({ interviewId }: AddQuestionFormProps) => {
   return (
     <Card className="bg-gray-50 max-w-screen-md">
       <CardHeader>
-        <h1 className="font-bold text-lg">Add new question</h1>
+        <h1 className="font-bold text-lg">Edit question</h1>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -118,8 +129,12 @@ const AddQuestionForm = ({ interviewId }: AddQuestionFormProps) => {
               />
             </div>
 
-            <Button type="submit" size="sm" disabled={isPending}>
-              {isPending ? "Submitting..." : "Submit"}
+            <Button
+              type="submit"
+              size="sm"
+              disabled={isPending || isValueChanged()}
+            >
+              {isPending ? "Updating..." : "Update"}
             </Button>
           </form>
         </Form>
@@ -128,4 +143,4 @@ const AddQuestionForm = ({ interviewId }: AddQuestionFormProps) => {
   );
 };
 
-export default AddQuestionForm;
+export default EditQuestionForm;
