@@ -1,4 +1,4 @@
-import { InterivewWithAuthorAndQuestion } from "@/typings";
+import { InterivewWithAuthorAndQuestionAndTag } from "@/typings";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
 import {
@@ -14,18 +14,18 @@ import InterviewTableAction from "./interview-table-action";
 import QuestionCount from "@/components/dashboard/question-count";
 
 interface InterviewsTableProps {
-  interviews: InterivewWithAuthorAndQuestion[] | null;
+  interviews: InterivewWithAuthorAndQuestionAndTag[] | null;
 }
 
 const InterviewsTable = ({ interviews }: InterviewsTableProps) => {
   return (
     <Table>
-      <TableCaption>A list of your recent dummy invoices.</TableCaption>
+      <TableCaption>A list of interviews.</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[300px]">Name</TableHead>
           <TableHead>Description</TableHead>
-          <TableHead className="hidden md:flex">Status</TableHead>
+          <TableHead className="hidden md:inline-flex">Status</TableHead>
           <TableHead className="text-right">Total Question</TableHead>
           <TableHead className="w-[100px]">&nbsp;</TableHead>
         </TableRow>

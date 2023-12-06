@@ -1,7 +1,11 @@
 import { Interview, Question, Tag, User } from "./db/schema";
 
-type InterivewWithAuthorAndQuestion = Interview & {
+type InterivewWithAuthorAndQuestionAndTag = Interview & {
   author: User;
   tag: Tag;
   questions: Question[];
+};
+
+type InterviewWithTag = Interview & {
+  tag: Tag;
 };

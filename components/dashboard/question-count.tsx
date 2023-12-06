@@ -8,7 +8,7 @@ interface QuestionCountProps {
 async function QuestionCount({ interviewId }: QuestionCountProps) {
   const total = await countQuestion(interviewId);
 
-  return <div>{total.at(0)?._count}</div>;
+  return <span>{total.at(0)?._count}</span>;
 }
 
 export default QuestionCount;

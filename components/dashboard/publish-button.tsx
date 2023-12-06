@@ -1,13 +1,13 @@
 "use client";
 
-import { InterivewWithAuthorAndQuestion } from "@/typings";
+import { InterivewWithAuthorAndQuestionAndTag } from "@/typings";
 import { useTransition } from "react";
 import { Button } from "../ui/button";
 import { useToast } from "../ui/use-toast";
 import { useRouter } from "next/navigation";
 
 interface PublishButtonProps {
-  interview: InterivewWithAuthorAndQuestion;
+  interview: InterivewWithAuthorAndQuestionAndTag;
 }
 
 const PublishButton = ({ interview }: PublishButtonProps) => {

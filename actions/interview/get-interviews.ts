@@ -1,4 +1,4 @@
-import { InterivewWithAuthorAndQuestion } from "@/typings";
+import { InterivewWithAuthorAndQuestionAndTag } from "@/typings";
 
 export default async function getInterviews() {
   const response = await fetch("http://localhost:3000/api/interview", {
@@ -12,7 +12,7 @@ export default async function getInterviews() {
     return null;
   }
 
-  const { data }: { data: InterivewWithAuthorAndQuestion[] } =
+  const { data }: { data: InterivewWithAuthorAndQuestionAndTag[] } =
     await response.json();
 
   return data;
