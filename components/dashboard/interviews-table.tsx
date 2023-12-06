@@ -11,6 +11,7 @@ import {
   TableRow,
 } from "../ui/table";
 import InterviewTableAction from "./interview-table-action";
+import QuestionCount from "@/components/dashboard/question-count";
 
 interface InterviewsTableProps {
   interviews: InterivewWithAuthorAndQuestion[] | null;
@@ -61,7 +62,9 @@ const InterviewsTable = ({ interviews }: InterviewsTableProps) => {
                 {interview.status}
               </Badge>
             </TableCell>
-            <TableCell className="text-right">100</TableCell>
+            <TableCell className="text-right">
+              <QuestionCount interviewId={interview.id} />
+            </TableCell>
             <TableCell>
               <InterviewTableAction id={interview.id} />
             </TableCell>
