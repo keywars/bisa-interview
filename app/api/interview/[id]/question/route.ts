@@ -7,12 +7,16 @@ import {
 } from "@/lib/validation/question.schema";
 import { revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
+import { questions } from "@/db/schema";
+import getQuestionBySlug from "@/actions/question/get-question-by-slug";
 
 export async function POST(
   request: Request,
   { params: { id } }: { params: { id: string } }
 ) {
-  const body = (await request.json()) as TQuestionSchema;
+  const body = (await request.json()) as TQuestionSchema & {
+    questionNumber: number;
+  };
 
   const validation = questionSchema.safeParse(body);
 
@@ -26,11 +30,30 @@ export async function POST(
   const slug = slugify(body.question);
 
   try {
-    await createQuestion(slug, body.question, body.explanation, id);
+    const newQuestion = await db
+      .insert(questions)
+      .values({
+        slug,
+        inquiry: body.question,
+        answer: body.explanation,
+        questionNumber: body.questionNumber,
+        interviewId: id,
+      })
+      .onConflictDoNothing({ target: questions.slug });
+
+    if (newQuestion.rowCount === 0) {
+      return NextResponse.json(
+        { error: "question already exits" },
+        { status: 409 }
+      );
+    }
 
     revalidateTag("question");
 
-    return NextResponse.json({ message: "get all question" }, { status: 201 });
+    return NextResponse.json(
+      { message: "new question created successfully" },
+      { status: 201 }
+    );
   } catch (error) {
     console.error(error);
     return NextResponse.json(

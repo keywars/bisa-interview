@@ -37,7 +37,7 @@ const Breadcrumbs = ({ menus }: BreadcrumbsProps) => {
                   d="m1 9 4-4-4-4"
                 />
               </svg>
-              <span className="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">
+              <span className="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400 line-clamp-1">
                 {menu}
               </span>
             </div>

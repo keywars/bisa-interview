@@ -2,48 +2,29 @@ import Link from "next/link";
 import React from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import slugify from "@/lib/slugify";
+import { Question } from "@/db/schema";
 
-const tableOfContent = [
-  "what are static blocks and static initializers in java?",
-  "how to call one constructor from the other constructor?",
-  "what is method overriding in java?",
-  "what is super keyword in java?",
-  "difference between method overloading and method overriding in java?",
-  "difference between abstract class and interface?",
-  "why java is platform independent?",
-  "what is method overloading in java?",
-  "what is difference between c++ and java?",
-  "what is JIT compiler?",
-  "what is bytecode in java?",
-  "difference between this() and super() in java?",
-  "what is a class?",
-  "what is an object?",
-  "what is method in java?",
-  "what is encapsulation",
-  "why main() method is public, static and void in java?",
-  "explain about main() method in java?",
-  "what is constructor in java?",
-  "what is difference between length and length() method in java?",
-  "what is ASCII code?",
-  "what is unicode?",
-  "difference between character constant and string constant in java?",
-  "what are constants and how to create constants in java?",
-  "difference between `>>` and `>>>` operators in java?",
-];
+interface SidebarProps {
+  questions: Question[];
+  collectionId: string;
+}
 
-const Sidebar = () => {
+const Sidebar = ({ questions, collectionId }: SidebarProps) => {
   return (
     <aside className="hidden lg:block w-[345px] h-[90dvh] flex-none py-5 px-2 overflow-auto">
       <ScrollArea className="h-full w-full p-4">
-        <ol className="list-inside list-disc space-y-2.5">
-          {tableOfContent.map((content, index) => (
+        <ol className="list-disc space-y-2.5">
+          {questions.map((question, index) => (
             <li key={index}>
               <Link
-                href={`/collections/collectionID/${slugify(content)}`}
-                className="capitalize font-medium text-sm [text-wrap:balance] active:text-sky-100 hover:underline"
-                aria-label={`View ${content}`}
+                href={`/collections/${collectionId}/${slugify(question.slug)}`}
+                className="capitalize font-medium text-sm [text-wrap:balance] active:text-sky-100 hover:underline line-clamp-2"
+                aria-label={`View ${question.inquiry}`}
               >
-                {content}
+                {question.inquiry.replace(
+                  /<[^>]*>|[^a-zA-Z0-9,;\-.!?<> ]/g,
+                  ""
+                )}
               </Link>
             </li>
           ))}

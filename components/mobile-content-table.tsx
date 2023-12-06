@@ -12,36 +12,17 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import IcBaselineKeyboardArrowRight from "./icons/IcBaselineKeyboardArrowRight";
 import { ScrollArea } from "./ui/scroll-area";
+import { Question } from "@/db/schema";
 
-const tableOfContent = [
-  "what are static blocks and static initializers in java?",
-  "how to call one constructor from the other constructor?",
-  "what is method overriding in java?",
-  "what is super keyword in java?",
-  "difference between method overloading and method overriding in java?",
-  "difference between abstract class and interface?",
-  "why java is platform independent?",
-  "what is method overloading in java?",
-  "what is difference between c++ and java?",
-  "what is JIT compiler?",
-  "what is bytecode in java?",
-  "difference between this() and super() in java?",
-  "what is a class?",
-  "what is an object?",
-  "what is method in java?",
-  "what is encapsulation",
-  "why main() method is public, static and void in java?",
-  "explain about main() method in java?",
-  "what is constructor in java?",
-  "what is difference between length and length() method in java?",
-  "what is ASCII code?",
-  "what is unicode?",
-  "difference between character constant and string constant in java?",
-  "what are constants and how to create constants in java?",
-  "difference between `>>` and `>>>` operators in java?",
-];
+interface MobileContentTableProps {
+  questions: Question[];
+  collectionId: string;
+}
 
-const MobileContentTable = () => {
+const MobileContentTable = ({
+  questions,
+  collectionId,
+}: MobileContentTableProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const router = useRouter();
@@ -61,18 +42,21 @@ const MobileContentTable = () => {
 
           <ScrollArea className="h-full w-full p-4">
             <ol className="list-inside list-disc space-y-2.5">
-              {tableOfContent.map((content, index) => (
+              {questions.map((question, index) => (
                 <li
                   key={index}
                   onClick={() => {
                     router.push(
-                      `/collections/collectionID/${slugify(content)}`
+                      `/collections/${collectionId}/${question.slug}`
                     );
                     setOpen((open) => false);
                   }}
-                  className="capitalize font-medium [text-wrap:balance] active:text-sky-100 hover:underline"
+                  className="capitalize font-medium [text-wrap:balance] active:text-sky-100 hover:underline line-clamp-2"
                 >
-                  {content}
+                  {question.inquiry.replace(
+                    /<[^>]*>|[^a-zA-Z0-9,;\-.!?<> ]/g,
+                    ""
+                  )}
                 </li>
               ))}
             </ol>

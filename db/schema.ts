@@ -70,6 +70,7 @@ export const questions = pgTable(
   "question",
   {
     id: serial("id").primaryKey(),
+    questionNumber: integer("question_number").notNull(),
     inquiry: text("inquiry").notNull(),
     slug: text("slug").notNull().unique(),
     answer: text("answer").notNull(),

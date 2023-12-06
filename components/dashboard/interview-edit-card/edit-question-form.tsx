@@ -24,6 +24,7 @@ import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import rehypeSanitize from "rehype-sanitize";
+import { Badge } from "@/components/ui/badge";
 
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), {
   ssr: false,
@@ -57,38 +58,51 @@ const EditQuestionForm = ({ initialValues, id }: EditQuestionFormProps) => {
   };
 
   const onSubmit = (values: TQuestionSchema) => {
-    startTransition(async () => {
-      await fetch(`/api/question/${id}`, {
-        method: "PUT",
-        body: JSON.stringify(values),
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-        .then(() => {
+    try {
+      startTransition(async () => {
+        const response = await fetch(`/api/question/${id}`, {
+          method: "PUT",
+          body: JSON.stringify(values),
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.ok) {
           toast({
             title: "Update question",
             description: "Update question successfully",
           });
 
           router.refresh();
-        })
-        .catch((error) => {
-          console.error(error);
+        } else {
+          const message = await response.json();
+
           toast({
             variant: "destructive",
             title: "Update question",
-            description: "Update question failed",
+            description: message.error,
           });
-        });
-    });
+        }
+      });
+    } catch (error) {
+      console.error(error);
+      toast({
+        variant: "destructive",
+        title: "Update question",
+        description: "Update question failed",
+      });
+    }
   };
 
   return (
     <Card className="bg-gray-50 max-w-screen-md">
       <CardHeader>
-        <h1 className="font-bold text-lg">Edit question</h1>
+        <h1 className="font-bold text-lg">
+          Edit question number{" "}
+          <Badge className="text-xl">{initialValues.questionNumber}</Badge>
+        </h1>
       </CardHeader>
       <CardContent>
         <Form {...form}>

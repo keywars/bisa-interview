@@ -46,7 +46,6 @@ const Footer = () => {
           </Link>
         </div>
       </div>
-
       <div className="py-8 text-center text-sm text-gray-400">
         © 2023 - Bisa Interview. All rights reserved.
       </div>

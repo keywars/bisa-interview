@@ -10,12 +10,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/components/ui/use-toast";
 import {
-  TQuestionSchema,
   questionSchema,
+  TQuestionSchema,
 } from "@/lib/validation/question.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import dynamic from "next/dynamic";
@@ -23,9 +22,11 @@ import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import rehypeSanitize from "rehype-sanitize";
+import { Badge } from "@/components/ui/badge";
 
 interface AddQuestionFormProps {
   interviewId: string;
+  totalQuestion: number;
 }
 
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), {
@@ -33,7 +34,10 @@ const MDEditor = dynamic(() => import("@uiw/react-md-editor"), {
   loading: () => <Skeleton className="h-[121px]" />,
 });
 
-const AddQuestionForm = ({ interviewId }: AddQuestionFormProps) => {
+const AddQuestionForm = ({
+  interviewId,
+  totalQuestion,
+}: AddQuestionFormProps) => {
   const { toast } = useToast();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -46,38 +50,54 @@ const AddQuestionForm = ({ interviewId }: AddQuestionFormProps) => {
   });
 
   const onSubmit = (values: TQuestionSchema) => {
-    startTransition(async () => {
-      await fetch(`/api/interview/${interviewId}/question/`, {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-        .then(() => {
+    try {
+      startTransition(async () => {
+        const response = await fetch(`/api/interview/${interviewId}/question`, {
+          method: "POST",
+          body: JSON.stringify({
+            ...values,
+            questionNumber: totalQuestion + 1,
+          }),
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.ok) {
           toast({
             title: "Create Question",
-            description: "new question created successfully",
+            description: "New question created successfully",
           });
 
           form.reset();
           router.refresh();
-        })
-        .catch((error) => {
+        } else {
+          const message = await response.json();
           toast({
             variant: "destructive",
             title: "Create Question",
-            description: "new question created successfully",
+            description: message.error,
           });
-        });
-    });
+        }
+      });
+    } catch (error) {
+      console.error(error);
+      toast({
+        variant: "destructive",
+        title: "Create Question",
+        description: "Create question failed",
+      });
+    }
   };
 
   return (
     <Card className="bg-gray-50 max-w-screen-md">
       <CardHeader>
-        <h1 className="font-bold text-lg">Add new question</h1>
+        <h2 className="font-bold text-lg">
+          Add new question for number{" "}
+          <Badge className="text-xl">{totalQuestion + 1}</Badge>
+        </h2>
       </CardHeader>
       <CardContent>
         <Form {...form}>

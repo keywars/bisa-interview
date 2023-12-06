@@ -8,6 +8,8 @@ import {
 } from "@/lib/validation/question.schema";
 import slugify from "@/lib/slugify";
 import { revalidateTag } from "next/cache";
+import getQuestionById from "@/actions/question/get-question-by-id";
+import getInterviewBySlug from "@/actions/interview/get-interview-by-slug";
 
 export async function GET(
   request: Request,
@@ -55,6 +57,15 @@ export async function PUT(
     return NextResponse.json(
       { error: validation.error.errors.at(0)?.message },
       { status: 400 }
+    );
+  }
+
+  const isExists = await getInterviewBySlug(slugify(body.question));
+
+  if (isExists) {
+    return NextResponse.json(
+      { error: "question already exits" },
+      { status: 409 }
     );
   }
 
