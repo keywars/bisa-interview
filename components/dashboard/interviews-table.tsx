@@ -1,4 +1,4 @@
-import { type Interview } from "@/db/schema";
+import { InterivewWithAuthorAndQuestion } from "@/typings";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
 import {
@@ -13,7 +13,7 @@ import {
 import InterviewTableAction from "./interview-table-action";
 
 interface InterviewsTableProps {
-  interviews: Interview[] | null;
+  interviews: InterivewWithAuthorAndQuestion[] | null;
 }
 
 const InterviewsTable = ({ interviews }: InterviewsTableProps) => {

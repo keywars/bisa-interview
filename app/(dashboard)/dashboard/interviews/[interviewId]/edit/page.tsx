@@ -6,9 +6,9 @@ import InterviewDescriptionCard from "@/components/dashboard/interview-edit-card
 import InterviewQuestionsCard from "@/components/dashboard/interview-edit-card/interview-questions-card";
 import InterviewTagCard from "@/components/dashboard/interview-edit-card/interview-tag-card";
 import InterviewTitleCard from "@/components/dashboard/interview-edit-card/interview-title-card";
+import PublishButton from "@/components/dashboard/publish-button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { InterivewWithAuthorAndQuestion } from "@/typings";
+import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
 interface EditInterviewPageProps {
@@ -22,6 +22,7 @@ const EditInterviewPage = async ({
 }: EditInterviewPageProps) => {
   const interview = await getInterviewById(interviewId);
   const tags = await getTags();
+
   const tag = await getTag(interview.tagId as number);
 
   return (
@@ -33,16 +34,16 @@ const EditInterviewPage = async ({
           <h1 className="text-3xl font-bold">Interview setup</h1>
 
           <div className="flex space-x-3 items-center">
-            <Button size="sm" disabled>
-              Publish
-            </Button>
+            <PublishButton interview={interview} />
 
             <Link
               href="/dashboard/interviews"
               className={buttonVariants({ variant: "secondary", size: "sm" })}
               aria-label="Go to interviews dashboard to edit later"
             >
-              Edit later
+              {interview.status === "published"
+                ? "Go to interviews"
+                : "Edit later"}
             </Link>
           </div>
         </div>

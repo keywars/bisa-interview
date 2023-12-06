@@ -102,7 +102,11 @@ const EditQuestionForm = ({ initialValues, id }: EditQuestionFormProps) => {
                   <FormItem>
                     <FormLabel>Question</FormLabel>
                     <FormControl>
-                      <Input placeholder="write a question" {...field} />
+                      <MDEditor
+                        previewOptions={{ rehypePlugins: [[rehypeSanitize]] }}
+                        placeholder="write a question"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage className="text-sm" />
                   </FormItem>

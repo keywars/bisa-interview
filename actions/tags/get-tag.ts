@@ -3,6 +3,9 @@ import { Tag } from "@/db/schema";
 export default async function getTag(tagId: number) {
   const response = await fetch(`http://localhost:3000/api/tags/${tagId}`, {
     method: "GET",
+    next: {
+      tags: ["tag"],
+    },
   });
 
   if (!response.ok) {

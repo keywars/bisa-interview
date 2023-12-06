@@ -1,18 +1,17 @@
 import Breadcrumbs from "@/components/breadcrumbs";
-import AddNewInterviewDialog from "@/components/dashboard/add-new-interview-dialog";
 import MdiPlusCircleOutline from "@/components/icons/MdiPlusCircleOutline";
 import TablerSearch from "@/components/icons/TablerSearch";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
+  Table,
+  TableBody,
   TableCaption,
+  TableCell,
+  TableHead,
   TableHeader,
   TableRow,
-  TableHead,
-  TableBody,
-  TableCell,
-  Table,
 } from "@/components/ui/table";
 import Link from "next/link";
 import React from "react";
