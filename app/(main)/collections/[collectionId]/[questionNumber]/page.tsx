@@ -4,6 +4,7 @@ import Explanation from "@/components/explanation";
 import MaterialSymbolsArrowLeftAlt from "@/components/icons/MaterialSymbolsArrowLeftAlt";
 import MaterialSymbolsArrowRightAlt from "@/components/icons/MaterialSymbolsArrowRightAlt";
 import { buttonVariants } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Markdown from "react-markdown";
@@ -20,7 +21,7 @@ const DetailInterviewPage = async ({
   params: { questionNumber, collectionId },
 }: DetailInterviewPageProps) => {
   const [question, questionTotal] = await Promise.all([
-    getQuestionByQuestionNumber(questionNumber),
+    getQuestionByQuestionNumber(questionNumber, collectionId),
     countQuestion(collectionId),
   ]);
 
@@ -76,6 +77,8 @@ const DetailInterviewPage = async ({
                 {question?.at(0)?.inquiry}
               </Markdown>
             </div>
+
+            <Separator />
 
             <Explanation answer={question?.at(0)?.answer as string} />
           </div>

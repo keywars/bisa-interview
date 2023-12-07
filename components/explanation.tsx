@@ -11,9 +11,9 @@ interface ExplanationProps {
 const Explanation = ({ answer }: ExplanationProps) => {
   return (
     <div>
-      <span className="text-lg font-bold bg-violet-500 text-white font-mono p-2.5 rounded-sm">
+      {/* <span className="text-lg font-bold bg-violet-500 text-white font-mono p-2.5 rounded-sm">
         Explanation
-      </span>
+      </span> */}
 
       <div className="relative my-7">
         <article

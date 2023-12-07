@@ -1,3 +1,4 @@
+import countQuestion from "@/actions/interview/count-question";
 import getInterviewById from "@/actions/interview/get-interview-by-id";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
@@ -11,7 +12,10 @@ interface CollectionDetailPageProps {
 const CollectionDetailPage = async ({
   params: { collectionId },
 }: CollectionDetailPageProps) => {
-  const interview = await getInterviewById(collectionId);
+  const [interview, questionTotal] = await Promise.all([
+    getInterviewById(collectionId),
+    countQuestion(collectionId),
+  ]);
 
   return (
     <div className="min-h-screen">
@@ -20,7 +24,9 @@ const CollectionDetailPage = async ({
           <div className="p-5 text-center w-full space-y-5">
             <div>
               <h1 className="text-2xl font-bold">{interview.title}</h1>
-              <p className="font-light text-gray-700">Total interview 120</p>
+              <p className="font-light text-gray-700">
+                Total question {questionTotal.at(0)?._count}
+              </p>
             </div>
 
             <Link

@@ -4,7 +4,7 @@ export default async function getInterviews() {
   const response = await fetch("http://localhost:3000/api/interview", {
     method: "GET",
     next: {
-      tags: ["interview", "question"],
+      tags: ["interview", "question", "tag"],
     },
   });
 

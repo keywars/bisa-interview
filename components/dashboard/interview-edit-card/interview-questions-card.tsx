@@ -36,7 +36,10 @@ const InterviewQuestionsCard = ({
               className="py-2 pl-4 pr-2 flex items-center h-[50px] rounded-md bg-gray-200/50"
             >
               <p className="flex-1 capitalize font-semibold text-gray-700/80 line-clamp-1 text-sm font-sans">
-                {question.inquiry}
+                {question.inquiry.replace(
+                  /<[^>]*>|[^a-zA-Z0-9,;\-.!?<> ]/g,
+                  ""
+                )}
               </p>
               <Link
                 href={`/dashboard/question/${question.id}/edit`}
