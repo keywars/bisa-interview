@@ -1,12 +1,26 @@
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-const InterviewNavigator = () => {
+interface InterviewNavigatorProps {
+  interviewId: string;
+  currentCuestionNumber: number;
+  totalQuestion: number;
+}
+
+const InterviewNavigator = ({
+  interviewId,
+  currentCuestionNumber,
+  totalQuestion,
+}: InterviewNavigatorProps) => {
   return (
     <div className="flex justify-between gap-8 pb-8 lg:pb-5">
       {/* TODO : Update aria label dynamic */}
       <Link
-        href="#prev"
-        className="flex-1"
+        href={`/collections/${interviewId}/${currentCuestionNumber - 1}`}
+        className={cn(
+          "flex-1",
+          currentCuestionNumber === 1 ? "hidden" : "w-1/2"
+        )}
         aria-label="Previous: Getting started"
       >
         <div className="border rounded-md py-2.5 px-2.5 lg:py-5 lg:px-5">
@@ -19,8 +33,11 @@ const InterviewNavigator = () => {
 
       {/* TODO : Update aria label dynamic */}
       <Link
-        href="#next"
-        className="flex-1"
+        href={`/collections/${interviewId}/${currentCuestionNumber + 1}`}
+        className={cn(
+          "flex-1",
+          currentCuestionNumber === totalQuestion ? "hidden" : "block w-1/2"
+        )}
         aria-label="Next: How to make second pancake"
       >
         <div className="border rounded-md py-2.5 px-2.5 lg:py-5 lg:px-5 text-right">
