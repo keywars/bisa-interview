@@ -23,6 +23,7 @@ import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import rehypeSanitize from "rehype-sanitize";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 
 interface AddQuestionFormProps {
   interviewId: string;
@@ -111,11 +112,12 @@ const AddQuestionForm = ({
                   <FormItem>
                     <FormLabel>Question</FormLabel>
                     <FormControl>
-                      <MDEditor
-                        previewOptions={{ rehypePlugins: [[rehypeSanitize]] }}
-                        placeholder="write a question"
-                        {...field}
-                      />
+                      <Input {...field} placeholder="Write a question" />
+                      {/*<MDEditor*/}
+                      {/*  previewOptions={{ rehypePlugins: [[rehypeSanitize]] }}*/}
+                      {/*  placeholder="write a question"*/}
+                      {/*  {...field}*/}
+                      {/*/>*/}
                     </FormControl>
                     <FormMessage className="text-sm" />
                   </FormItem>

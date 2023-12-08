@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { Badge } from "./ui/badge";
+import { Badge, badgeVariants } from "./ui/badge";
 import { InterviewWithTag } from "@/typings";
 
 interface InterviewCardProps {
@@ -10,21 +10,19 @@ interface InterviewCardProps {
 
 const InterviewCard = ({ interview, index }: InterviewCardProps) => {
   return (
-    <div className="aspect-[2/1] rounded-md p-4 bg-white shadow-sm border">
-      <div
-        className="rounded-md h-full p-5 relative"
-        // style={{ backgroundColor: `${data.bg}` }}
-      >
-        <Link
-          href={`/collections/${interview.id}`}
-          className="font-bold text-xl font-sans [wrap-text:balance] hover:underline transition-all duration-200 capitalize line-clamp-2"
-          aria-label={`Explore ${interview.title}`}
-        >
-          {interview.title}
-        </Link>
-        <Badge className="absolute bottom-3 left-7">
-          {interview.tag?.name}
-        </Badge>
+    <div className="rounded-md p-7 bg-white shadow-sm border">
+      <div className="rounded-md h-full space-y-3.5 flex flex-col justify-end">
+        <div className="space-y-1.5">
+          <p className="prose prose-sm line-clamp-2">{interview.description}</p>
+
+          <Link
+            href={`/collections/${interview.id}`}
+            className="font-bold text-xl font-sans [wrap-text:balance] hover:underline transition-all duration-200 capitalize line-clamp-2"
+            aria-label={`Explore ${interview.title}`}
+          >
+            {interview.title}
+          </Link>
+        </div>
       </div>
     </div>
   );

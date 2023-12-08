@@ -1,19 +1,9 @@
-import Header from "@/components/header";
-import { type Metadata } from "next";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import InterviewCard from "@/components/interview-card";
-import FilterTabs from "@/components/filter-tabs";
-import getInterviewById from "@/actions/interview/get-interview-by-id";
-import getInterviews from "@/actions/interview/get-interviews";
 import getPublishedInterview from "@/actions/interview/get-published-interview";
+import FilterTabs from "@/components/filter-tabs";
+import Header from "@/components/header";
+import InterviewCard from "@/components/interview-card";
 import { InterviewWithTag } from "@/typings";
+import { type Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Collections | Bisa Interview",

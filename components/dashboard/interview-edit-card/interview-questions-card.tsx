@@ -29,31 +29,37 @@ const InterviewQuestionsCard = ({
         </Link>
       </CardHeader>
       <CardContent className="rounded-md">
-        <ScrollArea className="h-[400px] rounded-md">
-          {questions.map((question, index) => (
-            <div
-              key={index}
-              className="py-2 pl-4 pr-2 flex items-center h-[50px] rounded-md bg-gray-200/50"
-            >
-              <p className="flex-1 capitalize font-semibold text-gray-700/80 line-clamp-1 text-sm font-sans">
-                {question.inquiry.replace(
-                  /<[^>]*>|[^a-zA-Z0-9,;\-.!?<> ]/g,
-                  ""
-                )}
-              </p>
-              <Link
-                href={`/dashboard/question/${question.id}/edit`}
-                className={buttonVariants({
-                  className: "w-[50px]",
-                  size: "sm",
-                  variant: "ghost",
-                })}
+        {!!questions.length ? (
+          <ScrollArea className="h-[400px] rounded-md">
+            {questions.map((question, index) => (
+              <div
+                key={index}
+                className="py-2 pl-4 pr-2 flex items-center h-[50px] rounded-md bg-gray-200/50"
               >
-                <TablerPencil className="w-4 h-4" />
-              </Link>
-            </div>
-          ))}
-        </ScrollArea>
+                <p className="flex-1 capitalize font-semibold text-gray-700/80 line-clamp-1 text-sm font-sans">
+                  {question.inquiry.replace(
+                    /<[^>]*>|[^a-zA-Z0-9,;\-.!?<> ]/g,
+                    ""
+                  )}
+                </p>
+                <Link
+                  href={`/dashboard/question/${question.id}/edit`}
+                  className={buttonVariants({
+                    className: "w-[50px]",
+                    size: "sm",
+                    variant: "ghost",
+                  })}
+                >
+                  <TablerPencil className="w-4 h-4" />
+                </Link>
+              </div>
+            ))}
+          </ScrollArea>
+        ) : (
+          <p className="text-sm text-gray-600 text-center">
+            Questions is Empty.
+          </p>
+        )}
       </CardContent>
     </Card>
   );

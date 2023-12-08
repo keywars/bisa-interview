@@ -1,6 +1,5 @@
 import { relations, sql } from "drizzle-orm";
 import {
-  date,
   index,
   integer,
   pgEnum,
@@ -8,6 +7,7 @@ import {
   serial,
   text,
   varchar,
+  timestamp,
 } from "drizzle-orm/pg-core";
 import { createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
@@ -19,7 +19,7 @@ export const users = pgTable("user", {
   name: text("name"),
   email: text("email").notNull().unique(),
   password: text("password").notNull(),
-  createdAt: date("created_at", { mode: "date" }).defaultNow(),
+  createdAt: timestamp("created_at", { mode: "date" }).defaultNow(),
 });
 
 export const usersRelations = relations(users, ({ many }) => ({
@@ -40,7 +40,7 @@ export const interviews = pgTable(
     slug: text("slug").notNull().unique(),
     description: text("description"),
     status: interviewStatus("status").default("draft"),
-    createdAt: date("created_at", { mode: "date" }).defaultNow(),
+    createdAt: timestamp("created_at", { mode: "date" }).defaultNow(),
     authorId: text("author_id"),
     tagId: integer("tag_id"),
   },
@@ -74,8 +74,10 @@ export const questions = pgTable(
     inquiry: text("inquiry").notNull(),
     slug: text("slug").notNull().unique(),
     answer: text("answer").notNull(),
-    createdAt: date("created_at", { mode: "date" }).defaultNow(),
-    interviewId: text("interview_id"),
+    createdAt: timestamp("created_at", { mode: "date" }).defaultNow(),
+    interviewId: text("interview_id").references(() => interviews.id, {
+      onDelete: "cascade",
+    }),
   },
   (question) => {
     return {

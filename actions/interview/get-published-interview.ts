@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { interviews } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { InterviewWithTag } from "@/typings";
 
 export default async function getPublishedInterview(limit: number = 10) {
@@ -10,6 +10,7 @@ export default async function getPublishedInterview(limit: number = 10) {
       tag: true,
     },
     limit: limit,
+    orderBy: [desc(interviews.createdAt)],
   });
 
   return publisedInterview as InterviewWithTag[];

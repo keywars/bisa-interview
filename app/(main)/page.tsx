@@ -7,6 +7,7 @@ import getPublishedInterview from "@/actions/interview/get-published-interview";
 import countInterviews from "@/actions/interview/count-interviews";
 import countQuestions from "@/actions/question/count-questions";
 import countTag from "@/actions/tags/count-tags";
+import getNewestInterview from "@/actions/interview/get-newest-interview";
 
 export const metadata: Metadata = {
   title: "Bisa Interview",
@@ -22,17 +23,23 @@ export const metadata: Metadata = {
 };
 
 const MainPage = async () => {
-  const [publishedInterviews, totalInterview, totalQuestions, totalTag] =
-    await Promise.all([
-      getPublishedInterview(3),
-      countInterviews(),
-      countQuestions(),
-      countTag(),
-    ]);
+  const [
+    publishedInterviews,
+    totalInterview,
+    totalQuestions,
+    totalTag,
+    newestInterview,
+  ] = await Promise.all([
+    getPublishedInterview(3),
+    countInterviews(),
+    countQuestions(),
+    countTag(),
+    getNewestInterview(),
+  ]);
 
   return (
     <div>
-      <Hero />
+      <Hero newestInterview={newestInterview} />
       <StatisticSection
         totalInterview={totalInterview.at(0)?._count as number}
         totalQuestion={totalQuestions.at(0)?._count as number}

@@ -1,14 +1,10 @@
 import countQuestion from "@/actions/interview/count-question";
 import getQuestionByQuestionNumber from "@/actions/question/get-question-by-question-number";
 import Explanation from "@/components/explanation";
-import MaterialSymbolsArrowLeftAlt from "@/components/icons/MaterialSymbolsArrowLeftAlt";
-import MaterialSymbolsArrowRightAlt from "@/components/icons/MaterialSymbolsArrowRightAlt";
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import QuestionNavigation from "@/components/question-navigation";
 
 interface DetailInterviewPageProps {
   params: {
@@ -31,52 +27,23 @@ const DetailInterviewPage = async ({
         <div className="space-y-10">
           <div className="flex justify-between items-center">
             <Link
-              href="/collections"
+              href={`/collections/${collectionId}`}
               className={buttonVariants({ variant: "link" })}
             >
-              &laquo; Back to collections
+              &laquo; Table of content
             </Link>
 
-            <div className="flex items-center">
-              <Link
-                href={`/collections/${collectionId}/${
-                  (question?.at(0)?.questionNumber as number) - 1
-                }`}
-                className={buttonVariants({
-                  variant: "link",
-                  className: cn(
-                    question?.at(0)?.questionNumber === 1 &&
-                      "pointer-events-none text-gray-700"
-                  ),
-                })}
-              >
-                <MaterialSymbolsArrowLeftAlt className="w-4 h-4 mr-2" />
-                Prev
-              </Link>
-              <Link
-                href={`/collections/${collectionId}/${
-                  (question?.at(0)?.questionNumber as number) + 1
-                }`}
-                className={buttonVariants({
-                  variant: "link",
-                  className: cn(
-                    (question?.at(0)?.questionNumber as number) ===
-                      questionTotal.at(0)?._count &&
-                      "pointer-events-none text-gray-700"
-                  ),
-                })}
-              >
-                Next <MaterialSymbolsArrowRightAlt className="w-4 h-4 ml-2" />
-              </Link>
-            </div>
+            <QuestionNavigation
+              question={question}
+              questionTotal={questionTotal.at(0)?._count as number}
+              interviewId={collectionId}
+            />
           </div>
 
           <div className="space-y-10">
-            <div className="prose prose-md capitalize">
-              <Markdown remarkPlugins={[remarkGfm]}>
-                {question?.at(0)?.inquiry}
-              </Markdown>
-            </div>
+            <h1 className="text-3xl font-bold font-sans">
+              {question?.at(0)?.inquiry}
+            </h1>
 
             <Separator />
 
