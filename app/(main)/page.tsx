@@ -30,7 +30,7 @@ const MainPage = async () => {
     totalTag,
     newestInterview,
   ] = await Promise.all([
-    getPublishedInterview(3),
+    getPublishedInterview({ limit: 3 }),
     countInterviews(),
     countQuestions(),
     countTag(),

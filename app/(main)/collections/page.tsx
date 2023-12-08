@@ -5,6 +5,12 @@ import InterviewCard from "@/components/interview-card";
 import { InterviewWithTag } from "@/typings";
 import { type Metadata } from "next";
 
+interface CollectionPageProps {
+  searchParams: {
+    sort: "asc" | "desc";
+  };
+}
+
 export const metadata: Metadata = {
   title: "Collections | Bisa Interview",
   description: "List of collection all interview question.",
@@ -19,8 +25,12 @@ export const metadata: Metadata = {
   },
 };
 
-const CollectionPage = async () => {
-  const interviews = (await getPublishedInterview()) as InterviewWithTag[];
+const CollectionPage = async ({
+  searchParams: { sort },
+}: CollectionPageProps) => {
+  const interviews = (await getPublishedInterview({
+    sort,
+  })) as InterviewWithTag[];
 
   return (
     <div className="min-h-screen">
