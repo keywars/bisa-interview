@@ -29,8 +29,8 @@ const Filter = () => {
 
   return (
     <div className="p-2 items-center flex flex-col-reverse md:flex-row gap-4 justify-end">
-      <div className="flex space-x-2 items-center">
-        <span>Desc</span>
+      <div className="flex space-x-2 items-center text-sm font-light">
+        <span>Latest</span>
         <Switch
           onCheckedChange={(checked) => {
             router.push(
@@ -40,40 +40,8 @@ const Filter = () => {
             );
           }}
         />
-        <span>Asc</span>
+        <span>Oldest</span>
       </div>
-
-      {/* <div className="flex space-x-3">
-        <Select
-          defaultValue="date"
-          onValueChange={(value) => {
-            router.push(pathname + "?" + createQueryString("filter-by", value));
-          }}
-        >
-          <SelectTrigger className="w-[154px]">
-            <SelectValue placeholder="Filter by" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="name">Name</SelectItem>
-            <SelectItem value="date">Date</SelectItem>
-          </SelectContent>
-        </Select>
-
-        <Select
-          defaultValue="desc"
-          onValueChange={(value) => {
-            router.push(pathname + "?" + createQueryString("sort", value));
-          }}
-        >
-          <SelectTrigger className="w-[154px]">
-            <SelectValue placeholder="Sort" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="asc">ASC</SelectItem>
-            <SelectItem value="desc">DESC</SelectItem>
-          </SelectContent>
-        </Select>
-      </div> */}
     </div>
   );
 };

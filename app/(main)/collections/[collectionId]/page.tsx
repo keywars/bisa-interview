@@ -2,6 +2,7 @@ import countQuestion from "@/actions/interview/count-question";
 import getInterviewById from "@/actions/interview/get-interview-by-id";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 interface CollectionDetailPageProps {
   params: {
@@ -16,6 +17,10 @@ const CollectionDetailPage = async ({
     getInterviewById(collectionId),
     countQuestion(collectionId),
   ]);
+
+  if (!interview) {
+    notFound();
+  }
 
   return (
     <div className="min-h-screen space-y-7">

@@ -17,7 +17,7 @@ export default async function getQuestionByQuestionNumber(
     )
     .limit(1);
 
-  if (!question) {
+  if (!question.length) {
     return null;
   }
 

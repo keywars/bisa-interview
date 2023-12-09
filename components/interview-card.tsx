@@ -1,7 +1,5 @@
-import Link from "next/link";
-import React from "react";
-import { Badge, badgeVariants } from "./ui/badge";
 import { InterviewWithTag } from "@/typings";
+import Link from "next/link";
 import MdiCalendarMonth from "./icons/MdiCalendarMonth";
 
 interface InterviewCardProps {

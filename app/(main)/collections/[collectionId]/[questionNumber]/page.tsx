@@ -5,6 +5,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import QuestionNavigation from "@/components/question-navigation";
+import { notFound } from "next/navigation";
 
 interface DetailInterviewPageProps {
   params: {
@@ -20,6 +21,10 @@ const DetailInterviewPage = async ({
     getQuestionByQuestionNumber(questionNumber, collectionId),
     countQuestion(collectionId),
   ]);
+
+  if (!question) {
+    notFound();
+  }
 
   return (
     <div className="max-w-screen-2xl mx-auto px-1 min-h-[87dvh]">
