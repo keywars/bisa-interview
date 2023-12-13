@@ -7,10 +7,10 @@ import {
 
 const FrequentlyAsking = () => {
   return (
-    <section className="min-h-[81dvh] lg:min-h-[63dvh] flex items-center dark:bg-zinc-800">
-      <div className="max-w-screen-xl mx-auto flex flex-col lg:flex-row justify-around space-y-8 lg:space-x-8 items-center px-3">
+    <section className="flex min-h-[81dvh] items-center dark:bg-zinc-900/70 lg:min-h-[63dvh]">
+      <div className="mx-auto flex max-w-screen-xl flex-col items-center justify-around space-y-8 px-3 lg:flex-row lg:space-x-8">
         <div className="flex-1">
-          <h1 className="font-semibold text-3xl lg:text-6xl capitalize lg:max-w-lg">
+          <h1 className="text-3xl font-semibold capitalize lg:max-w-lg lg:text-6xl">
             frequently Asked?
           </h1>
         </div>
@@ -18,7 +18,7 @@ const FrequentlyAsking = () => {
         <div className="flex-1">
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
-              <AccordionTrigger className="text-base md:text-xl font-medium w-full">
+              <AccordionTrigger className="w-full text-base font-medium md:text-xl">
                 Bisa interview diperntukkan siapa?
               </AccordionTrigger>
               <AccordionContent className="prose prose-sm dark:prose-invert">
@@ -32,7 +32,7 @@ const FrequentlyAsking = () => {
             </AccordionItem>
 
             <AccordionItem value="item-2">
-              <AccordionTrigger className="text-base md:text-xl font-medium">
+              <AccordionTrigger className="text-base font-medium md:text-xl">
                 Apa saya bisa ikut berkontribusi?
               </AccordionTrigger>
               <AccordionContent className="prose prose-sm dark:prose-invert">
@@ -45,7 +45,7 @@ const FrequentlyAsking = () => {
             </AccordionItem>
 
             <AccordionItem value="item-3">
-              <AccordionTrigger className="text-base md:text-xl font-medium">
+              <AccordionTrigger className="text-base font-medium md:text-xl">
                 Other question?
               </AccordionTrigger>
               <AccordionContent className="prose prose-sm dark:prose-invert">
@@ -57,7 +57,7 @@ const FrequentlyAsking = () => {
             </AccordionItem>
 
             <AccordionItem value="item-4">
-              <AccordionTrigger className="text-base md:text-xl font-medium">
+              <AccordionTrigger className="text-base font-medium md:text-xl">
                 Bisa interview dibuat untuk apa?
               </AccordionTrigger>
               <AccordionContent className="prose prose-sm dark:prose-invert">
@@ -75,7 +75,7 @@ const FrequentlyAsking = () => {
             </AccordionItem>
 
             <AccordionItem value="item-5">
-              <AccordionTrigger className="text-base md:text-xl font-medium">
+              <AccordionTrigger className="text-base font-medium md:text-xl">
                 Apakah saya bisa menyampaikan keluhan?
               </AccordionTrigger>
               <AccordionContent className="prose prose-sm dark:prose-invert">

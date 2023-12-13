@@ -59,7 +59,7 @@ const InterviewTitleCard = ({ title, id }: InterviewTitleCardProps) => {
   };
 
   return (
-    <Card className="bg-gray-50">
+    <Card className="bg-gray-50 dark:bg-zinc-900/70">
       <CardHeader className="flex flex-row items-center space-y-0 justify-between">
         <h1 className="text-lg font-semibold">Interview title</h1>
         <Button

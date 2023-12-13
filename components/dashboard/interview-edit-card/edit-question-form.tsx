@@ -97,7 +97,7 @@ const EditQuestionForm = ({ initialValues, id }: EditQuestionFormProps) => {
   };
 
   return (
-    <Card className="bg-gray-50 max-w-screen-md">
+    <Card className="bg-gray-50 dark:bg-zinc-900/70 max-w-screen-md">
       <CardHeader>
         <h1 className="font-bold text-lg">
           Edit question number{" "}
@@ -138,6 +138,7 @@ const EditQuestionForm = ({ initialValues, id }: EditQuestionFormProps) => {
                     <FormLabel>Explanation</FormLabel>
                     <FormControl>
                       <MDEditor
+                        className="dark:bg-zinc-900/70 dark:text-gray-200"
                         previewOptions={{ rehypePlugins: [[rehypeSanitize]] }}
                         placeholder="write explanations"
                         {...field}

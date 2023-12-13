@@ -9,7 +9,7 @@ interface InterviewCardProps {
 
 const InterviewCard = ({ interview, index }: InterviewCardProps) => {
   return (
-    <div className="rounded-md p-7 bg-white dark:bg-gray-900">
+    <div className="rounded-md p-7 bg-white dark:bg-gray-900/70">
       <div className="rounded-md space-y-3.5 flex flex-col justify-end">
         <div className="space-y-3">
           <p className="prose prose-md line-clamp-2 capitalize dark:text-gray-300">

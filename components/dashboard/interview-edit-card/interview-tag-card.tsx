@@ -66,7 +66,7 @@ const InterviewTagCard = ({ tags, id, initialTag }: InterviewTagCardProps) => {
   };
 
   return (
-    <Card className="bg-gray-50">
+    <Card className="bg-gray-50 dark:bg-zinc-900/70">
       <CardHeader className="flex flex-row items-center space-y-0 justify-between">
         <h1 className="text-lg font-semibold">Interview tags</h1>
         <Button

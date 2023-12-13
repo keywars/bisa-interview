@@ -78,6 +78,7 @@ const BlogForm = () => {
                 <FormLabel>Body</FormLabel>
                 <FormControl>
                   <MDEditor
+                    className="dark:bg-zinc-900/70 dark:text-gray-200"
                     placeholder="Crafting a lasting impression in a job interview is crucial for securing..."
                     {...field}
                   />

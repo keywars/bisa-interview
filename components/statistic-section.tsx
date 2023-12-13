@@ -30,7 +30,7 @@ const StatisticSection = ({
   ]);
 
   return (
-    <section className="min-h-[78dvh] lg:min-h-[29dvh] bg-zinc-50/50 dark:bg-zinc-800 flex items-center">
+    <section className="min-h-[78dvh] lg:min-h-[29dvh] bg-zinc-50/50 dark:bg-zinc-900/70 flex items-center">
       <div className="max-w-screen-lg mx-auto grid md:grid-cols-3 gap-y-20 lg:gap-x-16 items-center px-3">
         {statistics.map((data, index) => (
           <div

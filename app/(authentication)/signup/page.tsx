@@ -24,10 +24,10 @@ const RegisterPage = async () => {
   if (currentUser) redirect("/");
 
   return (
-    <div className="flex justify-center items-center w-full min-h-screen">
+    <div className="flex min-h-screen w-full items-center justify-center">
       {/* login form */}
-      <div className="min-w-[400px] lg:min-w-[476px] border">
-        <div className=" p-8 space-y-8">
+      <div className="min-w-[400px] border lg:min-w-[476px]">
+        <div className=" space-y-8 p-8">
           <div>
             <h1 className="text-3xl font-bold">Register</h1>
             <p className="font-gray-600 text-sm">
@@ -38,9 +38,9 @@ const RegisterPage = async () => {
           <RegisterForm />
         </div>
 
-        <div className="h-12 flex justify-center">
-          <p className="font-light text-sm text-gray-600 tracking-wide">
-            have an account?{" "}
+        <div className="flex h-12 justify-center">
+          <p className="text-sm font-light tracking-wide text-gray-600  dark:text-gray-400">
+            Have an account?{" "}
             <Link
               href="/signin"
               className="hover:underline"

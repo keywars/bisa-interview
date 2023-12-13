@@ -33,7 +33,10 @@ const DetailInterviewPage = async ({
           <div className="flex justify-between items-center">
             <Link
               href={`/collections/${collectionId}`}
-              className={buttonVariants({ variant: "link" })}
+              className={buttonVariants({
+                variant: "link",
+                className: "dark:text-violet-500",
+              })}
             >
               &laquo; Table of content
             </Link>

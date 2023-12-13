@@ -24,10 +24,10 @@ const LoginPage = async () => {
   if (currentUser) redirect("/");
 
   return (
-    <div className="flex justify-center items-center min-h-screen px-3">
+    <div className="flex min-h-screen items-center justify-center px-3">
       {/* login form */}
-      <div className="min-w-[400px] lg:min-w-[476px] border">
-        <div className=" p-8 space-y-8">
+      <div className="min-w-[400px] border lg:min-w-[476px]">
+        <div className=" space-y-8 p-8">
           <div>
             <h1 className="text-3xl font-bold">Login</h1>
             <p className="font-gray-600 text-sm">
@@ -38,8 +38,8 @@ const LoginPage = async () => {
           <LoginForm />
         </div>
 
-        <div className="h-12 flex justify-center">
-          <p className="font-light text-sm text-gray-600 tracking-wide">
+        <div className="flex h-12 justify-center">
+          <p className="text-sm font-light tracking-wide text-gray-600 dark:text-gray-400">
             don{"'"}t have an account?{" "}
             <Link
               href="/signup"

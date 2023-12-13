@@ -48,7 +48,7 @@ const EditInterviewPage = async ({
           </div>
         </div>
 
-        <Alert className="bg-amber-100/80">
+        <Alert className="bg-amber-100/80 dark:bg-amber-100/50">
           <AlertDescription>Complete all fields (1/4)</AlertDescription>
         </Alert>
 

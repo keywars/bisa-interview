@@ -93,7 +93,7 @@ const AddQuestionForm = ({
   };
 
   return (
-    <Card className="bg-gray-50 max-w-screen-md">
+    <Card className="bg-gray-50 dark:bg-zinc-900/70 max-w-screen-md">
       <CardHeader>
         <h2 className="font-bold text-lg">
           Add new question for number{" "}
@@ -133,6 +133,7 @@ const AddQuestionForm = ({
                     <FormLabel>Explanation</FormLabel>
                     <FormControl>
                       <MDEditor
+                        className="dark:bg-zinc-900/70 dark:text-gray-200"
                         previewOptions={{ rehypePlugins: [[rehypeSanitize]] }}
                         placeholder="write explanations"
                         {...field}
