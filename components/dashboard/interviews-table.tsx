@@ -20,7 +20,9 @@ interface InterviewsTableProps {
 const InterviewsTable = ({ interviews }: InterviewsTableProps) => {
   return (
     <Table>
-      <TableCaption>A list of interviews.</TableCaption>
+      <TableCaption>
+        {!!interviews?.length ? "list of interviews." : "No item"}{" "}
+      </TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[300px]">Name</TableHead>

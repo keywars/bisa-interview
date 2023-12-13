@@ -27,13 +27,14 @@ function QuestionNavigation({
           variant: "link",
           className: cn(
             question?.at(0)?.questionNumber === 1 &&
-              "pointer-events-none text-gray-700"
+              "pointer-events-none hidden"
           ),
         })}
       >
         <MaterialSymbolsArrowLeftAlt className="w-4 h-4 mr-2" />
         Prev
       </Link>
+
       <Link
         href={`/collections/${interviewId}/${
           (question?.at(0)?.questionNumber as number) + 1
@@ -42,7 +43,7 @@ function QuestionNavigation({
           variant: "link",
           className: cn(
             (question?.at(0)?.questionNumber as number) === questionTotal &&
-              "pointer-events-none text-gray-700"
+              "pointer-events-none hidden"
           ),
         })}
       >

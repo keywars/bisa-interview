@@ -1,6 +1,8 @@
 import RegisterForm from "@/components/register-form";
 import { type Metadata } from "next";
 import Link from "next/link";
+import getCurrentUser from "@/actions/user/get-current-user";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Sign up | Bisa Interview",
@@ -17,6 +19,10 @@ export const metadata: Metadata = {
 };
 
 const RegisterPage = async () => {
+  const currentUser = await getCurrentUser();
+
+  if (currentUser) redirect("/");
+
   return (
     <div className="flex justify-center items-center w-full min-h-screen">
       {/* login form */}

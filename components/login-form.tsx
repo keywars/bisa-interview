@@ -53,8 +53,9 @@ const LoginForm = () => {
             title: "User Login",
             description: "Login Success!!",
           });
-          router.push("/");
         }
+
+        router.refresh();
       })
       .finally(() => {
         setIsLoading(); // set loading to false

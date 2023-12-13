@@ -37,7 +37,7 @@ const CollectionDetailPage = async ({
                 </p>
               </div>
 
-              <p className="prose prose-md">{interview.description}</p>
+              <p className="prose prose-sm">{interview.description}</p>
             </div>
             <div className="w-36">
               <Link

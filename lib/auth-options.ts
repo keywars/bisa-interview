@@ -6,6 +6,7 @@ import { loginSchema } from "@/lib/validation/user.schema";
 import { User, users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
+import { revalidateTag } from "next/cache";
 
 export const authOptions: NextAuthOptions = {
   adapter: DrizzleAdapter(db),
@@ -57,6 +58,7 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
+        revalidateTag("user");
         return user;
       },
     }),
