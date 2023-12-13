@@ -12,15 +12,15 @@ interface NewsCardProps {
 
 const NewsCard = ({ blog }: NewsCardProps) => {
   return (
-    <div className="border border-violet-500/70 rounded-lg py-3 px-4 flex justify-between items-center hover:bg-gray-100 hover:scale-105 transition-all duration-300">
+    <div className="border border-violet-500/70 dark:border-violet-500 rounded-lg py-3 px-4 flex justify-between items-center hover:bg-gray-100 dark:hover:bg-zinc-800 dark:hover:bg-zinc  -800 hover:scale-105 transition-all duration-300">
       <div className="flex-1 flex flex-col">
-        <span className="text-xs text-violet-500/80 capitalize font-mono">
+        <span className="text-xs text-violet-500/80 dark:text-violet-500 capitalize font-mono">
           {blog.author}
         </span>
         <Link
           aria-label={`Read more about ${blog.title}`}
           href={`/blog/${slugify(blog.title)}`}
-          className="font-bold tracking-wide text-gray-600 capitalize text-lg underline-offset-[3px] hover:underline"
+          className="font-bold tracking-wide text-gray-600 dark:text-gray-300 capitalize text-lg underline-offset-[3px] hover:underline"
         >
           {blog.title}
         </Link>

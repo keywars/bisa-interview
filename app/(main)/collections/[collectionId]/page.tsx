@@ -32,12 +32,14 @@ const CollectionDetailPage = async ({
                 <h1 className="font-bold text-3xl font-sans capitalize leading-tight">
                   {interview.title}
                 </h1>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 dark:text-gray-300">
                   {questionTotal.at(0)?._count} questions
                 </p>
               </div>
 
-              <p className="prose prose-sm">{interview.description}</p>
+              <p className="prose prose-sm dark:prose-invert">
+                {interview.description}
+              </p>
             </div>
             <div className="w-36">
               <Link

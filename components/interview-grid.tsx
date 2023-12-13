@@ -15,7 +15,7 @@ const InterviewGrid = ({ publishedInterviews }: InterviewGridProps) => {
         <div className="space-y-12">
           <div className="text-center space-y-3">
             <h1 className="font-bold text-4xl capitalize">Selected</h1>
-            <p className="max-w-lg mx-auto text-gray-700">
+            <p className="max-w-lg mx-auto text-gray-700 dark:text-gray-200">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
               Voluptatem illo expedita atque ut temporibus dolor alias?
             </p>
@@ -32,8 +32,11 @@ const InterviewGrid = ({ publishedInterviews }: InterviewGridProps) => {
               href="/collections"
               aria-label="Explore more collections"
               className={cn(
-                buttonVariants({ variant: "outline" }),
-                "hover:text-sky-600 text-gray-700 group transition ease-in-out duration-200 rounded-xl"
+                buttonVariants({
+                  variant: "outline",
+                  className: "dark:border-gray-200",
+                }),
+                "hover:text-sky-600 text-gray-700 dark:text-gray-200 group transition ease-in-out duration-200 rounded-xl"
               )}
             >
               Explore more

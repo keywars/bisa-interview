@@ -63,9 +63,9 @@ const Sidebar = () => {
             href={href}
             aria-label={`Navigate to ${label}`}
             className={cn(
-              "px-4 py-2.5 rounded-l-md text-gray-700 hover:border-sky-500/50 hover:bg-zinc-100/50 text-sm capitalize flex items-center transition-all duration-300",
+              "px-4 py-2.5 rounded-l-md text-gray-700 dark:text-gray-200 hover:border-sky-500/50 hover:bg-zinc-100/50 text-sm capitalize flex items-center transition-all duration-300",
               isActive &&
-                "border-r-4 border-sky-500/80 bg-zinc-100/80 font-bold text-sky-500/90"
+                "border-r-4 border-sky-500/80 bg-zinc-100/80 dark:bg-zinc-800 font-bold text-sky-500/90 dark:text-sky-500"
             )}
           >
             <Icon className="inline-flex mr-2 h-5 w-5" />

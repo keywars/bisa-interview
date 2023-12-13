@@ -55,7 +55,9 @@ const CollectionPage = async ({
             </div>
 
             <div className="flex justify-center">
-              <p className="text-gray-700 animate-pulse">Load more....</p>
+              <p className="text-gray-700 dark:text-gray-200 animate-pulse">
+                Load more....
+              </p>
             </div>
           </div>
         </div>

@@ -34,7 +34,7 @@ const Navbar = () => {
               className={buttonVariants({
                 variant: "link",
                 size: "sm",
-                className: "hidden lg:flex",
+                className: "hidden lg:flex dark:text-violet-500",
               })}
             >
               <MdiLogout className="w-5 h-5 mr-1" />

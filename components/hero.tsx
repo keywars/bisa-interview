@@ -32,7 +32,7 @@ const Hero = ({ newestInterview }: HeroProps) => {
           <h1 className="text-4xl lg:text-6xl font-bold capitalize bg-gradient-to-tl from-slate-800 via-[#C683D7] to-zinc-400 bg-clip-text text-transparent">
             bisa interview
           </h1>
-          <p className="text-base lg:text-lg tracking-wide text-gray-700 font-light px-3.5 [text-wrap:balance]">
+          <p className="text-base lg:text-lg tracking-wide text-gray-700 font-light px-3.5 [text-wrap:balance] dark:text-gray-200">
             <span className="font-medium capitalize leading-relaxed">
               bisa interview
             </span>{" "}

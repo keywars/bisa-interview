@@ -16,10 +16,10 @@ const Testimonials = () => {
             <div className="space-y-2.5">
               <div className="leading-tight">
                 <h1 className="font-bold text-xl capitalize tracking-wide">
-                  rizka hidayati alwi
+                  Your name
                 </h1>
                 <span className="text-sm text-gray-600">
-                  Flutter Developer at ablecode
+                  Web developer at Google
                 </span>
               </div>
               <p className="text-gray-800">

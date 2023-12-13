@@ -7,7 +7,7 @@ import {
 
 const FrequentlyAsking = () => {
   return (
-    <section className="min-h-[81dvh] lg:min-h-[63dvh] flex items-center">
+    <section className="min-h-[81dvh] lg:min-h-[63dvh] flex items-center dark:bg-zinc-800">
       <div className="max-w-screen-xl mx-auto flex flex-col lg:flex-row justify-around space-y-8 lg:space-x-8 items-center px-3">
         <div className="flex-1">
           <h1 className="font-semibold text-3xl lg:text-6xl capitalize lg:max-w-lg">

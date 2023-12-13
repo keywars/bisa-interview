@@ -9,15 +9,15 @@ interface InterviewCardProps {
 
 const InterviewCard = ({ interview, index }: InterviewCardProps) => {
   return (
-    <div className="rounded-md p-7 bg-white">
+    <div className="rounded-md p-7 bg-white dark:bg-gray-900">
       <div className="rounded-md space-y-3.5 flex flex-col justify-end">
         <div className="space-y-3">
-          <p className="prose prose-md line-clamp-2 capitalize">
+          <p className="prose prose-md line-clamp-2 capitalize dark:text-gray-300">
             {interview.description}
           </p>
 
           <div className="space-y-1">
-            <time className="text-sm font-light text-gray-600 flex items-center">
+            <time className="text-sm font-light text-gray-600 flex items-center dark:text-gray-200">
               <MdiCalendarMonth className="mr-1" />
               {interview.createdAt?.toDateString()}
             </time>

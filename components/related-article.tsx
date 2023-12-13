@@ -39,7 +39,7 @@ const RelatedArticle = () => {
   return (
     <div className="border-t py-12 mt-16">
       <h3 className="text-3xl pl-2 font-bold pb-7">Related Articles</h3>
-      <div className="space-y-4 border-l-2 border-violet-500/50 ml-3 pl-8">
+      <div className="space-y-4 border-l-2 border-violet-500/50 dark:border-violet-500 ml-3 pl-8">
         {dummyBlogs.slice(0, 4).map((blog, index) => (
           <NewsCard key={index} blog={blog} />
         ))}
