@@ -47,28 +47,28 @@ const Sidebar = () => {
         icon: TablerSettingsFilled,
       },
     ],
-    [pathname]
+    [pathname],
   );
 
   return (
-    <div className="w-64 flex-none border-r shadow-sm hidden lg:block">
-      <div className="flex justify-center py-3.5 border-b">
+    <div className="hidden w-64 flex-none border-r shadow-sm lg:block">
+      <div className="flex justify-center py-3.5">
         <Logo />
       </div>
 
-      <div className="flex flex-col pl-2 space-y-1 my-5">
+      <div className="my-5 flex flex-col space-y-1 pl-2">
         {dummyMenus.map(({ href, label, isActive, icon: Icon }, index) => (
           <Link
             key={index}
             href={href}
             aria-label={`Navigate to ${label}`}
             className={cn(
-              "px-4 py-2.5 rounded-l-md text-gray-700 dark:text-gray-200 hover:border-sky-500/50 hover:bg-zinc-100/50 text-sm capitalize flex items-center transition-all duration-300",
+              "flex items-center rounded-l-md px-4 py-2.5 text-sm capitalize text-gray-700 transition-all duration-300 hover:border-sky-500/50 hover:bg-zinc-100/50 dark:text-gray-200",
               isActive &&
-                "border-r-4 border-sky-500/80 bg-zinc-100/80 dark:bg-zinc-800 font-bold text-sky-500/90 dark:text-sky-500"
+                "border-r-4 border-sky-500/80 bg-zinc-100/80 font-bold text-sky-500/90 dark:bg-zinc-800 dark:text-sky-500",
             )}
           >
-            <Icon className="inline-flex mr-2 h-5 w-5" />
+            <Icon className="mr-2 inline-flex h-5 w-5" />
             <span>{label}</span>
           </Link>
         ))}

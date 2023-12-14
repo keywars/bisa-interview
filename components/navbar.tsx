@@ -25,7 +25,7 @@ const Navbar = ({ className, currentUser }: NavbarProps) => {
 
         <MobileMenu />
 
-        <div className="hidden lg:flex items-center space-x-5">
+        <div className="hidden items-center space-x-5 lg:flex">
           <div className="flex items-center space-x-1.5">
             <Search />
             <ThemeToggle />

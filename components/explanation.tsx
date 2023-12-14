@@ -11,14 +11,14 @@ interface ExplanationProps {
 const Explanation = ({ answer }: ExplanationProps) => {
   return (
     <div>
-      {/* <span className="text-lg font-bold bg-violet-500 text-white font-mono p-2.5 rounded-sm">
+      {/* <span className="rounded-sm bg-violet-500 p-2.5 font-mono text-lg font-bold text-white">
         Explanation
       </span> */}
 
       <div className="relative my-7">
         <article
           className={cn(
-            "px-3 prose dark:prose-invert prose-p:text-justify md:prose-md"
+            "md:prose-md prose px-3 dark:prose-invert prose-headings:font-extrabold prose-p:text-justify prose-blockquote:text-gray-500",
           )}
         >
           <Markdown remarkPlugins={[remarkGfm]}>{answer}</Markdown>

@@ -27,10 +27,10 @@ const DetailInterviewPage = async ({
   }
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-1 min-h-[87dvh]">
-      <div className="py-5 flex flex-col justify-between h-full space-y-14">
+    <div className="mx-auto min-h-[87dvh] max-w-screen-2xl px-1">
+      <div className="flex h-full flex-col justify-between space-y-14 py-5">
         <div className="space-y-10">
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <Link
               href={`/collections/${collectionId}`}
               className={buttonVariants({
@@ -49,7 +49,7 @@ const DetailInterviewPage = async ({
           </div>
 
           <div className="space-y-10">
-            <h1 className="text-3xl font-bold font-sans">
+            <h1 className="font-sans text-3xl font-bold">
               {question?.at(0)?.inquiry}
             </h1>
 

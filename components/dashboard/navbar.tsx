@@ -14,8 +14,8 @@ import Search from "./search";
 
 const Navbar = () => {
   return (
-    <div className="border-b py-2 px-3 lg:px-10 shadow-sm sticky">
-      <div className="flex justify-between items-center">
+    <div className="sticky border-b px-3 py-2 shadow-sm lg:px-10">
+      <div className="flex items-center justify-between">
         <div>
           <form role="search" className="hidden lg:block">
             <Search />
@@ -26,7 +26,7 @@ const Navbar = () => {
         </div>
         <div>
           <MobileMenu />
-          <div className="items-center space-x-3 hidden lg:flex">
+          <div className="hidden items-center space-x-3 lg:flex">
             {/* <ThemeToggle /> */}
             <Link
               href="/"
@@ -34,13 +34,13 @@ const Navbar = () => {
               className={buttonVariants({
                 variant: "link",
                 size: "sm",
-                className: "hidden lg:flex dark:text-violet-500",
+                className: "hidden dark:text-violet-500 lg:flex",
               })}
             >
-              <MdiLogout className="w-5 h-5 mr-1" />
+              <MdiLogout className="mr-1 h-5 w-5" />
               Exit
             </Link>
-            <DropdownMenu>
+            {/* <DropdownMenu>
               <DropdownMenuTrigger>
                 <Avatar className="h-8 w-8">
                   <AvatarImage src="https://github.com/shadcn.png" />
@@ -49,11 +49,11 @@ const Navbar = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent className="mr-2">
                 <DropdownMenuItem>
-                  <MdiLogout className="mr-2 w-4 h-4" />
+                  <MdiLogout className="mr-2 h-4 w-4" />
                   Logout
                 </DropdownMenuItem>
               </DropdownMenuContent>
-            </DropdownMenu>
+            </DropdownMenu> */}
           </div>
         </div>
       </div>

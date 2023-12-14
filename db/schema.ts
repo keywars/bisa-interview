@@ -48,7 +48,7 @@ export const interviews = pgTable(
     return {
       titleIdx: index("title_idx").on(interview.title),
     };
-  }
+  },
 );
 
 const interviewSchema = createSelectSchema(interviews);
@@ -83,7 +83,7 @@ export const questions = pgTable(
     return {
       inquiryIdx: index("inquiry_idx").on(question.inquiry),
     };
-  }
+  },
 );
 
 const questionSchema = createSelectSchema(questions);

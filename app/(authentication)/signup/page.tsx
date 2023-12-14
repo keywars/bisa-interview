@@ -19,10 +19,6 @@ export const metadata: Metadata = {
 };
 
 const RegisterPage = async () => {
-  const currentUser = await getCurrentUser();
-
-  if (currentUser) redirect("/");
-
   return (
     <div className="flex min-h-screen w-full items-center justify-center">
       {/* login form */}

@@ -18,7 +18,7 @@ const AuthenticationMenu = () => {
   return (
     <div>
       <NavigationMenu>
-        <NavigationMenuList className="space-x-1.5 flex">
+        <NavigationMenuList className="flex space-x-1.5">
           <NavigationMenuItem>
             <Link
               href="/signin"
@@ -29,7 +29,7 @@ const AuthenticationMenu = () => {
               <NavigationMenuLink
                 className={cn(
                   navigationMenuTriggerStyle(),
-                  pathname === "/signin" && "font-black"
+                  pathname === "/signin" && "font-black",
                 )}
               >
                 Log in
@@ -37,7 +37,7 @@ const AuthenticationMenu = () => {
             </Link>
           </NavigationMenuItem>
 
-          <NavigationMenuItem>
+          {/* <NavigationMenuItem>
             <Link
               href="/signup"
               legacyBehavior
@@ -54,7 +54,7 @@ const AuthenticationMenu = () => {
                 Create Account
               </NavigationMenuLink>
             </Link>
-          </NavigationMenuItem>
+          </NavigationMenuItem> */}
         </NavigationMenuList>
       </NavigationMenu>
     </div>

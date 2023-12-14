@@ -31,14 +31,14 @@ const LoginPage = async () => {
           <div>
             <h1 className="text-3xl font-bold">Login</h1>
             <p className="font-gray-600 text-sm">
-              login to continue using this app.
+              login to manage this app (Admin Only)
             </p>
           </div>
 
           <LoginForm />
         </div>
 
-        <div className="flex h-12 justify-center">
+        {/* <div className="flex h-12 justify-center">
           <p className="text-sm font-light tracking-wide text-gray-600 dark:text-gray-400">
             don{"'"}t have an account?{" "}
             <Link
@@ -49,7 +49,7 @@ const LoginPage = async () => {
               Register
             </Link>
           </p>
-        </div>
+        </div> */}
       </div>
       {/* end login form */}
     </div>
