@@ -4,6 +4,7 @@ import Header from "@/components/header";
 import InterviewCard from "@/components/interview-card";
 import { InterviewWithTag } from "@/typings";
 import { type Metadata } from "next";
+import LoadMore from "@/components/load-more";
 
 interface CollectionPageProps {
   searchParams: {
@@ -29,12 +30,12 @@ const CollectionPage = async ({
   searchParams: { sort },
 }: CollectionPageProps) => {
   const interviews = (await getPublishedInterview({
-    sort,
+    page: 0,
   })) as InterviewWithTag[];
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-screen-xl mx-auto px-3 space-y-5">
+      <div className="mx-auto max-w-screen-xl space-y-5 px-3">
         <Header
           title="Collections"
           description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error officiis facere, dolore et, similique obcaecati fugit iure a dolores tempore laborum!"
@@ -43,8 +44,8 @@ const CollectionPage = async ({
         <div className="space-y-8">
           <FilterTabs />
 
-          <div className="pb-12 space-y-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="space-y-10 pb-12">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {interviews?.map((interview, index) => (
                 <InterviewCard
                   index={index}
@@ -52,12 +53,8 @@ const CollectionPage = async ({
                   key={index}
                 />
               ))}
-            </div>
 
-            <div className="flex justify-center">
-              <p className="text-gray-700 dark:text-gray-200 animate-pulse">
-                Load more....
-              </p>
+              <LoadMore />
             </div>
           </div>
         </div>
