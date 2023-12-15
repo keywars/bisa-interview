@@ -15,8 +15,13 @@ import {
 } from "@/components/ui/table";
 import Link from "next/link";
 import React from "react";
+import getPosts from "@/actions/blog/get-posts";
 
-const BlogDashboardPage = () => {
+const BlogDashboardPage = async () => {
+  const posts = await getPosts();
+
+  console.log(posts);
+
   return (
     <div className="space-y-10">
       {/* TODO: breadcrumbs fix */}
@@ -24,15 +29,15 @@ const BlogDashboardPage = () => {
 
       <div className="space-y-7">
         <h1 className="text-3xl font-bold">Blog</h1>
-        <div className="flex justify-between items-center space-x-5">
-          <div className="flex items-center space-x-1.5 w-[327px]">
+        <div className="flex items-center justify-between space-x-5">
+          <div className="flex w-[327px] items-center space-x-1.5">
             <Input
-              className="h-10 w-full focus-visible:ring-1 focus-visible:outline-none focus-visible:ring-offset-0"
+              className="h-10 w-full focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0"
               type="search"
               placeholder="Search by name..."
             />
             <Button className="h-10" variant="outline">
-              <TablerSearch className="w-5 h-5 fill-gray-600" />
+              <TablerSearch className="h-5 w-5 fill-gray-600" />
             </Button>
           </div>
 
@@ -45,7 +50,7 @@ const BlogDashboardPage = () => {
               size: "sm",
             })}
           >
-            <MdiPlusCircleOutline className="w-5 h-5 md:mr-2" />
+            <MdiPlusCircleOutline className="h-5 w-5 md:mr-2" />
             <span className="hidden md:flex">Add Blog</span>
           </Link>
         </div>
@@ -70,30 +75,6 @@ const BlogDashboardPage = () => {
                 <Badge className="bg-emerald-500/80">published</Badge>
               </TableCell>
               <TableCell className="text-right">50</TableCell>
-            </TableRow>
-          </TableBody>
-          <TableBody>
-            <TableRow>
-              <TableCell className="font-medium">2</TableCell>
-              <TableCell className="capitalize">
-                leetcode interview questions
-              </TableCell>
-              <TableCell>
-                <Badge variant="destructive">draft</Badge>
-              </TableCell>
-              <TableCell className="text-right">12</TableCell>
-            </TableRow>
-          </TableBody>
-          <TableBody>
-            <TableRow>
-              <TableCell className="font-medium">2</TableCell>
-              <TableCell className="capitalize">
-                SQL quick revision notes for interview
-              </TableCell>
-              <TableCell>
-                <Badge className="bg-emerald-500/80">published</Badge>
-              </TableCell>
-              <TableCell className="text-right">128</TableCell>
             </TableRow>
           </TableBody>
         </Table>

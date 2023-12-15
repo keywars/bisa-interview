@@ -24,6 +24,7 @@ export const users = pgTable("user", {
 
 export const usersRelations = relations(users, ({ many }) => ({
   interviews: many(interviews),
+  posts: many(blogs),
 }));
 
 const userSchema = createSelectSchema(users);
@@ -107,4 +108,33 @@ export type Tag = z.infer<typeof tagSchema>;
 
 export const tagsRelations = relations(tags, ({ many }) => ({
   interviews: many(interviews),
+}));
+
+export const blogs = pgTable(
+  "blog",
+  {
+    id: text("id")
+      .primaryKey()
+      .default(sql`gen_random_uuid()`),
+    authorId: text("author_id"),
+    title: varchar("title", { length: 100 }).notNull(),
+    slug: text("slug").unique(),
+    content: text("content").notNull(),
+    createdAt: timestamp("created_at", { mode: "date" }).defaultNow(),
+  },
+  (table) => {
+    return {
+      slugIdx: index("slug_idx").on(table.slug),
+    };
+  },
+);
+
+const blogSchema = createSelectSchema(blogs);
+export type Blog = z.infer<typeof blogSchema>;
+
+export const blogsRelations = relations(blogs, ({ one }) => ({
+  author: one(users, {
+    fields: [blogs.authorId],
+    references: [users.id],
+  }),
 }));
