@@ -16,11 +16,11 @@ import {
 import Link from "next/link";
 import React from "react";
 import getPosts from "@/actions/blog/get-posts";
+import BlogTableAction from "@/components/dashboard/blog-table-action";
+import { cn } from "@/lib/utils";
 
 const BlogDashboardPage = async () => {
   const posts = await getPosts();
-
-  console.log(posts);
 
   return (
     <div className="space-y-10">
@@ -56,26 +56,40 @@ const BlogDashboardPage = async () => {
         </div>
 
         <Table>
-          <TableCaption>A list of your recent dummy invoices.</TableCaption>
+          <TableCaption>
+            {!posts?.length ? "Article is empty." : "List of Articles"}
+          </TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead className="w-[50px]">No</TableHead>
               <TableHead>Title</TableHead>
-              <TableHead className="w-[200px]">Body</TableHead>
-              <TableHead className="text-right">Status</TableHead>
+              <TableHead>Content</TableHead>
+              <TableHead>Status</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableCell className="font-medium">1</TableCell>
-              <TableCell className="capitalize">
-                top 50 intermediate python interview questions
-              </TableCell>
-              <TableCell>
-                <Badge className="bg-emerald-500/80">published</Badge>
-              </TableCell>
-              <TableCell className="text-right">50</TableCell>
-            </TableRow>
+            {posts?.map((post, index) => (
+              <TableRow key={index}>
+                <TableCell className="font-medium">{index + 1}</TableCell>
+                <TableCell className="capitalize">{post.title}</TableCell>
+                <TableCell>{post.content}</TableCell>
+                <TableCell>
+                  <Badge
+                    className={cn(
+                      "capitalize",
+                      post.status === "published"
+                        ? "bg-emerald-500/80"
+                        : "bg-rose-500/80",
+                    )}
+                  >
+                    {post.status}
+                  </Badge>
+                </TableCell>
+                <TableCell>
+                  <BlogTableAction />
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </div>

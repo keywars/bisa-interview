@@ -110,6 +110,7 @@ export const tagsRelations = relations(tags, ({ many }) => ({
   interviews: many(interviews),
 }));
 
+export const blogStatus = pgEnum("status", ["draft", "published"]);
 export const blogs = pgTable(
   "blog",
   {
@@ -120,6 +121,7 @@ export const blogs = pgTable(
     title: varchar("title", { length: 100 }).notNull(),
     slug: text("slug").unique(),
     content: text("content").notNull(),
+    status: blogStatus("status").default("draft"),
     createdAt: timestamp("created_at", { mode: "date" }).defaultNow(),
   },
   (table) => {

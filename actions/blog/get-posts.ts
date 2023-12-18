@@ -6,6 +6,9 @@ export default async function getPosts() {
   try {
     const response = await fetch("http://localhost:3000/api/blogs", {
       method: "GET",
+      next: {
+        tags: ["blog"],
+      },
     });
 
     if (!response.ok) {

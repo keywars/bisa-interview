@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import {
@@ -21,6 +21,8 @@ import { Input } from "../ui/input";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Skeleton } from "../ui/skeleton";
 import UploadBanner from "./upload-banner";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), {
   ssr: false,
@@ -28,6 +30,9 @@ const MDEditor = dynamic(() => import("@uiw/react-md-editor"), {
 });
 
 const BlogForm = () => {
+  const router = useRouter();
+  const { toast } = useToast();
+  const [isPending, startTransition] = useTransition();
   const [preview, setPreview] = useState<string>("");
   const form = useForm<TBlogSchema>({
     resolver: zodResolver(blogSchema),
@@ -35,7 +40,6 @@ const BlogForm = () => {
       title: "",
       body: "",
       status: "draft",
-      // tags: [],
       banner: undefined,
     },
   });
@@ -46,7 +50,46 @@ const BlogForm = () => {
   };
 
   const onSubmit = (values: TBlogSchema) => {
-    console.log(values);
+    startTransition(async () => {
+      const formData = new FormData();
+
+      formData.append("title", values.title);
+      formData.append("body", values.body);
+      formData.append("status", values.status);
+      formData.append("image", values.banner as File);
+
+      await fetch("/api/blogs", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => {
+          if (response.ok) {
+            toast({
+              title: "Create new post",
+              description: "Create new post successfully",
+            });
+
+            form.reset();
+            router.push("/dashboard/blog");
+          } else {
+            toast({
+              title: "Create new post",
+              variant: "destructive",
+              description: "Failed to create new post",
+            });
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          toast({
+            title: "Create new post",
+            variant: "destructive",
+            description: `failed to create new post: ${
+              (error as Error).message
+            }`,
+          });
+        });
+    });
   };
 
   return (
@@ -56,6 +99,7 @@ const BlogForm = () => {
           <FormField
             control={form.control}
             name="title"
+            disabled={isPending}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Title</FormLabel>
@@ -73,6 +117,7 @@ const BlogForm = () => {
           <FormField
             control={form.control}
             name="body"
+            disabled={isPending}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Body</FormLabel>
@@ -88,38 +133,22 @@ const BlogForm = () => {
             )}
           />
 
-          {/* <FormField
-            control={form.control}
-            name="tags"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Tags</FormLabel>
-                <FormControl>
-                  <Input placeholder="input tags" {...field} />
-                </FormControl>
-                <FormDescription>
-                  You can insert or select multiple tag.
-                </FormDescription>
-                <FormMessage className="text-sm" />
-              </FormItem>
-            )}
-          /> */}
-
           <FormField
             control={form.control}
             name="banner"
+            disabled={isPending}
             render={({ field: { onChange } }) => (
               <FormItem>
                 <FormLabel>Banner</FormLabel>
                 {form.getValues("banner") ? (
-                  <div className="max-w-xs my-0.5">
+                  <div className="my-0.5 max-w-xs">
                     <div className="relative aspect-video">
                       <Image
                         fill
                         src={preview}
                         alt={form.getValues("banner")?.name as string}
                         quality={75}
-                        className="object-cover rounded-md"
+                        className="rounded-md object-cover"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         onLoad={() => URL.revokeObjectURL(preview)}
                       />
@@ -127,10 +156,10 @@ const BlogForm = () => {
                         type="button"
                         variant="ghost"
                         size="sm"
-                        className="absolute top-1 right-1 text-rose-500 hover:bg-transparent hover:text-rose-600 transition-all duration-300"
+                        className="absolute right-1 top-1 text-rose-500 transition-all duration-300 hover:bg-transparent hover:text-rose-600"
                         onClick={handleRemoveBanner}
                       >
-                        <MaterialSymbolsCloseSmall className="w-6 h-6" />
+                        <MaterialSymbolsCloseSmall className="h-6 w-6" />
                       </Button>
                     </div>
                   </div>
@@ -150,6 +179,7 @@ const BlogForm = () => {
           <FormField
             control={form.control}
             name="status"
+            disabled={isPending}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Status</FormLabel>
@@ -167,7 +197,7 @@ const BlogForm = () => {
                     </FormItem>
                     <FormItem className="flex items-center space-x-3 space-y-0">
                       <FormControl>
-                        <RadioGroupItem value="publish" />
+                        <RadioGroupItem value="published" />
                       </FormControl>
                       <FormLabel className="font-normal">Publish</FormLabel>
                     </FormItem>
@@ -179,8 +209,8 @@ const BlogForm = () => {
           />
         </div>
 
-        <Button type="submit" size="sm">
-          Upload image
+        <Button type="submit" size="sm" disabled={isPending}>
+          {isPending ? "Submitting..." : "Create"}
         </Button>
       </form>
     </Form>

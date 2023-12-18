@@ -13,7 +13,7 @@ export const blogSchema = z.object({
   title: z.string().min(6),
   body: z.string().min(12),
   //   tags: z.array(z.string()),
-  status: z.enum(["publish", "draft"]),
+  status: z.enum(["published", "draft"]),
   banner: z
     .custom<File | undefined>()
     .refine((file) => file?.size! <= MAX_FILE_SIZE, {
@@ -21,7 +21,7 @@ export const blogSchema = z.object({
     })
     .refine((file) => ACCEPTED_IMAGE_TYPES.includes(file?.type!), {
       message: `Only the following image types are allowed: ${ACCEPTED_IMAGE_TYPES.join(
-        ", "
+        ", ",
       )}`,
     }),
 });
