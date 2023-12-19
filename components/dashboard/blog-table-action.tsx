@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useTransition } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,8 +11,41 @@ import {
 } from "../ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import MdiDotsHorizontal from "../icons/MdiDotsHorizontal";
+import { useRouter } from "next/navigation";
+import { useToast } from "../ui/use-toast";
 
-function BlogTableAction() {
+interface BlogTableActionProps {
+  postId: string;
+}
+
+function BlogTableAction({ postId }: BlogTableActionProps) {
+  const { toast } = useToast();
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
+  const handleDeleteBlog = () => {
+    startTransition(async () => {
+      await fetch(`/api/blogs/${postId}`, {
+        method: "DELETE",
+      }).then((response) => {
+        if (response.ok) {
+          toast({
+            title: "Delete Blog",
+            description: "Delete blog successfully!!!",
+          });
+
+          router.refresh();
+        } else {
+          toast({
+            title: "Delete Blog",
+            variant: "destructive",
+            description: "Failed to delete blog",
+          });
+        }
+      });
+    });
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -21,8 +56,15 @@ function BlogTableAction() {
       <DropdownMenuContent>
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Edit</DropdownMenuItem>
-        <DropdownMenuItem>Delete</DropdownMenuItem>
+        <DropdownMenuItem
+          disabled={isPending}
+          onClick={() => console.log("edit blog")}
+        >
+          Edit
+        </DropdownMenuItem>
+        <DropdownMenuItem disabled={isPending} onClick={handleDeleteBlog}>
+          Delete
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

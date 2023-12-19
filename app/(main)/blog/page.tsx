@@ -1,3 +1,4 @@
+import getPosts from "@/actions/blog/get-posts";
 import Header from "@/components/header";
 import NewsCard from "@/components/news-card";
 import { cn } from "@/lib/utils";
@@ -16,64 +17,45 @@ export const metadata: Metadata = {
   },
 };
 
-const dummyBlogs = [
-  {
-    title: "tips for successful interview",
-    author: "Moh. ilhamuddin",
-    publishedAt: "06/02/2022",
-  },
-  {
-    title: "how to make a greet impression in a job interview: 20 tips",
-    author: "samsul rahmatullah",
-    publishedAt: "04/23/2022",
-  },
-  {
-    title: "6 interview skills that will get you hired",
-    author: "laeny syahrunnisa",
-    publishedAt: "08/31/2023",
-  },
-  {
-    title: "job interview preparation tips to help you stand out",
-    author: "arman dani agustia",
-    publishedAt: "01/02/2024",
-  },
-  {
-    title:
-      "fresh off passing google and microsoft interviews, i put together an free, opinionated interview guide that i hope can help you",
-    author: "raudatul aini",
-    publishedAt: "01/10/2024",
-  },
-  {
-    title: "4 super helpful programming mock interviews platforms",
-    author: "rizka hidayati alwi",
-    publishedAt: "01/11/2024",
-  },
-];
+const BlogPage = async () => {
+  const posts = (await getPosts({ status: "published" })) as {
+    title: string;
+    id: string;
+    createdAt: Date | null;
+    slug: string | null;
+    status: "draft" | "published" | null;
+    authorId: string | null;
+    content: string;
+    author: {
+      id: string;
+      name: string | null;
+      email: string;
+      password: string;
+      createdAt: Date | null;
+    } | null;
+  }[];
 
-const BlogPage = () => {
   return (
     <div className="min-h-screen">
-      <div className="max-w-screen-xl mx-auto px-3 space-y-5">
+      <div className="mx-auto max-w-screen-xl space-y-5 px-3">
         <Header
           title="Latest Blogs"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium, impedit?"
         />
 
-        <div className="max-w-screen-md mx-auto py-3">
+        <div className="mx-auto max-w-screen-md py-3">
           <div className="flex flex-col space-y-6">
-            {dummyBlogs.map((blog, index) => (
-              <NewsCard key={index} blog={blog} />
-            ))}
+            {posts?.map((post, index) => <NewsCard key={index} post={post} />)}
           </div>
 
           {/* pagination navigation */}
-          <div className="flex space-x-4 justify-center my-12">
+          <div className="my-12 flex justify-center space-x-4">
             {Array.from({ length: 3 }).map((_, index) => (
               <div
                 key={index}
                 className={cn(
-                  "py-1.5 px-3 text-xs rounded-full border hover:cursor-pointer border-sky-500/80",
-                  index === 0 && "bg-sky-200"
+                  "rounded-full border border-sky-500/80 px-3 py-1.5 text-xs hover:cursor-pointer",
+                  index === 0 && "bg-sky-200",
                 )}
               >
                 {index + 1}

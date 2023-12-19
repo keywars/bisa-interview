@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { blogs } from "@/db/schema";
 import { db } from "@/db";
 import getPostBySlug from "@/actions/blog/get-post-by-slug";
@@ -6,11 +6,25 @@ import slugify from "@/lib/slugify";
 import uploadImage from "@/lib/upload-image";
 import getCurrentUser from "@/actions/user/get-current-user";
 import { revalidateTag } from "next/cache";
-import { desc } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams;
+  const filterByStatus = searchParams.get("status");
+
+  let whereClause;
+  if (filterByStatus) {
+    whereClause = eq(blogs.status, filterByStatus as "published" | "draft");
+  }
+
   try {
-    const posts = await db.select().from(blogs).orderBy(desc(blogs.createdAt));
+    const posts = await db.query.blogs.findMany({
+      where: whereClause,
+      with: {
+        author: true,
+      },
+      orderBy: (blogs, { desc }) => [desc(blogs.createdAt)],
+    });
 
     return NextResponse.json({ data: posts }, { status: 200 });
   } catch (e) {

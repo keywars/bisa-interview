@@ -1,7 +1,6 @@
-import { join } from "path";
 import * as crypto from "crypto";
-import slugify from "@/lib/slugify";
 import { writeFile } from "fs/promises";
+import { join } from "path";
 
 export default async function uploadImage(uploadPath: string, image: File) {
   const bytes = await image.arrayBuffer();

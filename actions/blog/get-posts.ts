@@ -1,23 +1,32 @@
 "use server";
 
-import { Blog } from "@/db/schema";
+interface getPostsProps {
+  status?: "published" | "draft";
+}
 
-export default async function getPosts() {
+export default async function getPosts(
+  { status }: getPostsProps = { status: undefined },
+) {
   try {
-    const response = await fetch("http://localhost:3000/api/blogs", {
-      method: "GET",
-      next: {
-        tags: ["blog"],
+    const queryParams = status ? `?status=${status}` : "";
+
+    const response = await fetch(
+      `http://localhost:3000/api/blogs${queryParams}`,
+      {
+        method: "GET",
+        next: {
+          tags: ["blog"],
+        },
       },
-    });
+    );
 
     if (!response.ok) {
-      return null;
+      throw new Error("failed to fetch posts");
     }
 
     const { data } = await response.json();
 
-    return data as Blog[];
+    return data;
   } catch (e) {
     console.error(e);
     return null;

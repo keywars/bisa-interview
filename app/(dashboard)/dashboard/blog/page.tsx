@@ -1,26 +1,30 @@
 import Breadcrumbs from "@/components/breadcrumbs";
 import MdiPlusCircleOutline from "@/components/icons/MdiPlusCircleOutline";
 import TablerSearch from "@/components/icons/TablerSearch";
-import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import Link from "next/link";
 import React from "react";
 import getPosts from "@/actions/blog/get-posts";
-import BlogTableAction from "@/components/dashboard/blog-table-action";
-import { cn } from "@/lib/utils";
+import BlogsTable from "@/components/dashboard/blogs-table";
 
 const BlogDashboardPage = async () => {
-  const posts = await getPosts();
+  const posts = (await getPosts()) as {
+    title: string;
+    id: string;
+    createdAt: Date | null;
+    slug: string | null;
+    status: "draft" | "published" | null;
+    authorId: string | null;
+    content: string;
+    author: {
+      id: string;
+      name: string | null;
+      email: string;
+      password: string;
+      createdAt: Date | null;
+    } | null;
+  }[];
 
   return (
     <div className="space-y-10">
@@ -55,43 +59,7 @@ const BlogDashboardPage = async () => {
           </Link>
         </div>
 
-        <Table>
-          <TableCaption>
-            {!posts?.length ? "Article is empty." : "List of Articles"}
-          </TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[50px]">No</TableHead>
-              <TableHead>Title</TableHead>
-              <TableHead>Content</TableHead>
-              <TableHead>Status</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {posts?.map((post, index) => (
-              <TableRow key={index}>
-                <TableCell className="font-medium">{index + 1}</TableCell>
-                <TableCell className="capitalize">{post.title}</TableCell>
-                <TableCell>{post.content}</TableCell>
-                <TableCell>
-                  <Badge
-                    className={cn(
-                      "capitalize",
-                      post.status === "published"
-                        ? "bg-emerald-500/80"
-                        : "bg-rose-500/80",
-                    )}
-                  >
-                    {post.status}
-                  </Badge>
-                </TableCell>
-                <TableCell>
-                  <BlogTableAction />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <BlogsTable posts={posts} />
       </div>
     </div>
   );
