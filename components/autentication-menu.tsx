@@ -39,7 +39,7 @@ const AuthenticationMenu = () => {
 
           {/* <NavigationMenuItem>
             <Link
-              href="/signup"
+              href="/registration"
               legacyBehavior
               passHref
               aria-label="Go to sign-up page"
@@ -48,7 +48,7 @@ const AuthenticationMenu = () => {
                 className={cn(
                   navigationMenuTriggerStyle(),
                   "bg-sky-600 text-white font-bold hover:bg-sky-400 hover:text-gray-100",
-                  pathname === "/signup" && "font-black"
+                  pathname === "/registration" && "font-black"
                 )}
               >
                 Create Account

@@ -42,7 +42,7 @@ const LoginPage = async () => {
           <p className="text-sm font-light tracking-wide text-gray-600 dark:text-gray-400">
             don{"'"}t have an account?{" "}
             <Link
-              href="/signup"
+              href="/registration"
               className="hover:underline"
               aria-label="Log in to your account"
             >

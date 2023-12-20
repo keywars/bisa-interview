@@ -47,7 +47,7 @@ function LoadMore() {
 
       <div className="col-span-3" ref={ref}>
         {isLoading ? (
-          <p className="animate-pulse text-center text-gray-700 dark:text-gray-200">
+          <p className="mt-24 animate-pulse text-center text-gray-700 dark:text-gray-200">
             Load more....
           </p>
         ) : null}

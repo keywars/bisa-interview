@@ -12,7 +12,6 @@ interface StatisticSectionProps {
 const StatisticSection = ({
   totalInterview,
   totalQuestion,
-  totalTag,
 }: StatisticSectionProps) => {
   const [statistics, setStatistics] = useState([
     {
@@ -23,15 +22,11 @@ const StatisticSection = ({
       label: "interview",
       total: totalInterview,
     },
-    {
-      label: "tags",
-      total: totalTag,
-    },
   ]);
 
   return (
     <section className="flex min-h-[78dvh] items-center bg-zinc-50/50 dark:bg-zinc-900/70 lg:min-h-[29dvh]">
-      <div className="mx-auto grid max-w-screen-lg items-center gap-y-20 px-3 md:grid-cols-3 lg:gap-x-16">
+      <div className="mx-auto grid max-w-screen-lg items-center gap-y-20 px-3 md:grid-cols-2 lg:gap-x-36">
         {statistics.map((data, index) => (
           <div
             key={index}

@@ -49,29 +49,11 @@ const BlogPage = async () => {
               <p className="capitalize text-rose-500">no posts</p>
             </div>
           ) : (
-            <>
-              <div className="flex flex-col space-y-6">
-                {posts?.map((post, index) => (
-                  <NewsCard key={index} post={post} />
-                ))}
-              </div>
-
-              {/* pagination navigation */}
-              <div className="my-12 flex justify-center space-x-4">
-                {Array.from({ length: 3 }).map((_, index) => (
-                  <div
-                    key={index}
-                    className={cn(
-                      "rounded-full border border-sky-500/80 px-3 py-1.5 text-xs hover:cursor-pointer",
-                      index === 0 && "bg-sky-200",
-                    )}
-                  >
-                    {index + 1}
-                  </div>
-                ))}
-              </div>
-              {/* end pagination navigation */}
-            </>
+            <div className="flex flex-col space-y-6">
+              {posts?.map((post, index) => (
+                <NewsCard key={index} post={post} />
+              ))}
+            </div>
           )}
         </div>
       </div>

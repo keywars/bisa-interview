@@ -93,9 +93,9 @@ const AddQuestionForm = ({
   };
 
   return (
-    <Card className="bg-gray-50 dark:bg-zinc-900/70 max-w-screen-md">
+    <Card className="max-w-screen-md bg-gray-50 dark:bg-zinc-900/70">
       <CardHeader>
-        <h2 className="font-bold text-lg">
+        <h2 className="text-lg font-bold">
           Add new question for number{" "}
           <Badge className="text-xl">{totalQuestion + 1}</Badge>
         </h2>

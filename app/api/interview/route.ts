@@ -19,7 +19,7 @@ export async function POST(request: Request) {
   if (!validation.success) {
     return NextResponse.json(
       { error: validation.error.errors.at(0)?.message },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
   if (interviewExists) {
     return NextResponse.json(
       { error: "interview already exits" },
-      { status: 409 }
+      { status: 409 },
     );
   }
 
@@ -39,14 +39,13 @@ export async function POST(request: Request) {
   const interview = await db
     .insert(interviews)
     .values({ title, slug, authorId: currentUser?.id })
-
     .returning({ id: interviews.id });
 
   revalidateTag("interview");
 
   return NextResponse.json(
     { message: "create interview success", data: interview.at(0)?.id },
-    { status: 201 }
+    { status: 201 },
   );
 }
 
@@ -62,13 +61,13 @@ export async function GET(request: Request) {
 
     return NextResponse.json(
       { message: "success", data: interviews },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error(error);
     return NextResponse.json(
       { error: "something went wrong" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
