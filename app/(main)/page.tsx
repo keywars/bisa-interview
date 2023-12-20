@@ -45,9 +45,9 @@ const MainPage = async () => {
         totalQuestion={totalQuestions.at(0)?._count as number}
         totalTag={totalTag.at(0)?._count as number}
       />
-      <InterviewGrid publishedInterviews={publishedInterviews} />
+      {/*<InterviewGrid publishedInterviews={publishedInterviews} />*/}
       {/* <Testimonials /> */}
-      <FrequentlyAsking />
+      {/*<FrequentlyAsking />*/}
     </div>
   );
 };

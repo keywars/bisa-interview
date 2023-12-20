@@ -2,6 +2,7 @@ import NewsArticle from "@/components/news-article";
 import RelatedArticle from "@/components/related-article";
 import Link from "next/link";
 import React from "react";
+import getPostBySlug from "@/actions/blog/get-post-by-slug";
 
 interface BlogDetailProps {
   params: {
@@ -9,20 +10,22 @@ interface BlogDetailProps {
   };
 }
 
-const BlogDetail = ({ params: { slug } }: BlogDetailProps) => {
+const BlogDetail = async ({ params: { slug } }: BlogDetailProps) => {
+  const post = await getPostBySlug(slug);
+
   return (
-    <div className="max-w-screen-md mx-auto py-5">
+    <div className="mx-auto max-w-screen-md py-5">
       <div className="mb-12 mt-6">
         <Link
           href="/blog"
-          className="text-gray-800 dark:text-gray-300 md:pl-5 hover:text-sky-500/80 dark:hover:text-sky-500"
+          className="text-gray-800 hover:text-sky-500/80 dark:text-gray-300 dark:hover:text-sky-500 md:pl-5"
           aria-label="Go back to the news page"
         >
           &laquo; Back to news
         </Link>
       </div>
 
-      <NewsArticle title={slug} />
+      <NewsArticle post={post} />
 
       <RelatedArticle />
     </div>

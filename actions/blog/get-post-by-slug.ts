@@ -1,11 +1,15 @@
 import { db } from "@/db";
-import { Blog, blogs } from "@/db/schema";
+import { blogs } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
-export default async function getPostBySlug(slug: string): Promise<Blog> {
+export default async function getPostBySlug(slug: string) {
   try {
-    const [post] = await db.select().from(blogs).where(eq(blogs.slug, slug));
-
+    const post = await db.query.blogs.findFirst({
+      where: eq(blogs.slug, slug),
+      with: {
+        author: true,
+      },
+    });
     return post;
   } catch (error) {
     console.error(error);

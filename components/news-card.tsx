@@ -1,8 +1,8 @@
 import slugify from "@/lib/slugify";
 import Link from "next/link";
 import React from "react";
-import { Blog, User } from "@/db/schema";
-import { PgRelationalQuery } from "drizzle-orm/pg-core/query-builders/query";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 interface NewsCardProps {
   post: {
@@ -23,6 +23,8 @@ interface NewsCardProps {
   };
 }
 
+dayjs.extend(relativeTime);
+
 const NewsCard = ({ post }: NewsCardProps) => {
   return (
     <div className="dark:hover:bg-zinc -800 flex items-center justify-between rounded-lg border border-violet-500/70 px-4 py-3 transition-all duration-300  hover:scale-105 hover:bg-gray-100 dark:border-violet-500 dark:hover:bg-zinc-800">
@@ -39,7 +41,7 @@ const NewsCard = ({ post }: NewsCardProps) => {
         </Link>
       </div>
       <time className="w-[121px] text-right text-sm font-medium md:[text-wrap:balance]">
-        {post.createdAt?.toString()}
+        {dayjs(post.createdAt).fromNow(true)}
       </time>
     </div>
   );

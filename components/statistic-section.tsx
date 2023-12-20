@@ -30,23 +30,23 @@ const StatisticSection = ({
   ]);
 
   return (
-    <section className="min-h-[78dvh] lg:min-h-[29dvh] bg-zinc-50/50 dark:bg-zinc-900/70 flex items-center">
-      <div className="max-w-screen-lg mx-auto grid md:grid-cols-3 gap-y-20 lg:gap-x-16 items-center px-3">
+    <section className="flex min-h-[78dvh] items-center bg-zinc-50/50 dark:bg-zinc-900/70 lg:min-h-[29dvh]">
+      <div className="mx-auto grid max-w-screen-lg items-center gap-y-20 px-3 md:grid-cols-3 lg:gap-x-16">
         {statistics.map((data, index) => (
           <div
             key={index}
-            className="aspect-video flex justify-center items-center rounded-md"
+            className="flex aspect-video items-center justify-center rounded-md"
           >
-            <div className="text-center space-y-3">
+            <div className="space-y-3 text-center">
               <div>
                 <CountUp
                   end={data.total}
                   duration={3}
                   start={0}
-                  className="font-extrabold text-5xl md:text-5xl text-violet-600/50 dark:text-violet-500"
+                  className="text-5xl font-extrabold text-violet-600/50 dark:text-violet-500 md:text-5xl"
                 />
               </div>
-              <h1 className="font-semibold text-3xl md:text-xl capitalize text-gray-500 dark:text-gray-200">
+              <h1 className="text-3xl font-semibold capitalize text-gray-500 dark:text-gray-200 md:text-xl">
                 {data.label}
               </h1>
             </div>

@@ -41,7 +41,7 @@ function BlogsTable({ posts }: BlogsTableProps) {
         <TableRow>
           <TableHead className="w-[50px]">No</TableHead>
           <TableHead>Title</TableHead>
-          <TableHead>Content</TableHead>
+          <TableHead className="w-1/3">Content</TableHead>
           <TableHead>Status</TableHead>
         </TableRow>
       </TableHeader>
@@ -50,7 +50,7 @@ function BlogsTable({ posts }: BlogsTableProps) {
           <TableRow key={index}>
             <TableCell className="font-medium">{index + 1}</TableCell>
             <TableCell className="capitalize">{post.title}</TableCell>
-            <TableCell>{post.content}</TableCell>
+            <TableCell className="line-clamp-2">{post.content}</TableCell>
             <TableCell>
               <Badge
                 className={cn(

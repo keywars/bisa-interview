@@ -121,6 +121,7 @@ export const blogs = pgTable(
     title: varchar("title", { length: 100 }).notNull(),
     slug: text("slug").unique(),
     content: text("content").notNull(),
+    image: text("image").notNull(),
     status: blogStatus("status").default("draft"),
     createdAt: timestamp("created_at", { mode: "date" }).defaultNow(),
   },

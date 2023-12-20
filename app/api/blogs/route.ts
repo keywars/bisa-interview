@@ -66,6 +66,7 @@ export async function POST(request: Request) {
       title: formData.get("title") as string,
       content: formData.get("body") as string,
       status: formData.get("status") as "published" | "draft",
+      image: saveImage,
       authorId: currentUser?.id,
     });
 
