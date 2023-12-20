@@ -33,19 +33,25 @@ const CollectionPage = async () => {
         />
 
         <div>
-          <div className="space-y-10 pb-12">
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {interviews?.map((interview, index) => (
-                <InterviewCard
-                  index={index}
-                  interview={interview}
-                  key={index}
-                />
-              ))}
+          {interviews?.length ? (
+            <div className="space-y-10 pb-12">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {interviews?.map((interview, index) => (
+                  <InterviewCard
+                    index={index}
+                    interview={interview}
+                    key={index}
+                  />
+                ))}
 
-              <LoadMore />
+                <LoadMore />
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="flex justify-center">
+              <p className="text-rose-500">No Collection</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
